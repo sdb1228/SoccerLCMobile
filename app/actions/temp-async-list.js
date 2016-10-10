@@ -1,15 +1,20 @@
-import { createActions } from 'redux-actions-magic'
+import { createActions } from 'redux-actions'
 
 import * as provider from '../providers/temp'
 
-const actionDefs = [
+const types = [
   'TEMP_ASYNC_LIST_START',
   'TEMP_ASYNC_LIST_SUCCESS',
   'TEMP_ASYNC_LIST_FAIL',
 ]
 
-const { types, actions } = createActions(actionDefs)
+const { tempAsyncStart, tempAsyncSuccess, tempAsyncFail} = createActions(
+  'TEMP_ASYNC_LIST_START',
+  'TEMP_ASYNC_LIST_SUCCESS',
+  'TEMP_ASYNC_LIST_FAIL',
+)
 
+const actions = [tempAsyncStart, tempAsyncSuccess, tempAsyncFail]
 actions.getTempDataList = () => {
   return (dispatch) => {
     dispatch(actions.tempAsyncListStart())

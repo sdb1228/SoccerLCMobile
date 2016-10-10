@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 const { object, bool } = React.PropTypes
 import { View, ScrollView, StyleSheet } from 'react-native'
 import { AdMobBanner, AdMobInterstitial } from 'react-native-admob'
-import codePush from 'react-native-code-push'
 
 import * as provider from '../providers/admob'
 import style from '../styles/admob'
@@ -25,11 +24,6 @@ export default class AdmobContainer extends Component {
 
     this.handleLayout = this.handleLayout.bind(this)
     this.setBannerSize = this.setBannerSize.bind(this)
-  }
-
-  componentWillMount () {
-    codePush.allowRestart()
-    codePush.sync()
   }
 
   componentDidMount () {

@@ -24,6 +24,7 @@
     "redux": "^3.6.0",
     "redux-actions": "^0.12.0",
     "redux-immutable": "^3.0.8",
+    "react-native-admob": "1.1.5",
     "redux-logger": "^2.7.0",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.1.0"
