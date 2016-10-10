@@ -18,7 +18,7 @@ class App extends Component {
     const { state, actions } = this.props
     return (
       <AdmobView
-        hideAd={true}
+        hideAd={false}
         containerStyle={{
           backgroundColor: '#ccccff',
         }}

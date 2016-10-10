@@ -1,6 +1,6 @@
-import { createActions } from 'redux-actions'
+import { createActions } from 'redux-actions-magic'
 
-export default createActions(
+export default createActions([
   'TEMP_ACTON',
   'ANOTHER_TEMP_ACTION',
-)
+])

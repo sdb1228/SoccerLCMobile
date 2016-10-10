@@ -1,4 +1,4 @@
-import { combineActions } from 'redux-actions'
+import { combineActions } from 'redux-actions-magic'
 import tempActions from './temp'
 import tempAsyncListActions from './temp-async-list'
 
