@@ -17,27 +17,27 @@ export default React.createClass({
         initialPage={1}
         renderTabBar={() => <FacebookTabBar tabsText={["Video Feed","My Teams", "Recent Activity", "Indoor Facilities", "Outdoor Facilities"]}/>}
         >
-        <ScrollView tabLabel="ios-paper" style={styles.tabView}>
+        <ScrollView tabLabel="video-camera" style={styles.tabView}>
           <View style={styles.card}>
             <Text>News</Text>
           </View>
         </ScrollView>
-        <ScrollView tabLabel="ios-people" style={styles.tabView}>
+        <ScrollView tabLabel="star" style={styles.tabView}>
           <View style={styles.card}>
             <Text>Friends</Text>
           </View>
         </ScrollView>
-        <ScrollView tabLabel="ios-chatboxes" style={styles.tabView}>
+        <ScrollView tabLabel="newspaper-o" style={styles.tabView}>
           <View style={styles.card}>
             <Text>Messenger</Text>
           </View>
         </ScrollView>
-        <ScrollView tabLabel="ios-notifications" style={styles.tabView}>
+        <ScrollView tabLabel="building-o" style={styles.tabView}>
           <View style={styles.card}>
             <Text>Notifications</Text>
           </View>
         </ScrollView>
-        <ScrollView tabLabel="ios-list" style={styles.tabView}>
+        <ScrollView tabLabel="sun-o" style={styles.tabView}>
           <View style={styles.card}>
             <Text>Other nav</Text>
           </View>
