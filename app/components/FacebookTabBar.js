@@ -50,7 +50,7 @@ const FacebookTabBar = React.createClass({
             color={this.props.activeTab === i ? 'rgb(59,89,152)' : 'rgb(204,204,204)'}
             ref={(icon) => { this.tabIcons[i] = icon; }}
           />
-        <Text style={{fontSize: 12}}>{this.props.tabsText[i]}</Text>
+        <Text style={{fontSize: 10}}>{this.props.tabsText[i]}</Text>
         </TouchableOpacity>;
       })}
     </View>;
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   tabs: {
-    height: 70,
+    height: 65,
     flexDirection: 'row',
     paddingTop: 5,
     borderWidth: 0,
