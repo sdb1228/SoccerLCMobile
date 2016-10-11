@@ -14,8 +14,8 @@ export default React.createClass({
     return (<ScrollableTabView
         tabBarPosition="bottom"
         style={{marginTop: 20 }}
-        initialPage={0}
-        renderTabBar={() => <FacebookTabBar />}
+        initialPage={1}
+        renderTabBar={() => <FacebookTabBar tabsText={["Video Feed","My Teams", "Recent Activity", "Indoor Facilities", "Outdoor Facilities"]}/>}
         >
         <ScrollView tabLabel="ios-paper" style={styles.tabView}>
           <View style={styles.card}>
