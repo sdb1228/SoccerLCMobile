@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 const { object } = React.PropTypes
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { View, Image } from 'react-native'
+import { View, Image, StatusBar } from 'react-native'
 
 import DataList from '../components/data-list'
 import TabBar from '../components/tab-bar'
@@ -29,6 +29,9 @@ class App extends Component {
         style={styles.bg}
         source={require('../assets/processed/standingBall.png')}
       >
+      <StatusBar
+        barStyle="light-content"
+      />
         <TabBar/>
       </Image>
     </AdmobView>
