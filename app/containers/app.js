@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 const { object } = React.PropTypes
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { View,Text, Image } from 'react-native'
-import Swiper from 'react-native-swiper'
-import styles from '../styles/swipe-navigation'
+import { View } from 'react-native'
+
+import DataList from '../components/data-list'
+import TabBar from '../components/tab-bar'
 import AdmobView from './admob'
 import actions from '../actions'
 
@@ -20,26 +21,10 @@ class App extends Component {
       <AdmobView
         hideAd={true}
         containerStyle={{
-          backgroundColor: '#ccccff',
+          backgroundColor: '#ffffff',
         }}
       >
-      <Swiper style={styles.wrapper} showsButtons={true}>
-        <Image
-            style={{flex: 1}}
-            source={require('../assets/kickingSoccer.jpg')}
-            >
-          </Image>
-        <Image
-            style={{flex: 1}}
-            source={require('../assets/standingBall.jpg')}
-            >
-          </Image>
-        <Image
-            style={{flex: 1}}
-            source={require('../assets/jumpingSoccer.jpg')}
-            >
-        </Image>
-      </Swiper>
+      <TabBar/>
     </AdmobView>
     )
   }
