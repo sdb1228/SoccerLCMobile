@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 const { object } = React.PropTypes
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { View } from 'react-native'
+import { View, Image } from 'react-native'
 
 import DataList from '../components/data-list'
 import TabBar from '../components/tab-bar'
 import AdmobView from './admob'
 import actions from '../actions'
+import styles from '../styles/app'
 
 class App extends Component {
   static propTypes = {
@@ -24,7 +25,12 @@ class App extends Component {
           backgroundColor: '#ffffff',
         }}
       >
-      <TabBar/>
+      <Image
+        style={styles.bg}
+        source={require('../assets/processed/standingBall.png')}
+      >
+        <TabBar/>
+      </Image>
     </AdmobView>
     )
   }
