@@ -9,8 +9,16 @@ export default StyleSheet.create({
     marginTop: 30,
     marginBottom: 30,
   },
-  cellText: {
+  awayTeamCellText: {
     color: '#ffffff',
+    fontFamily: 'Helvetica',
+    fontWeight: 'bold',
+  },
+  homeTeamCellText: {
+    color: '#ffffff',
+    fontFamily: 'Helvetica',
+    paddingBottom: 5,
+    fontWeight: 'bold',
   },
   teamsFieldContainer: {
     alignItems: 'flex-start',

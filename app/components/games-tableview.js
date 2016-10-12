@@ -4,7 +4,6 @@ import React, {
 import {
 	ListView,
 	Text,
-	TouchableOpacity,
 	TouchableHighlight,
 	View,
 } from 'react-native'
@@ -24,7 +23,7 @@ class GamesTableview extends Component {
 
   render () {
     return (
-			<View style={styles.container}>
+				<View style={styles.container}>
 					<SwipeListView
 						dataSource={this.ds.cloneWithRows(this.state.listViewData)}
 						renderRow={ data => (
@@ -34,21 +33,19 @@ class GamesTableview extends Component {
 							>
 								<View style={styles.gameContainer} >
 									<View style={styles.teamsFieldContainer} >
-										<Text style={styles.cellText} >I am the home team</Text>
-										<Text style={styles.cellText} >I am the away team</Text>
+										<Text style={styles.homeTeamCellText} >I am the home team</Text>
+										<Text style={styles.awayTeamCellText} >I am the away team</Text>
 									</View>
 									<View style={styles.scoreContainer} >
-										<Text style={styles.cellText} >456</Text>
-										<Text style={styles.cellText} >123</Text>
+										<Text style={styles.homeTeamCellText} >456</Text>
+										<Text style={styles.awayTeamCellText} >123</Text>
 									</View>
 								</View>
 							</TouchableHighlight>
 						)}
-						leftOpenValue={75}
-						rightOpenValue={-150}
 					/>
 			</View>
-		);
+		)
 	}
 }
 export default GamesTableview
