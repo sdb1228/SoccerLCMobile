@@ -1,3 +1,3 @@
 export default {
-  baseUrl: 'https://randomuser.me/api/',
+  baseUrl: 'http://soccerlc.docker/api/v1/',
 }

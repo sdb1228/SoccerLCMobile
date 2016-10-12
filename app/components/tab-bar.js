@@ -11,6 +11,9 @@ import styles from '../styles/tab-bar'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
 
 export default React.createClass({
+  propTypes: {
+    actions: React.PropTypes.object,
+  },
   render () {
     return (
       <ScrollableTabView
@@ -25,7 +28,7 @@ export default React.createClass({
           </View>
         </ScrollView>
         <ScrollView tabLabel='star' style={styles.tabView}>
-          <GamesTableview/>
+          <GamesTableview actions={this.props.actions} />
         </ScrollView>
         <ScrollView tabLabel='newspaper-o' style={styles.tabView}>
           <View style={styles.card}>

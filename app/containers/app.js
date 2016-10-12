@@ -32,7 +32,9 @@ class App extends Component {
       <StatusBar
         barStyle="light-content"
       />
-        <TabBar/>
+        <TabBar
+          actions={actions}
+        />
       </Image>
     </AdmobView>
     )

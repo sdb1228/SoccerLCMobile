@@ -12,7 +12,7 @@ export default class DataList extends Component {
   }
 
   componentWillMount () {
-    this.props.actions.getTempDataList()
+    this.props.actions.getFacilityTeams(1)
   }
 
   renderItems () {
