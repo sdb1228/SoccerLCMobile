@@ -23,6 +23,8 @@ class GamesTableview extends Component {
     this.data = {
       gamesData: this.props.data.toJS()
     }
+    this.renderContent = this.renderContent.bind(this)
+    this.renderGameRow = this.renderGameRow.bind(this)
     this.props.actions.getFacilityTeams(1)
   }
   componentWillUpdate(nextProps, nextState) {
@@ -30,30 +32,59 @@ class GamesTableview extends Component {
       gamesData: nextProps.data.toJS()
     }
   }
+  renderContent () {
+    const games = this.data.gamesData
+    if (games.length) {
+      return (
+        <SwipeListView
+          dataSource={this.ds.cloneWithRows(games)}
+          renderRow={game => (
+            this.renderGameRow(game)
+          )}
+        />
+      )
+    } else {
+      // TODO spinner here
+      return (
+        <Text>No items found</Text>
+      )
+    }
+  }
+
+  renderGameRow (game) {
+    return (
+      <TouchableHighlight
+        onPress={_ => console.log('You touched me')}
+        underlayColor={'#AAA'}
+        >
+        <View style={styles.gameContainer} >
+          <View style={styles.teamsFieldContainer} >
+            <TouchableHighlight
+              onPress={_ => console.log('You touched me')}
+              underlayColor={'#AAA'}
+              >
+              <Text style={styles.homeTeamCellText} >{game.name}</Text>
+            </TouchableHighlight>
+            <TouchableHighlight
+              onPress={_ => console.log('You touched me')}
+              underlayColor={'#AAA'}
+              >
+              <Text style={styles.awayTeamCellText} >I am the away team</Text>
+            </TouchableHighlight>
+          </View>
+          <View style={styles.scoreContainer} >
+            <Text style={styles.homeTeamCellText} >456</Text>
+            <Text style={styles.awayTeamCellText} >123</Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+    )
+  }
 
   render () {
     return (
       <View style={styles.container}>
-        <SwipeListView
-          dataSource={this.ds.cloneWithRows(this.data.gamesData)}
-          renderRow={data => (
-            <TouchableHighlight
-              onPress={_ => console.log('You touched me')}
-              underlayColor={'#AAA'}
-          >
-              <View style={styles.gameContainer} >
-                <View style={styles.teamsFieldContainer} >
-                  <Text style={styles.homeTeamCellText} >{data.name}</Text>
-                  <Text style={styles.awayTeamCellText} >I am the away team</Text>
-                </View>
-                <View style={styles.scoreContainer} >
-                  <Text style={styles.homeTeamCellText} >456</Text>
-                  <Text style={styles.awayTeamCellText} >123</Text>
-                </View>
-              </View>
-            </TouchableHighlight>
-          )}
-        />
+        {this.renderContent()}
       </View>
     )
   }
