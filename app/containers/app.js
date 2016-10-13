@@ -33,6 +33,7 @@ class App extends Component {
         barStyle="light-content"
       />
         <TabBar
+          data={state.getIn(['soccerlcData', 'facilityTeamsList'])}
           actions={actions}
         />
       </Image>

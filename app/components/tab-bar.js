@@ -13,6 +13,7 @@ import ScrollableTabView from 'react-native-scrollable-tab-view'
 export default React.createClass({
   propTypes: {
     actions: React.PropTypes.object,
+    data: React.PropTypes.object,
   },
   render () {
     return (
@@ -28,7 +29,10 @@ export default React.createClass({
           </View>
         </ScrollView>
         <ScrollView tabLabel='star' style={styles.tabView}>
-          <GamesTableview actions={this.props.actions} />
+          <GamesTableview
+            actions={this.props.actions}
+            data={this.props.data}
+            />
         </ScrollView>
         <ScrollView tabLabel='newspaper-o' style={styles.tabView}>
           <View style={styles.card}>

@@ -13,24 +13,29 @@ import styles from '../styles/games-tableview.js'
 
 class GamesTableview extends Component {
   static propTypes = {
+    data: object.isRequired,
     actions: object.isRequired,
   }
+
   constructor (props) {
     super(props)
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
-    this.state = {
-      listViewData: Array(20).fill('').map((_, i) => `item #${i}`),
+    this.data = {
+      gamesData: this.props.data.toJS()
+    }
+    this.props.actions.getFacilityTeams(1)
+  }
+  componentWillUpdate(nextProps, nextState) {
+    this.data = {
+      gamesData: nextProps.data.toJS()
     }
   }
 
-  componentWillMount () {
-    // this.props.actions.getFacilityTeams(1)
-  }
   render () {
     return (
       <View style={styles.container}>
         <SwipeListView
-          dataSource={this.ds.cloneWithRows(this.state.listViewData)}
+          dataSource={this.ds.cloneWithRows(this.data.gamesData)}
           renderRow={data => (
             <TouchableHighlight
               onPress={_ => console.log('You touched me')}
@@ -38,7 +43,7 @@ class GamesTableview extends Component {
           >
               <View style={styles.gameContainer} >
                 <View style={styles.teamsFieldContainer} >
-                  <Text style={styles.homeTeamCellText} >I am the home team</Text>
+                  <Text style={styles.homeTeamCellText} >{data.name}</Text>
                   <Text style={styles.awayTeamCellText} >I am the away team</Text>
                 </View>
                 <View style={styles.scoreContainer} >
@@ -47,7 +52,7 @@ class GamesTableview extends Component {
                 </View>
               </View>
             </TouchableHighlight>
-        )}
+          )}
         />
       </View>
     )
