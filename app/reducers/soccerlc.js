@@ -10,4 +10,9 @@ export default combineReducers({
       return Immutable.fromJS(action.payload)
     },
   }, List()),
+  facilities: handleActions({
+    [actions.soccerlcAsyncFacilitiesSuccess.type]: (state, action) => {
+      return Immutable.fromJS(action.payload)
+    },
+  }, List()),
 }, {})

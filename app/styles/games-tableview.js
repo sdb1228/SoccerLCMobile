@@ -11,10 +11,6 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  standalone: {
-    marginTop: 30,
-    marginBottom: 30,
-  },
   awayTeamCellText: {
     color: '#ffffff',
     fontFamily: 'Helvetica',

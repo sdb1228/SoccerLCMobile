@@ -6,6 +6,7 @@ import {
 } from 'react-native'
 import TabBar from '../components/tab-bar'
 import GamesTableview from '../components/games-tableview'
+import FacilitiesTableview from '../components/facilities-tableview'
 import styles from '../styles/scrollable-tab-view'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
 
@@ -13,6 +14,7 @@ export default React.createClass({
   propTypes: {
     actions: React.PropTypes.object,
     myTeamsGames: React.PropTypes.object,
+    facilities: React.PropTypes.object,
   },
   render () {
     return (
@@ -33,16 +35,18 @@ export default React.createClass({
             <Text>Recent Activity</Text>
           </View>
         </ScrollView>
-        <ScrollView tabLabel='building-o' style={styles.tabView}>
-          <View style={styles.card}>
-            <Text>Notifications</Text>
-          </View>
-        </ScrollView>
-        <ScrollView tabLabel='sun-o' style={styles.tabView}>
-          <View style={styles.card}>
-            <Text>Other nav</Text>
-          </View>
-        </ScrollView>
+        <FacilitiesTableview
+          tabLabel='building-o'
+          environment='Indoor'
+          actions={this.props.actions}
+          data={this.props.facilities}
+          />
+        <FacilitiesTableview
+          tabLabel='sun-o'
+          environment='Outdoor'
+          actions={this.props.actions}
+          data={this.props.facilities}
+          />
       </ScrollableTabView>
     )
   },
