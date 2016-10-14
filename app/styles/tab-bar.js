@@ -1,24 +1,25 @@
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
-  tabView: {
+  tab: {
     flex: 1,
-    padding: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingBottom: 10,
     backgroundColor: 'rgba(0,0,0,0.01)',
   },
-  card: {
-    borderWidth: 1,
-    backgroundColor: '#fff',
-    borderColor: 'rgba(0,0,0,0.1)',
-    margin: 5,
-    height: 150,
-    padding: 15,
-    shadowColor: '#ccc',
-    shadowOffset: {width: 2, height: 2},
-    shadowOpacity: 0.5,
-    shadowRadius: 3,
+  tabs: {
+    height: 65,
+    flexDirection: 'row',
+    paddingTop: 5,
+    borderWidth: 0,
+    borderTopWidth: 0,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    borderBottomColor: 'rgba(0,0,0,0.05)',
   },
-  tabBar: {
-    marginTop: 20,
+  label: {
+    fontSize: 10,
+    color: 'rgb(204,204,204)',
   },
 })

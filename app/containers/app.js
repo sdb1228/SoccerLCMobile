@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { View, Image, StatusBar } from 'react-native'
 
 import DataList from '../components/data-list'
-import TabBar from '../components/tab-bar'
+import ScrollableTabView from './scrollable-tab-view'
 import AdmobView from './admob'
 import actions from '../actions'
 import styles from '../styles/app'
@@ -32,8 +32,8 @@ class App extends Component {
       <StatusBar
         barStyle="light-content"
       />
-        <TabBar
-          data={state.getIn(['soccerlcData', 'facilityTeamsList'])}
+        <ScrollableTabView
+          myTeamsGames={state.getIn(['soccerlcData', 'facilityTeamsList'])}
           actions={actions}
         />
       </Image>
