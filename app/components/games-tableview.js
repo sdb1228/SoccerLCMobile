@@ -23,8 +23,6 @@ class GamesTableview extends Component {
     this.data = {
       gamesData: this.props.data.toJS()
     }
-    this.renderContent = this.renderContent.bind(this)
-    this.renderGameRow = this.renderGameRow.bind(this)
     this.props.actions.getFacilityTeams(1)
   }
   componentWillUpdate(nextProps, nextState) {
