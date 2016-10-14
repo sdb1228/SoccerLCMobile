@@ -8,7 +8,6 @@ export default StyleSheet.create({
   spinnerContainer: {
     backgroundColor: 'rgba(0,0,0,0.01)',
     flex: 1,
-    paddingTop: 200,
     justifyContent: 'center',
     alignItems: 'center',
   },

@@ -4,7 +4,6 @@ import {
   View,
   ScrollView,
 } from 'react-native'
-
 import FacebookTabBar from './FacebookTabBar'
 import GamesTableview from './games-tableview'
 import styles from '../styles/tab-bar'
@@ -22,13 +21,13 @@ export default React.createClass({
         style={styles.tabBar}
         initialPage={1}
         renderTabBar={() => <FacebookTabBar tabsText={['Video Feed', 'My Teams', 'Recent Activity', 'Indoor Facilities', 'Outdoor Facilities']} />}
-        >
+      >
         <ScrollView tabLabel='video-camera' style={styles.tabView}>
           <View style={styles.card}>
             <Text>News</Text>
           </View>
         </ScrollView>
-        <ScrollView tabLabel='star' style={styles.tabView}>
+        <ScrollView centerContent={true} tabLabel='star' style={styles.tabView}>
           <GamesTableview
             actions={this.props.actions}
             data={this.props.data}

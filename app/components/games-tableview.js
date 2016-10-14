@@ -9,8 +9,9 @@ import {
 } from 'react-native'
 const { object } = React.PropTypes
 import { SwipeListView } from 'react-native-swipe-list-view'
+const Progress = require('react-native-progress')
+
 import styles from '../styles/games-tableview.js'
-var Progress = require('react-native-progress')
 
 class GamesTableview extends Component {
   static propTypes = {
@@ -20,26 +21,20 @@ class GamesTableview extends Component {
 
   constructor (props) {
     super(props)
-    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
-    this.data = {
-      gamesData: this.props.data.toJS()
-    }
+    this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
+  }
+
+  componentWillMount () {
     this.props.actions.getFacilityTeams(1)
   }
-  componentWillUpdate(nextProps, nextState) {
-    this.data = {
-      gamesData: nextProps.data.toJS()
-    }
-  }
+
   renderContent () {
-    const games = this.data.gamesData
+    const games = this.props.data.toJS()
     if (games.length) {
       return (
         <SwipeListView
           dataSource={this.ds.cloneWithRows(games)}
-          renderRow={game => (
-            this.renderGameRow(game)
-          )}
+          renderRow={game => this.renderGameRow(game)}
         />
       )
     } else {
@@ -57,8 +52,8 @@ class GamesTableview extends Component {
         onPress={_ => console.log('You touched me')}
         underlayColor={'#AAA'}
         >
-        <View style={styles.gameContainer} >
-          <View style={styles.teamsFieldContainer} >
+        <View style={styles.gameContainer}>
+          <View style={styles.teamsFieldContainer}>
             <TouchableHighlight
               onPress={_ => console.log('You touched me')}
               underlayColor={'#AAA'}
@@ -69,12 +64,12 @@ class GamesTableview extends Component {
               onPress={_ => console.log('You touched me')}
               underlayColor={'#AAA'}
               >
-              <Text style={styles.awayTeamCellText} >I am the away team</Text>
+              <Text style={styles.awayTeamCellText}>I am the away team</Text>
             </TouchableHighlight>
           </View>
-          <View style={styles.scoreContainer} >
-            <Text style={styles.homeTeamCellText} >456</Text>
-            <Text style={styles.awayTeamCellText} >123</Text>
+          <View style={styles.scoreContainer}>
+            <Text style={styles.homeTeamCellText}>456</Text>
+            <Text style={styles.awayTeamCellText}>123</Text>
           </View>
         </View>
       </TouchableHighlight>
