@@ -10,6 +10,7 @@ import {
 const { object } = React.PropTypes
 import { SwipeListView } from 'react-native-swipe-list-view'
 import styles from '../styles/games-tableview.js'
+var Progress = require('react-native-progress')
 
 class GamesTableview extends Component {
   static propTypes = {
@@ -42,9 +43,10 @@ class GamesTableview extends Component {
         />
       )
     } else {
-      // TODO spinner here
       return (
-        <Text>No items found</Text>
+        <View style={styles.spinnerContainer}>
+          <Progress.CircleSnail size={80} colors={['blue']} />
+        </View>
       )
     }
   }

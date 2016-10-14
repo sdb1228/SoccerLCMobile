@@ -5,6 +5,13 @@ export default StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.01)',
     flex: 1,
   },
+  spinnerContainer: {
+    backgroundColor: 'rgba(0,0,0,0.01)',
+    flex: 1,
+    paddingTop: 200,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   standalone: {
     marginTop: 30,
     marginBottom: 30,
