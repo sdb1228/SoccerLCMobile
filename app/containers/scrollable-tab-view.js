@@ -14,7 +14,8 @@ export default React.createClass({
   propTypes: {
     actions: React.PropTypes.object,
     myTeamsGames: React.PropTypes.object,
-    facilities: React.PropTypes.object,
+    indoorFacilities: React.PropTypes.object,
+    outdoorFacilities: React.PropTypes.object,
   },
   render () {
     return (
@@ -39,13 +40,13 @@ export default React.createClass({
           tabLabel='building-o'
           environment='Indoor'
           actions={this.props.actions}
-          data={this.props.facilities}
+          data={this.props.indoorFacilities}
           />
         <FacilitiesTableview
           tabLabel='sun-o'
           environment='Outdoor'
           actions={this.props.actions}
-          data={this.props.facilities}
+          data={this.props.outdoorFacilities}
           />
       </ScrollableTabView>
     )

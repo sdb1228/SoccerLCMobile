@@ -27,7 +27,16 @@ class FacilitiesTableview extends Component {
   }
 
   componentWillMount () {
-    this.props.actions.getFacilities(this.props.environment)
+    switch(this.props.environment) {
+    case 'Indoor':
+        this.props.actions.getIndoorFacilities()
+        break
+    case 'Outdoor':
+        this.props.actions.getOutdoorFacilities()
+        break
+    default:
+        return
+    }
   }
 
   renderContent () {

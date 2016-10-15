@@ -10,8 +10,13 @@ export default combineReducers({
       return Immutable.fromJS(action.payload)
     },
   }, List()),
-  facilities: handleActions({
-    [actions.soccerlcAsyncFacilitiesSuccess.type]: (state, action) => {
+  indoorFacilities: handleActions({
+    [actions.soccerlcAsyncIndoorFacilitiesSuccess.type]: (state, action) => {
+      return Immutable.fromJS(action.payload)
+    },
+  }, List()),
+  outdoorFacilities: handleActions({
+    [actions.soccerlcAsyncOutdoorFacilitiesSuccess.type]: (state, action) => {
       return Immutable.fromJS(action.payload)
     },
   }, List()),

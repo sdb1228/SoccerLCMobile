@@ -33,7 +33,8 @@ class App extends Component {
         barStyle="light-content"
       />
         <ScrollableTabView
-          facilities={state.getIn(['soccerlcData', 'facilities'])}
+          indoorFacilities={state.getIn(['soccerlcData', 'indoorFacilities'])}
+          outdoorFacilities={state.getIn(['soccerlcData', 'outdoorFacilities'])}
           myTeamsGames={state.getIn(['soccerlcData', 'facilityTeamsList'])}
           actions={actions}
         />

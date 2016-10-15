@@ -6,19 +6,31 @@ const actionDefs = [
   'SOCCERLC_ASYNC_FACILITIES_TEAMS_START',
   'SOCCERLC_ASYNC_FACILITIES_TEAMS_SUCCESS',
   'SOCCERLC_ASYNC_FACILITIES_TEAMS_FAIL',
-  'SOCCERLC_ASYNC_FACILITIES_START',
-  'SOCCERLC_ASYNC_FACILITIES_SUCCESS',
-  'SOCCERLC_ASYNC_FACILITIES_FAIL',
+  'SOCCERLC_ASYNC_INDOOR_FACILITIES_START',
+  'SOCCERLC_ASYNC_INDOOR_FACILITIES_SUCCESS',
+  'SOCCERLC_ASYNC_INDOOR_FACILITIES_FAIL',
+  'SOCCERLC_ASYNC_OUTDOOR_FACILITIES_START',
+  'SOCCERLC_ASYNC_OUTDOOR_FACILITIES_SUCCESS',
+  'SOCCERLC_ASYNC_OUTDOOR_FACILITIES_FAIL',
 ]
 
 const { types, actions } = createActions(actionDefs)
 
-actions.getFacilities = (environment) => {
+actions.getIndoorFacilities = () => {
   return (dispatch) => {
-    dispatch(actions.soccerlcAsyncFacilitiesStart())
-    provider.getFacilities(environment)
-    .then(res => dispatch(actions.soccerlcAsyncFacilitiesSuccess(res.data)))
-    .catch(err => dispatch(actions.soccerlcAsyncFacilitiesFail(err)))
+    dispatch(actions.soccerlcAsyncIndoorFacilitiesStart())
+    provider.getIndoorFacilities()
+    .then(res => dispatch(actions.soccerlcAsyncIndoorFacilitiesSuccess(res.data)))
+    .catch(err => dispatch(actions.soccerlcAsyncIndoorFacilitiesFail(err)))
+  }
+}
+
+actions.getOutdoorFacilities = () => {
+  return (dispatch) => {
+    dispatch(actions.soccerlcAsyncOutdoorFacilitiesStart())
+    provider.getOutdoorFacilities()
+    .then(res => dispatch(actions.soccerlcAsyncOutdoorFacilitiesSuccess(res.data)))
+    .catch(err => dispatch(actions.soccerlcAsyncOutdoorFacilitiesFail(err)))
   }
 }
 
