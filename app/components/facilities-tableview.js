@@ -56,7 +56,7 @@ class FacilitiesTableview extends Component {
         <Image
           resizeMode={Image.resizeMode.stretch}
           style={{height: 150, width: 400, alignItems: 'center', justifyContent: 'center'}}
-          source={require('../assets/kickingSoccer.jpg')}
+          source={require('../assets/letsplay.jpg')}
         >
         <Text style={styles.facilityText}>{facility.name}</Text>
         </Image>
