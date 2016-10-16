@@ -85,6 +85,7 @@ export const createFetchAction = (actionName, actionOptions, fetchData) => {
     // check if there's a fetch out for this data
     // we check for this first so that way we don't return cached data if fresh data is coming
     if (isLoading) {
+      // TODO: needs to subscribe to in-progress action
       // do nothing I guess?
       // the in progress fetch is going to dispatch the action, right!?
     } else {
