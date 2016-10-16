@@ -3,6 +3,8 @@ import tempActions from './temp'
 import tempAsyncListActions from './temp-async-list'
 import soccerlcAsyncFacilitiesActions from './soccerlc-async-list'
 
-const { types, actions } = combineActions([ tempActions, tempAsyncListActions, soccerlcAsyncFacilitiesActions ])
+import fetchExample from './fetch-example'
+
+const { types, actions } = combineActions([ tempActions, tempAsyncListActions, soccerlcAsyncFacilitiesActions, fetchExample ])
 
 export { types, actions as default }

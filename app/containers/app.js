@@ -16,6 +16,22 @@ class App extends Component {
     actions: object.isRequired,
   }
 
+  constructor () {
+    super()
+    this.state = {
+      isLoading: false,
+    }
+  }
+
+  componentWillMount () {
+    // callback won't run if it's going to use cache
+    this.props.actions.fetchUser({}, fetchState => {
+      // if it needs to actually fetch the data, this callback is called
+      // with the loading and error status so we can use it in the view
+      this.setState({ isLoading: fetchState.isLoading })
+    })
+  }
+
   render () {
     const { state, actions } = this.props
     return (

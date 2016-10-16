@@ -17,6 +17,7 @@
     "axios": "^0.14.0",
     "debug": "^2.2.0",
     "immutable": "^3.8.1",
+    "parse-duration": "^0.1.1",
     "react": "15.3.2",
     "react-combine-styles": "^1.0.2",
     "react-native": "0.34.1",
