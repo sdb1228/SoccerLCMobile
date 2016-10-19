@@ -10,6 +10,7 @@ import FacilityTabView from './facility-tab-view'
 import AdmobView from './admob'
 import actions from '../actions'
 import styles from '../styles/app'
+var PushNotification = require('react-native-push-notification')
 
 class App extends Component {
   static propTypes = {
@@ -24,15 +25,43 @@ class App extends Component {
       isLoading: false,
     }
   }
-  //
-  // componentWillMount () {
-  //   // callback won't run if it's going to use cache
-  //   this.props.actions.fetchUser({}, fetchState => {
-  //     // if it needs to actually fetch the data, this callback is called
-  //     // with the loading and error status so we can use it in the view
-  //     this.setState({ isLoading: fetchState.isLoading })
-  //   })
-  // }
+
+  componentWillMount () {
+
+    PushNotification.configure({
+
+      // (optional) Called when Token is generated (iOS and Android)
+      onRegister: function(token) {
+          console.log( 'TOKEN:', token );
+      },
+
+      // (required) Called when a remote or local notification is opened or received
+      onNotification: function(notification) {
+          console.log( 'NOTIFICATION:', notification );
+      },
+
+      // ANDROID ONLY: GCM Sender ID (optional - not required for local notifications, but is need to receive remote push notifications)
+      senderID: "YOUR GCM SENDER ID",
+
+      // IOS ONLY (optional): default: all - Permissions to register.
+      permissions: {
+          alert: true,
+          badge: true,
+          sound: true
+      },
+
+      // Should the initial notification be popped automatically
+      // default: true
+      popInitialNotification: true,
+
+      /**
+        * (optional) default: true
+        * - Specified if permissions (ios) and token (android and ios) will requested or not,
+        * - if not, you must call PushNotificationsHandler.requestPermissions() later
+        */
+      requestPermissions: true,
+    })
+  }
 
   render() {
     return (

@@ -3,6 +3,7 @@ package com.burnetttech.soccerlc;
 import android.app.Application;
 import android.util.Log;
 
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.facebook.react.ReactApplication;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.sbugert.rnadmob.RNAdMobPackage;
@@ -27,7 +28,8 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
             new VectorIconsPackage(),
-            new RNAdMobPackage()
+            new RNAdMobPackage(),
+            new ReactNativePushNotificationPackage()
       );
     }
   };
