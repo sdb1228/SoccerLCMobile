@@ -19,6 +19,7 @@ class FacilitiesTableview extends Component {
     data: object.isRequired,
     actions: object.isRequired,
     environment: string.isRequired,
+    navigator: object.isRequired,
   }
 
   constructor (props) {
@@ -59,7 +60,7 @@ class FacilitiesTableview extends Component {
   renderFacilityRow (facility) {
     return (
       <TouchableHighlight
-        onPress={_ => console.log('You touched me')}
+        onPress={_ => this.props.navigator.push({id: 'second'})}
         underlayColor={'#AAA'}
         >
         <Image

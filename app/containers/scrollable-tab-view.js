@@ -1,7 +1,5 @@
 import React from 'react'
 import {
-  Text,
-  View,
   ScrollView,
 } from 'react-native'
 import TabBar from '../components/tab-bar'
@@ -16,14 +14,16 @@ export default React.createClass({
     myTeamsGames: React.PropTypes.object,
     indoorFacilities: React.PropTypes.object,
     outdoorFacilities: React.PropTypes.object,
+    navigator: React.PropTypes.object,
   },
+
   render () {
     return (
       <ScrollableTabView
         tabBarPosition='bottom'
         style={styles.tabBar}
         initialPage={0}
-        renderTabBar={() => <TabBar tabsText={['My Teams', 'Recent Activity', 'Indoor Facilities', 'Outdoor Facilities']} />}
+        renderTabBar={() => <TabBar tabsText={['My Teams', 'Indoor Facilities', 'Outdoor Facilities']} />}
       >
         <ScrollView centerContent={true} tabLabel='star' style={styles.tabView}>
           <GamesTableview
@@ -31,22 +31,19 @@ export default React.createClass({
             data={this.props.myTeamsGames}
             />
         </ScrollView>
-        <ScrollView tabLabel='newspaper-o' style={styles.tabView}>
-          <View style={styles.card}>
-            <Text>Recent Activity</Text>
-          </View>
-        </ScrollView>
         <FacilitiesTableview
           tabLabel='building-o'
           environment='Indoor'
           actions={this.props.actions}
           data={this.props.indoorFacilities}
+          navigator={this.props.navigator}
           />
         <FacilitiesTableview
           tabLabel='sun-o'
           environment='Outdoor'
           actions={this.props.actions}
           data={this.props.outdoorFacilities}
+          navigator={this.props.navigator}
           />
       </ScrollableTabView>
     )
