@@ -1,4 +1,4 @@
-package com.template;
+package com.burnetttech.soccerlc;
 
 import android.app.Application;
 import android.util.Log;

@@ -1,4 +1,4 @@
-rootProject.name = 'template'
+rootProject.name = 'SoccerLC'
 
 include ':app'
 include ':react-native-vector-icons'
