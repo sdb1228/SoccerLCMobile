@@ -1,13 +1,12 @@
-import React from 'react';
+import React from 'react'
 import {
-  StyleSheet,
-  Text,
   View,
   TouchableOpacity,
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
+import styles from '../styles/navigation-bar'
 
-const FacebookTabBar = React.createClass({
+const NavigationBar = React.createClass({
   tabIcons: [],
 
   propTypes: {
@@ -16,11 +15,11 @@ const FacebookTabBar = React.createClass({
     tabs: React.PropTypes.array,
   },
 
-  componentDidMount() {
+  componentDidMount () {
     this._listener = this.props.scrollValue.addListener(this.setAnimationValue)
   },
 
-  setAnimationValue({ value, }) {
+  setAnimationValue ({value}) {
     this.tabIcons.forEach((icon, i) => {
       const progress = (value - i >= 0 && value - i <= 1) ? value - i : 1
       icon.setNativeProps({
@@ -31,7 +30,7 @@ const FacebookTabBar = React.createClass({
     })
   },
 
-  //color between rgb(59,89,152) and rgb(204,204,204)
+  // color between rgb(59,89,152) and rgb(204,204,204)
   iconColor (progress) {
     const red = 59 + (204 - 59) * progress
     const green = 89 + (204 - 89) * progress
@@ -39,39 +38,20 @@ const FacebookTabBar = React.createClass({
     return `rgb(${red}, ${green}, ${blue})`
   },
 
-  render() {
-    return <View style={[styles.tabs, this.props.style, ]}>
+  render () {
+    return <View style={[styles.tabs, this.props.style]}>
       {this.props.tabs.map((tab, i) => {
         return <TouchableOpacity key={tab} onPress={() => this.props.goToPage(i)} style={styles.tab}>
           <Icon
             name={tab}
             size={30}
             color={this.props.activeTab === i ? 'rgb(59,89,152)' : 'rgb(204,204,204)'}
-            ref={(icon) => { this.tabIcons[i] = icon; }}
+            ref={(icon) => { this.tabIcons[i] = icon }}
           />
-        </TouchableOpacity>;
+        </TouchableOpacity>
       })}
-    </View>;
+    </View>
   },
 })
 
-const styles = StyleSheet.create({
-  tab: {
-    flex: 1,
-    paddingTop: 15,
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-  },
-  tabs: {
-    height: 55,
-    flexDirection: 'row',
-    borderWidth: 1,
-    borderTopWidth: 0,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    borderBottomColor: 'rgba(0,0,0,0.05)',
-  },
-})
-
-export default FacebookTabBar
+export default NavigationBar
