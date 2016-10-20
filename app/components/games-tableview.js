@@ -7,7 +7,7 @@ import {
   TouchableHighlight,
   View,
 } from 'react-native'
-const { object } = React.PropTypes
+const { object, string } = React.PropTypes
 import { SwipeListView } from 'react-native-swipe-list-view'
 const Progress = require('react-native-progress')
 
@@ -17,6 +17,7 @@ class GamesTableview extends Component {
   static propTypes = {
     data: object.isRequired,
     actions: object.isRequired,
+    uniqueDeviceId: string.isRequired,
   }
 
   constructor (props) {
@@ -25,7 +26,7 @@ class GamesTableview extends Component {
   }
 
   componentWillMount () {
-    this.props.actions.getFacilityTeams(1)
+    this.props.actions.getFavoriteTeamsGames(this.props.uniqueDeviceId)
   }
 
   renderContent () {

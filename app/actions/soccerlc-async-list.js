@@ -12,6 +12,9 @@ const actionDefs = [
   'SOCCERLC_ASYNC_OUTDOOR_FACILITIES_START',
   'SOCCERLC_ASYNC_OUTDOOR_FACILITIES_SUCCESS',
   'SOCCERLC_ASYNC_OUTDOOR_FACILITIES_FAIL',
+  'SOCCERLC_ASYNC_FAVORITE_TEAMS_GAMES_START',
+  'SOCCERLC_ASYNC_FAVORITE_TEAMS_GAMES_SUCCESS',
+  'SOCCERLC_ASYNC_FAVORITE_TEAMS_GAMES_FAIL',
 ]
 
 const { types, actions } = createActions(actionDefs)
@@ -22,6 +25,15 @@ actions.getIndoorFacilities = () => {
     provider.getIndoorFacilities()
     .then(res => dispatch(actions.soccerlcAsyncIndoorFacilitiesSuccess(res.data.data)))
     .catch(err => dispatch(actions.soccerlcAsyncIndoorFacilitiesFail(err)))
+  }
+}
+
+actions.getFavoriteTeamsGames = () => {
+  return (dispatch) => {
+    dispatch(actions.soccerlcAsyncFavoriteTeamsGamesStart())
+    provider.getFavoriteTeamsGames()
+    .then(res => dispatch(actions.soccerlcAsyncFavoriteTeamsGamesSuccess(res.data.data)))
+    .catch(err => dispatch(actions.soccerlcAsyncFavoriteTeamsGamesFail(err)))
   }
 }
 

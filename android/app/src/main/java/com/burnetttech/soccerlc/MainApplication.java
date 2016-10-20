@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.facebook.react.ReactApplication;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.sbugert.rnadmob.RNAdMobPackage;
 import com.facebook.react.ReactInstanceManager;
@@ -27,6 +28,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNDeviceInfo(),
             new VectorIconsPackage(),
             new RNAdMobPackage(),
             new ReactNativePushNotificationPackage()

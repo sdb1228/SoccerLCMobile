@@ -13,3 +13,11 @@ export function getIndoorFacilities () {
 export function getOutdoorFacilities () {
   return axios.get(`${soccerlc.baseUrl}facilities/Outdoor`)
 }
+
+export function getFavoriteTeamsGames (uniqueDeviceId) {
+  return axios.get(`${soccerlc.baseUrl}favorites/games`, {
+    params: {
+      installationId: uniqueDeviceId,
+    },
+  })
+}

@@ -14,6 +14,7 @@ export default React.createClass({
     myTeamsGames: React.PropTypes.object,
     indoorFacilities: React.PropTypes.object,
     outdoorFacilities: React.PropTypes.object,
+    uniqueDeviceId: React.PropTypes.string,
     navigator: React.PropTypes.object,
   },
 
@@ -29,6 +30,7 @@ export default React.createClass({
           <GamesTableview
             actions={this.props.actions}
             data={this.props.myTeamsGames}
+            uniqueDeviceId={this.props.uniqueDeviceId}
             />
         </ScrollView>
         <FacilitiesTableview

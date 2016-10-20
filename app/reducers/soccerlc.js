@@ -20,4 +20,10 @@ export default combineReducers({
       return Immutable.fromJS(action.payload)
     },
   }, List()),
+
+  favoriteTeamsGames: handleActions({
+    [actions.soccerlcAsyncFavoriteTeamsGamesSuccess.type]: (state, action) => {
+      return Immutable.fromJS(action.payload)
+    },
+  }, List()),
 }, {})

@@ -11,6 +11,7 @@ import AdmobView from './admob'
 import actions from '../actions'
 import styles from '../styles/app'
 var PushNotification = require('react-native-push-notification')
+const DeviceInfo = require('react-native-device-info')
 
 class App extends Component {
   static propTypes = {
@@ -95,6 +96,7 @@ class App extends Component {
                   indoorFacilities={state.getIn(['soccerlcData', 'indoorFacilities'])}
                   outdoorFacilities={state.getIn(['soccerlcData', 'outdoorFacilities'])}
                   myTeamsGames={state.getIn(['soccerlcData', 'facilityTeamsList'])}
+                  uniqueDeviceId={DeviceInfo.getUniqueID()}
                   navigator={navigator}
                   actions={actions}
                 />
