@@ -20,7 +20,7 @@ actions.getIndoorFacilities = () => {
   return (dispatch) => {
     dispatch(actions.soccerlcAsyncIndoorFacilitiesStart())
     provider.getIndoorFacilities()
-    .then(res => dispatch(actions.soccerlcAsyncIndoorFacilitiesSuccess(res.data)))
+    .then(res => dispatch(actions.soccerlcAsyncIndoorFacilitiesSuccess(res.data.data)))
     .catch(err => dispatch(actions.soccerlcAsyncIndoorFacilitiesFail(err)))
   }
 }
@@ -29,7 +29,7 @@ actions.getOutdoorFacilities = () => {
   return (dispatch) => {
     dispatch(actions.soccerlcAsyncOutdoorFacilitiesStart())
     provider.getOutdoorFacilities()
-    .then(res => dispatch(actions.soccerlcAsyncOutdoorFacilitiesSuccess(res.data)))
+    .then(res => dispatch(actions.soccerlcAsyncOutdoorFacilitiesSuccess(res.data.data)))
     .catch(err => dispatch(actions.soccerlcAsyncOutdoorFacilitiesFail(err)))
   }
 }
@@ -38,7 +38,7 @@ actions.getFacilityTeams = (facilityId) => {
   return (dispatch) => {
     dispatch(actions.soccerlcAsyncFacilitiesTeamsStart())
     provider.getFacilityTeams(facilityId)
-      .then(res => dispatch(actions.soccerlcAsyncFacilitiesTeamsSuccess(res.data)))
+      .then(res => dispatch(actions.soccerlcAsyncFacilitiesTeamsSuccess(res.data.data)))
       .catch(err => dispatch(actions.soccerlcAsyncFacilitiesTeamsFail(err)))
   }
 }
