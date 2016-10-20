@@ -41,7 +41,7 @@ class FacilitiesTableview extends Component {
   }
 
   renderContent () {
-    const facilities = this.props.data.toJS()
+    const facilities = this.props.data.get('data').toJS()
     if (facilities.length) {
       return (
         <SwipeListView
