@@ -23,7 +23,7 @@ actions.getIndoorFacilities = () => {
   return (dispatch) => {
     dispatch(actions.soccerlcAsyncIndoorFacilitiesStart())
     provider.getIndoorFacilities()
-    .then(res => dispatch(actions.soccerlcAsyncIndoorFacilitiesSuccess(res.data.data)))
+    .then(res => dispatch(actions.soccerlcAsyncIndoorFacilitiesSuccess(res.data)))
     .catch(err => dispatch(actions.soccerlcAsyncIndoorFacilitiesFail(err)))
   }
 }
@@ -32,7 +32,7 @@ actions.getFavoriteTeamsGames = () => {
   return (dispatch) => {
     dispatch(actions.soccerlcAsyncFavoriteTeamsGamesStart())
     provider.getFavoriteTeamsGames()
-    .then(res => dispatch(actions.soccerlcAsyncFavoriteTeamsGamesSuccess(res.data.data)))
+    .then(res => dispatch(actions.soccerlcAsyncFavoriteTeamsGamesSuccess(res.data)))
     .catch(err => dispatch(actions.soccerlcAsyncFavoriteTeamsGamesFail(err)))
   }
 }
@@ -41,7 +41,7 @@ actions.getOutdoorFacilities = () => {
   return (dispatch) => {
     dispatch(actions.soccerlcAsyncOutdoorFacilitiesStart())
     provider.getOutdoorFacilities()
-    .then(res => dispatch(actions.soccerlcAsyncOutdoorFacilitiesSuccess(res.data.data)))
+    .then(res => dispatch(actions.soccerlcAsyncOutdoorFacilitiesSuccess(res.data)))
     .catch(err => dispatch(actions.soccerlcAsyncOutdoorFacilitiesFail(err)))
   }
 }
@@ -50,7 +50,7 @@ actions.getFacilityTeams = (facilityId) => {
   return (dispatch) => {
     dispatch(actions.soccerlcAsyncFacilitiesTeamsStart())
     provider.getFacilityTeams(facilityId)
-      .then(res => dispatch(actions.soccerlcAsyncFacilitiesTeamsSuccess(res.data.data)))
+      .then(res => dispatch(actions.soccerlcAsyncFacilitiesTeamsSuccess(res.data)))
       .catch(err => dispatch(actions.soccerlcAsyncFacilitiesTeamsFail(err)))
   }
 }

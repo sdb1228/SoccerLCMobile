@@ -6,7 +6,7 @@ import { soccerlc } from './config'
 const axios = Axios.create()
 
 // remove a layer of .data from the response
-axios.interceptors.response.use(res => res.data, err => Promise.reject(error))
+axios.interceptors.response.use(res => res.data, err => Promise.reject(err))
 
 export function getFacilityTeams (facilityId) {
   return axios.get(`${soccerlc.baseUrl}facilities/${facilityId}/teams`)
