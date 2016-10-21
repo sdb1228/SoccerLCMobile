@@ -95,7 +95,7 @@ class App extends Component {
                 <ScrollableTabView
                   indoorFacilities={state.getIn(['soccerlcData', 'indoorFacilities'])}
                   outdoorFacilities={state.getIn(['soccerlcData', 'outdoorFacilities'])}
-                  myTeamsGames={state.getIn(['soccerlcData', 'facilityTeamsList'])}
+                  myTeamsGames={state.getIn(['soccerlcData', 'favoriteTeamsGames'])}
                   uniqueDeviceId={DeviceInfo.getUniqueID()}
                   navigator={navigator}
                   actions={actions}

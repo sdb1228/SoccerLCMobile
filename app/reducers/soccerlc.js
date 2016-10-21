@@ -35,9 +35,21 @@ export default combineReducers({
     }, Immutable.List()),
   }),
 
-  favoriteTeamsGames: handleActions({
-    [actions.soccerlcAsyncFavoriteTeamsGamesSuccess.type]: (state, action) => {
-      return Immutable.fromJS(action.payload)
-    },
-  }, List()),
+  favoriteTeamsGames: combineReducers({
+    loading: handleActions({
+      [actions.soccerlcAsyncFavoriteTeamsGamesStart.type]: () => true,
+      [actions.soccerlcAsyncFavoriteTeamsGamesSuccess.type]: () => false,
+      [actions.soccerlcAsyncFavoriteTeamsGamesFail.type]: () => false,
+    }, false),
+    error: handleActions({
+      [actions.soccerlcAsyncFavoriteTeamsGamesFail.type]: () => true,
+      [actions.soccerlcAsyncFavoriteTeamsGamesStart.type]: () => false,
+      [actions.soccerlcAsyncFavoriteTeamsGamesSuccess.type]: () => false,
+    }, false),
+    data: handleActions({
+      [actions.soccerlcAsyncFavoriteTeamsGamesSuccess.type]: (state, action) => {
+        return Immutable.fromJS(action.payload)
+      },
+    }, Immutable.List()),
+  }),
 }, {})

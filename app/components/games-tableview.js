@@ -10,6 +10,7 @@ import {
 const { object, string } = React.PropTypes
 import { SwipeListView } from 'react-native-swipe-list-view'
 const Progress = require('react-native-progress')
+import ButtonComponent, { CircleButton, RoundButton, RectangleButton } from 'react-native-button-component';
 
 import styles from '../styles/games-tableview.js'
 
@@ -30,19 +31,34 @@ class GamesTableview extends Component {
   }
 
   renderContent () {
-    const games = this.props.data.toJS()
-    if (games.length) {
-      return (
-        <SwipeListView
-          dataSource={this.ds.cloneWithRows(games)}
-          renderRow={game => this.renderGameRow(game)}
-        />
-      )
-    } else {
+    const games = this.props.data.get('data').toJS()
+    const loading = this.props.data.get('loading')
+    const error = this.props.data.get('error')
+    if (loading) {
       return (
         <View style={styles.spinnerContainer}>
           <Progress.CircleSnail size={80} colors={['blue']} />
         </View>
+      )
+    } else if (games.length) {
+        return (
+          <SwipeListView
+            dataSource={this.ds.cloneWithRows(games)}
+            renderRow={game => this.renderGameRow(game)}
+          />
+        )
+    } else if (!error) {
+      return (
+        <ButtonComponent
+          onPress={() => {}}
+          buttonStyle={styles.buttonStyle}
+          text="Favorite More Teams!"
+        >
+        </ButtonComponent>
+      )
+    } else {
+      return (
+        <Text style={styles.homeTeamCellText} >ERROR</Text>
       )
     }
   }

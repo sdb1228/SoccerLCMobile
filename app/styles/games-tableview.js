@@ -11,6 +11,10 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  buttonStyle: {
+    marginRight: 20,
+    borderColor: '#fff',
+  },
   awayTeamCellText: {
     color: '#ffffff',
     fontFamily: 'Helvetica',
