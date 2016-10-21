@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   container: {
-    backgroundColor: 'rgba(0,0,0,0.01)',
+    backgroundColor: '#fff',
     flex: 1,
   },
   spinnerContainer: {
@@ -13,33 +13,35 @@ export default StyleSheet.create({
   },
   buttonStyle: {
     marginRight: 20,
-    borderColor: '#fff',
-    borderWidth: 1,
-    backgroundColor: 'rgba(0,0,0,0.01)',
+    borderColor: '#000',
   },
-  awayTeamCellText: {
-    color: '#ffffff',
-    fontFamily: 'Helvetica',
-    fontWeight: 'bold',
-  },
-  homeTeamCellText: {
-    color: '#ffffff',
+  teamNameText: {
+    color: 'rgba(144,30,27,.9)',
     fontFamily: 'Helvetica',
     paddingBottom: 5,
     fontWeight: 'bold',
+    fontSize: 15,
   },
-  teamsFieldContainer: {
+  teamsNameContainer: {
     alignItems: 'flex-start',
-    justifyContent: 'center',
+    paddingLeft: 10,
+    borderColor: '#000',
   },
-  scoreContainer: {
-    alignItems: 'flex-end',
-    justifyContent: 'center',
+  teamDivisionText: {
+    color: '#aaa',
+    fontFamily: 'Helvetica',
+    paddingBottom: 5,
+    fontSize: 13,
   },
-  gameContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    backgroundColor: 'rgba(0,0,0,0.01)',
+  teamsDivisionContainer: {
+    paddingLeft: 15,
+  },
+  teamsContainer: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    borderColor: '#eee',
+    borderWidth: 0.5,
+    borderRadius: 5,
     height: 50,
   },
   switchContainer: {

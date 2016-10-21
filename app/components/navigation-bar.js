@@ -1,57 +1,85 @@
-import React from 'react'
-import {
+const React = require('react')
+const ReactNative = require('react-native')
+const {
+  StyleSheet,
+  Text,
   View,
-  TouchableOpacity,
-} from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons'
+  Animated,
+} = ReactNative
+const Button = require('./Button')
 import styles from '../styles/navigation-bar'
 
-const NavigationBar = React.createClass({
-  tabIcons: [],
-
+const DefaultTabBar = React.createClass({
   propTypes: {
     goToPage: React.PropTypes.func,
     activeTab: React.PropTypes.number,
     tabs: React.PropTypes.array,
+    backgroundColor: React.PropTypes.string,
+    activeTextColor: React.PropTypes.string,
+    inactiveTextColor: React.PropTypes.string,
+    textStyle: Text.propTypes.style,
+    tabStyle: View.propTypes.style,
+    renderTab: React.PropTypes.func,
+    underlineStyle: View.propTypes.style,
   },
 
-  componentDidMount () {
-    this._listener = this.props.scrollValue.addListener(this.setAnimationValue)
+  getDefaultProps () {
+    return {
+      activeTextColor: 'rgb(144,30,27)',
+      inactiveTextColor: 'rgb(144,30,27)',
+      backgroundColor: null,
+    }
   },
 
-  setAnimationValue ({value}) {
-    this.tabIcons.forEach((icon, i) => {
-      const progress = (value - i >= 0 && value - i <= 1) ? value - i : 1
-      icon.setNativeProps({
-        style: {
-          color: this.iconColor(progress),
-        },
-      })
-    })
+  renderTabOption (name, page) {
   },
 
-  // color between rgb(59,89,152) and rgb(204,204,204)
-  iconColor (progress) {
-    const red = 59 + (204 - 59) * progress
-    const green = 89 + (204 - 89) * progress
-    const blue = 152 + (204 - 152) * progress
-    return `rgb(${red}, ${green}, ${blue})`
+  renderTab (name, page, isTabActive, onPressHandler) {
+    const {activeTextColor, inactiveTextColor, textStyle} = this.props
+    const textColor = isTabActive ? activeTextColor : inactiveTextColor
+    const fontWeight = isTabActive ? 'bold' : 'normal'
+
+    return <Button
+      style={{flex: 1}}
+      key={name}
+      accessible={true}
+      accessibilityLabel={name}
+      accessibilityTraits='button'
+      onPress={() => onPressHandler(page)}
+    >
+      <View style={[styles.tab, this.props.tabStyle]}>
+        <Text style={[{color: textColor, fontWeight}, textStyle]}>
+          {name}
+        </Text>
+      </View>
+    </Button>
   },
 
   render () {
-    return <View style={[styles.tabs, this.props.style]}>
-      {this.props.tabs.map((tab, i) => {
-        return <TouchableOpacity key={tab} onPress={() => this.props.goToPage(i)} style={styles.tab}>
-          <Icon
-            name={tab}
-            size={30}
-            color={this.props.activeTab === i ? 'rgb(59,89,152)' : 'rgb(204,204,204)'}
-            ref={(icon) => { this.tabIcons[i] = icon }}
-          />
-        </TouchableOpacity>
-      })}
-    </View>
+    const containerWidth = this.props.containerWidth
+    const numberOfTabs = this.props.tabs.length
+    const tabUnderlineStyle = {
+      position: 'absolute',
+      width: containerWidth / numberOfTabs,
+      height: 4,
+      backgroundColor: 'rgb(144,30,27)',
+      bottom: 0,
+    }
+
+    const left = this.props.scrollValue.interpolate({
+      inputRange: [0, 1], outputRange: [0, containerWidth / numberOfTabs],
+    })
+    return (
+      <View style={[styles.tabs, {backgroundColor: this.props.backgroundColor}, this.props.style]}>
+        {this.props.tabs.map((name, page) => {
+          const isTabActive = this.props.activeTab === page
+          const renderTab = this.props.renderTab || this.renderTab
+          return renderTab(name, page, isTabActive, this.props.goToPage)
+        })}
+        <Animated.View style={[tabUnderlineStyle, {left}, this.props.underlineStyle]} />
+      </View>
+    )
   },
 })
 
-export default NavigationBar
+module.exports = DefaultTabBar

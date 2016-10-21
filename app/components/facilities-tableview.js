@@ -60,7 +60,7 @@ class FacilitiesTableview extends Component {
   renderFacilityRow (facility) {
     return (
       <TouchableHighlight
-        onPress={_ => this.props.navigator.push({id: 'second'})}
+        onPress={_ => this.props.navigator.push({id: 'facility', selectedFacility: facility})}
         underlayColor={'#AAA'}
         >
         <Image

@@ -7,18 +7,19 @@ import {
   TouchableHighlight,
   View,
 } from 'react-native'
-const { object, string } = React.PropTypes
+const { object, string, number } = React.PropTypes
 import { SwipeListView } from 'react-native-swipe-list-view'
 const Progress = require('react-native-progress')
 import ButtonComponent, { CircleButton, RoundButton, RectangleButton } from 'react-native-button-component';
 
-import styles from '../styles/games-tableview.js'
+import styles from '../styles/teams-tableview.js'
 
-class GamesTableview extends Component {
+class TeamsTableView extends Component {
   static propTypes = {
     data: object.isRequired,
     actions: object.isRequired,
     uniqueDeviceId: string.isRequired,
+    facilityId: number.isRequired,
   }
 
   constructor (props) {
@@ -27,7 +28,7 @@ class GamesTableview extends Component {
   }
 
   componentWillMount () {
-    this.props.actions.getFavoriteTeamsGames(this.props.uniqueDeviceId)
+    this.props.actions.getFacilityTeams(this.props.facilityId, this.props.uniqueDeviceId)
   }
 
   renderContent () {
@@ -51,7 +52,6 @@ class GamesTableview extends Component {
       return (
         <ButtonComponent
           onPress={() => {}}
-          backgroundColors={['rgba(0,0,0,0.01)', 'rgba(0,0,0,0.01)']}
           buttonStyle={styles.buttonStyle}
           text="Go Favorite More Teams!"
         >
@@ -68,26 +68,14 @@ class GamesTableview extends Component {
     return (
       <TouchableHighlight
         onPress={_ => console.log('You touched me')}
-        underlayColor={'#AAA'}
+        underlayColor={'#eee'}
         >
-        <View style={styles.gameContainer}>
-          <View style={styles.teamsFieldContainer}>
-            <TouchableHighlight
-              onPress={_ => console.log('You touched me')}
-              underlayColor={'#AAA'}
-              >
-              <Text style={styles.homeTeamCellText} >{game.name}</Text>
-            </TouchableHighlight>
-            <TouchableHighlight
-              onPress={_ => console.log('You touched me')}
-              underlayColor={'#AAA'}
-              >
-              <Text style={styles.awayTeamCellText}>I am the away team</Text>
-            </TouchableHighlight>
+        <View style={styles.teamsContainer}>
+          <View style={styles.teamsNameContainer}>
+              <Text style={styles.teamNameText} >{game.name}</Text>
           </View>
-          <View style={styles.scoreContainer}>
-            <Text style={styles.homeTeamCellText}>456</Text>
-            <Text style={styles.awayTeamCellText}>123</Text>
+          <View style={styles.teamsDivisionContainer}>
+              <Text style={styles.teamDivisionText} >{game.division}</Text>
           </View>
         </View>
       </TouchableHighlight>
@@ -102,4 +90,4 @@ class GamesTableview extends Component {
     )
   }
 }
-export default GamesTableview
+export default  TeamsTableView

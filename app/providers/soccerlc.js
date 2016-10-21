@@ -8,8 +8,12 @@ const axios = Axios.create()
 // remove a layer of .data from the response
 axios.interceptors.response.use(res => res.data, err => Promise.reject(err))
 
-export function getFacilityTeams (facilityId) {
-  return axios.get(`${soccerlc.baseUrl}facilities/${facilityId}/teams`)
+export function getFacilityTeams (facilityId, uniqueDeviceId) {
+  return axios.get(`${soccerlc.baseUrl}facilities/${facilityId}/teams`, {
+    params: {
+      installationId: uniqueDeviceId,
+    },
+  })
 }
 
 export function getIndoorFacilities () {

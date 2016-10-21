@@ -5,15 +5,34 @@ import Immutable, { List } from 'immutable'
 import actions from '../actions'
 
 export default combineReducers({
-  facilityTeamsList: handleActions({
-    [actions.soccerlcAsyncFacilitiesTeamsSuccess.type]: (state, action) => {
-      return Immutable.fromJS(action.payload)
-    },
-  }, List()),
+
+  facilityTeamsList: combineReducers({
+    loading: handleActions({
+      [actions.soccerlcAsyncFacilitiesTeamsStart.type]: () => true,
+      [actions.soccerlcAsyncFacilitiesTeamsSuccess.type]: () => false,
+      [actions.soccerlcAsyncFacilitiesTeamsFail.type]: () => false,
+    }, false),
+    error: handleActions({
+      [actions.soccerlcAsyncFacilitiesTeamsFail.type]: () => true,
+      [actions.soccerlcAsyncFacilitiesTeamsStart.type]: () => false,
+      [actions.soccerlcAsyncFacilitiesTeamsSuccess.type]: () => false,
+    }, false),
+    data: handleActions({
+      [actions.soccerlcAsyncFacilitiesTeamsSuccess.type]: (state, action) => {
+        return Immutable.fromJS(action.payload)
+      },
+    }, Immutable.List()),
+  }),
 
   indoorFacilities: combineReducers({
     loading: handleActions({
       [actions.soccerlcAsyncIndoorFacilitiesStart.type]: () => true,
+      [actions.soccerlcAsyncIndoorFacilitiesSuccess.type]: () => false,
+      [actions.soccerlcAsyncIndoorFacilitiesFail.type]: () => false,
+    }, false),
+    error: handleActions({
+      [actions.soccerlcAsyncIndoorFacilitiesFail.type]: () => true,
+      [actions.soccerlcAsyncIndoorFacilitiesStart.type]: () => false,
       [actions.soccerlcAsyncIndoorFacilitiesSuccess.type]: () => false,
     }, false),
     data: handleActions({
@@ -26,6 +45,12 @@ export default combineReducers({
   outdoorFacilities: combineReducers({
     loading: handleActions({
       [actions.soccerlcAsyncOutdoorFacilitiesStart.type]: () => true,
+      [actions.soccerlcAsyncOutdoorFacilitiesSuccess.type]: () => false,
+      [actions.soccerlcAsyncOutdoorFacilitiesFail.type]: () => false,
+    }, false),
+    error: handleActions({
+      [actions.soccerlcAsyncOutdoorFacilitiesFail.type]: () => true,
+      [actions.soccerlcAsyncOutdoorFacilitiesStart.type]: () => false,
       [actions.soccerlcAsyncOutdoorFacilitiesSuccess.type]: () => false,
     }, false),
     data: handleActions({

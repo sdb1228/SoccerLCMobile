@@ -103,7 +103,7 @@ class App extends Component {
               </Image>
             </AdmobView>
           )
-      case 'second':
+      case 'facility':
         return (
           <AdmobView
             hideAd={true}
@@ -113,13 +113,20 @@ class App extends Component {
           >
             <Image
               style={styles.bg}
-              source={require('../assets/processed/standingBall.png')}
+              source={require('../assets/processed/letsPlay.png')}
             >
               <StatusBar
                 backgroundColor="white"
+                hidden={true}
                 barStyle="default"
               />
               <FacilityTabView
+                facility={route.selectedFacility}
+                uniqueDeviceId={DeviceInfo.getUniqueID()}
+                facilityTeams={state.getIn(['soccerlcData','facilityTeamsList'])}
+                todayFacilityGames={state.getIn(['soccerlcData','todayFacilityGames'])}
+                tomorrowFacilityGames={state.getIn(['soccerlcData','tomorrowFacilityGames'])}
+                facilityDivisions={state.getIn(['soccerlcData','facilityDivisions'])}
                 navigator={navigator}
                 actions={actions}
               />
