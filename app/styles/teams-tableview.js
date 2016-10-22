@@ -18,23 +18,20 @@ export default StyleSheet.create({
   teamNameText: {
     color: 'rgba(144,30,27,.9)',
     fontFamily: 'Helvetica',
-    paddingBottom: 5,
+    paddingBottom: 3,
     fontWeight: 'bold',
     fontSize: 15,
   },
   teamsNameContainer: {
     alignItems: 'flex-start',
-    paddingLeft: 10,
     borderColor: '#000',
   },
   teamDivisionText: {
-    color: '#aaa',
+    color: '#888',
     fontFamily: 'Helvetica',
-    paddingBottom: 5,
     fontSize: 13,
   },
   teamsDivisionContainer: {
-    paddingLeft: 15,
   },
   teamsContainer: {
     flexDirection: 'column',
@@ -42,7 +39,8 @@ export default StyleSheet.create({
     borderColor: '#eee',
     borderWidth: 0.5,
     borderRadius: 5,
-    height: 50,
+    paddingLeft: 12,
+    paddingVertical: 12,
   },
   switchContainer: {
     flexDirection: 'row',
