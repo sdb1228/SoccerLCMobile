@@ -24,9 +24,14 @@ class GamesTableview extends Component {
   constructor (props) {
     super(props)
     this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
+    this.errorRetry = this.errorRetry.bind(this)
   }
 
   componentWillMount () {
+    this.props.actions.getFavoriteTeamsGames(this.props.uniqueDeviceId)
+  }
+
+  errorRetry () {
     this.props.actions.getFavoriteTeamsGames(this.props.uniqueDeviceId)
   }
 
@@ -60,7 +65,7 @@ class GamesTableview extends Component {
     } else {
       return (
         <ButtonComponent
-          onPress={() => {}}
+          onPress={this.errorRetry}
           backgroundColors={['rgba(0,0,0,0.01)', 'rgba(0,0,0,0.01)']}
           buttonStyle={styles.buttonStyle}
           text="Retry"

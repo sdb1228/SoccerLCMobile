@@ -76,7 +76,6 @@ class App extends Component {
 
   navigatorRenderScene(route, navigator) {
     const { state, actions } = this.props
-    debugger
     _navigator = navigator;
     switch (route.id) {
       case 'first':
@@ -108,22 +107,15 @@ class App extends Component {
                  modalDidOpen={() => console.log('modal did open')}
                  modalDidClose={() => this.setState({open: false})}
                  style={{alignItems: 'center'}}>
-                 <View>
-                    <Text style={{fontSize: 20, marginBottom: 10}}>Hello world!</Text>
+                 <View style={{alignItems: 'center', justifyContent: 'center', marginBottom: 10}}>
+                    <Text style={{fontSize: 20, marginBottom: 10}}>Oh No!</Text>
+                    <Text style={{fontSize: 15, marginBottom: 10}}>
+                      Looks like something has gone wrong please try again later.
+                    </Text>
                     <TouchableOpacity
-                       style={{margin: 5}}
-                       onPress={() => this.setState({offset: -100})}>
-                       <Text>Move modal up</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                       style={{margin: 5}}
-                       onPress={() => this.setState({offset: 0})}>
-                       <Text>Reset modal position</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                       style={{margin: 5}}
+                       style={{alignItems: 'center', justifyContent: 'center', marginBottom: 5}}
                        onPress={actions.closeErrorModal}>
-                       <Text>Close modal</Text>
+                       <Text style={{fontSize: 15, color: '#00f'}}>Ok</Text>
                     </TouchableOpacity>
                  </View>
               </Modal>
@@ -158,26 +150,19 @@ class App extends Component {
               />
             </Image>
             <Modal
-               open={this.errorModalOpen}
+               open={state.getIn(['soccerlcData', 'errorModalOpen']).get('error')}
                modalDidOpen={() => console.log('modal did open')}
                modalDidClose={() => this.setState({open: false})}
                style={{alignItems: 'center'}}>
-               <View>
-                  <Text style={{fontSize: 20, marginBottom: 10}}>Hello world!</Text>
+               <View style={{alignItems: 'center', justifyContent: 'center', marginBottom: 10}}>
+                  <Text style={{fontSize: 20, marginBottom: 10}}>Oh No!</Text>
+                  <Text style={{fontSize: 15, marginBottom: 10}}>
+                    Looks like something has gone wrong please try again later.
+                  </Text>
                   <TouchableOpacity
-                     style={{margin: 5}}
-                     onPress={() => this.setState({offset: -100})}>
-                     <Text>Move modal up</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                     style={{margin: 5}}
-                     onPress={() => this.setState({offset: 0})}>
-                     <Text>Reset modal position</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                     style={{margin: 5}}
-                     onPress={() => this.setState({open: false})}>
-                     <Text>Close modal</Text>
+                     style={{alignItems: 'center', justifyContent: 'center', marginBottom: 5}}
+                     onPress={actions.closeErrorModal}>
+                     <Text style={{fontSize: 15, color: '#00f'}}>Ok</Text>
                   </TouchableOpacity>
                </View>
             </Modal>
