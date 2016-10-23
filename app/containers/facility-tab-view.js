@@ -25,7 +25,7 @@ export default React.createClass({
   render () {
     return <ScrollableTabView
       initialPage={0}
-      renderTabBar={() => <NavigationBar backgroundColor='#fff'/>}
+      renderTabBar={() => <NavigationBar navigator={this.props.navigator} backgroundColor='#fff'/>}
       >
       <ScrollView tabLabel="Today" style={styles.tabView}>
         <View style={styles.card}>

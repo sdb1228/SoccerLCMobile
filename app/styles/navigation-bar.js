@@ -8,6 +8,11 @@ export default StyleSheet.create({
     paddingBottom: 10,
     paddingTop: 20,
   },
+  backButton: {
+    flex: 1,
+    paddingBottom: 10,
+    paddingTop: 20,
+  },
   tabs: {
     height: 55,
     flexDirection: 'row',

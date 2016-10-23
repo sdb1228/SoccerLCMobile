@@ -1,13 +1,14 @@
 const React = require('react')
 const ReactNative = require('react-native')
 const {
-  StyleSheet,
   Text,
   View,
   Animated,
+  TouchableOpacity,
 } = ReactNative
 const Button = require('./Button')
 import styles from '../styles/navigation-bar'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 const DefaultTabBar = React.createClass({
   propTypes: {
@@ -21,6 +22,7 @@ const DefaultTabBar = React.createClass({
     tabStyle: View.propTypes.style,
     renderTab: React.PropTypes.func,
     underlineStyle: View.propTypes.style,
+    navigator: React.PropTypes.object,
   },
 
   getDefaultProps () {
@@ -60,17 +62,25 @@ const DefaultTabBar = React.createClass({
     const numberOfTabs = this.props.tabs.length
     const tabUnderlineStyle = {
       position: 'absolute',
-      width: containerWidth / numberOfTabs,
+      width: (containerWidth / numberOfTabs) - 25,
       height: 4,
       backgroundColor: 'rgb(144,30,27)',
       bottom: 0,
     }
 
     const left = this.props.scrollValue.interpolate({
-      inputRange: [0, 1], outputRange: [0, containerWidth / numberOfTabs],
+      inputRange: [0, 1], outputRange: [28, (containerWidth / numberOfTabs) + 25],
     })
     return (
       <View style={[styles.tabs, {backgroundColor: this.props.backgroundColor}, this.props.style]}>
+        <TouchableOpacity onPress={_ => this.props.navigator.pop()}>
+          <Icon
+            name='angle-left'
+            size={30}
+            style={{paddingTop: 15, paddingLeft: 5}}
+            color='rgb(144,30,27)'
+          />
+        </TouchableOpacity>
         {this.props.tabs.map((name, page) => {
           const isTabActive = this.props.activeTab === page
           const renderTab = this.props.renderTab || this.renderTab
