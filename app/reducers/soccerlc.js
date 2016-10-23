@@ -6,6 +6,16 @@ import actions from '../actions'
 
 export default combineReducers({
 
+  errorModalOpen: combineReducers({
+    error: handleActions({
+      [actions.soccerlcAsyncFavoriteTeamsGamesFail.type]: () => true,
+      [actions.soccerlcAsyncFacilitiesTeamsFail.type]: () => true,
+      [actions.soccerlcAsyncIndoorFacilitiesFail.type]: () => true,
+      [actions.soccerlcAsyncOutdoorFacilitiesFail.type]: () => true,
+      [actions.soccerlcCloseErrorModal.type]: () => false,
+    }, false),
+  }),
+
   facilityTeamsList: combineReducers({
     loading: handleActions({
       [actions.soccerlcAsyncFacilitiesTeamsStart.type]: () => true,

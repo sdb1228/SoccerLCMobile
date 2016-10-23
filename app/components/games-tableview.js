@@ -59,7 +59,13 @@ class GamesTableview extends Component {
       )
     } else {
       return (
-        <Text style={styles.homeTeamCellText} >ERROR</Text>
+        <ButtonComponent
+          onPress={() => {}}
+          backgroundColors={['rgba(0,0,0,0.01)', 'rgba(0,0,0,0.01)']}
+          buttonStyle={styles.buttonStyle}
+          text="Retry"
+        >
+        </ButtonComponent>
       )
     }
   }

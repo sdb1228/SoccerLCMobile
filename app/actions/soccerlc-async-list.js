@@ -15,6 +15,7 @@ const actionDefs = [
   'SOCCERLC_ASYNC_FAVORITE_TEAMS_GAMES_START',
   'SOCCERLC_ASYNC_FAVORITE_TEAMS_GAMES_SUCCESS',
   'SOCCERLC_ASYNC_FAVORITE_TEAMS_GAMES_FAIL',
+  'SOCCERLC_CLOSE_ERROR_MODAL',
 ]
 
 const { types, actions } = createActions(actionDefs)
@@ -43,6 +44,12 @@ actions.getOutdoorFacilities = () => {
     provider.getOutdoorFacilities()
     .then(res => dispatch(actions.soccerlcAsyncOutdoorFacilitiesSuccess(res.data)))
     .catch(err => dispatch(actions.soccerlcAsyncOutdoorFacilitiesFail(err)))
+  }
+}
+
+actions.closeErrorModal = () => {
+  return (dispatch) => {
+    dispatch(actions.soccerlcCloseErrorModal())
   }
 }
 

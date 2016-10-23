@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 const { object } = React.PropTypes
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { View, Image, StatusBar, Navigator, Text } from 'react-native'
+import { View, Image, StatusBar, Navigator, Text, TouchableOpacity } from 'react-native'
 
 import DataList from '../components/data-list'
+import Modal from 'react-native-simple-modal';
 import ScrollableTabView from './scrollable-tab-view'
 import FacilityTabView from './facility-tab-view'
 import AdmobView from './admob'
@@ -75,6 +76,7 @@ class App extends Component {
 
   navigatorRenderScene(route, navigator) {
     const { state, actions } = this.props
+    debugger
     _navigator = navigator;
     switch (route.id) {
       case 'first':
@@ -101,6 +103,30 @@ class App extends Component {
                   actions={actions}
                 />
               </Image>
+              <Modal
+                 open={state.getIn(['soccerlcData', 'errorModalOpen']).get('error')}
+                 modalDidOpen={() => console.log('modal did open')}
+                 modalDidClose={() => this.setState({open: false})}
+                 style={{alignItems: 'center'}}>
+                 <View>
+                    <Text style={{fontSize: 20, marginBottom: 10}}>Hello world!</Text>
+                    <TouchableOpacity
+                       style={{margin: 5}}
+                       onPress={() => this.setState({offset: -100})}>
+                       <Text>Move modal up</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                       style={{margin: 5}}
+                       onPress={() => this.setState({offset: 0})}>
+                       <Text>Reset modal position</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                       style={{margin: 5}}
+                       onPress={actions.closeErrorModal}>
+                       <Text>Close modal</Text>
+                    </TouchableOpacity>
+                 </View>
+              </Modal>
             </AdmobView>
           )
       case 'facility':
@@ -131,6 +157,30 @@ class App extends Component {
                 actions={actions}
               />
             </Image>
+            <Modal
+               open={this.errorModalOpen}
+               modalDidOpen={() => console.log('modal did open')}
+               modalDidClose={() => this.setState({open: false})}
+               style={{alignItems: 'center'}}>
+               <View>
+                  <Text style={{fontSize: 20, marginBottom: 10}}>Hello world!</Text>
+                  <TouchableOpacity
+                     style={{margin: 5}}
+                     onPress={() => this.setState({offset: -100})}>
+                     <Text>Move modal up</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                     style={{margin: 5}}
+                     onPress={() => this.setState({offset: 0})}>
+                     <Text>Reset modal position</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                     style={{margin: 5}}
+                     onPress={() => this.setState({open: false})}>
+                     <Text>Close modal</Text>
+                  </TouchableOpacity>
+               </View>
+            </Modal>
           </AdmobView>
         )
     }
