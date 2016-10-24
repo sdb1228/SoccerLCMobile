@@ -12,8 +12,46 @@ export default combineReducers({
       [actions.soccerlcAsyncFacilitiesTeamsFail.type]: () => true,
       [actions.soccerlcAsyncIndoorFacilitiesFail.type]: () => true,
       [actions.soccerlcAsyncOutdoorFacilitiesFail.type]: () => true,
+      [actions.soccerlcAsyncFacilitiesTomorrowsGamesFail.type]: () => true,
+      [actions.soccerlcAsyncFacilitiesTodaysGamesFail.type]: () => true,
       [actions.soccerlcCloseErrorModal.type]: () => false,
     }, false),
+  }),
+
+  facilityTodaysGames: combineReducers({
+    loading: handleActions({
+      [actions.soccerlcAsyncFacilitiesTodaysGamesStart.type]: () => true,
+      [actions.soccerlcAsyncFacilitiesTodaysGamesSuccess.type]: () => false,
+      [actions.soccerlcAsyncFacilitiesTodaysGamesFail.type]: () => false,
+    }, false),
+    error: handleActions({
+      [actions.soccerlcAsyncFacilitiesTodaysGamesFail.type]: () => true,
+      [actions.soccerlcAsyncFacilitiesTodaysGamesStart.type]: () => false,
+      [actions.soccerlcAsyncFacilitiesTodaysGamesSuccess.type]: () => false,
+    }, false),
+    data: handleActions({
+      [actions.soccerlcAsyncFacilitiesTodaysGamesSuccess.type]: (state, action) => {
+        return Immutable.fromJS(action.payload)
+      },
+    }, Immutable.List()),
+  }),
+
+  facilityTomorrowsGames: combineReducers({
+    loading: handleActions({
+      [actions.soccerlcAsyncFacilitiesTomorrowsGamesStart.type]: () => true,
+      [actions.soccerlcAsyncFacilitiesTomorrowsGamesSuccess.type]: () => false,
+      [actions.soccerlcAsyncFacilitiesTomorrowsGamesFail.type]: () => false,
+    }, false),
+    error: handleActions({
+      [actions.soccerlcAsyncFacilitiesTomorrowsGamesFail.type]: () => true,
+      [actions.soccerlcAsyncFacilitiesTomorrowsGamesStart.type]: () => false,
+      [actions.soccerlcAsyncFacilitiesTomorrowsGamesSuccess.type]: () => false,
+    }, false),
+    data: handleActions({
+      [actions.soccerlcAsyncFacilitiesTomorrowsGamesSuccess.type]: (state, action) => {
+        return Immutable.fromJS(action.payload)
+      },
+    }, Immutable.List()),
   }),
 
   facilityTeamsList: combineReducers({

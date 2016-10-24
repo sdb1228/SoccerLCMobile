@@ -6,6 +6,12 @@ const actionDefs = [
   'SOCCERLC_ASYNC_FACILITIES_TEAMS_START',
   'SOCCERLC_ASYNC_FACILITIES_TEAMS_SUCCESS',
   'SOCCERLC_ASYNC_FACILITIES_TEAMS_FAIL',
+  'SOCCERLC_ASYNC_FACILITIES_TODAYS_GAMES_START',
+  'SOCCERLC_ASYNC_FACILITIES_TODAYS_GAMES_SUCCESS',
+  'SOCCERLC_ASYNC_FACILITIES_TODAYS_GAMES_FAIL',
+  'SOCCERLC_ASYNC_FACILITIES_TOMORROWS_GAMES_START',
+  'SOCCERLC_ASYNC_FACILITIES_TOMORROWS_GAMES_SUCCESS',
+  'SOCCERLC_ASYNC_FACILITIES_TOMORROWS_GAMES_FAIL',
   'SOCCERLC_ASYNC_INDOOR_FACILITIES_START',
   'SOCCERLC_ASYNC_INDOOR_FACILITIES_SUCCESS',
   'SOCCERLC_ASYNC_INDOOR_FACILITIES_FAIL',
@@ -59,6 +65,24 @@ actions.getFacilityTeams = (facilityId) => {
     provider.getFacilityTeams(facilityId)
       .then(res => dispatch(actions.soccerlcAsyncFacilitiesTeamsSuccess(res.data)))
       .catch(err => dispatch(actions.soccerlcAsyncFacilitiesTeamsFail(err)))
+  }
+}
+
+actions.getFacilityTodaysGames = (facilityId) => {
+  return (dispatch) => {
+    dispatch(actions.soccerlcAsyncFacilitiesTodaysGamesStart())
+    provider.getFacilitiesTodaysGames(facilityId)
+      .then(res => dispatch(actions.soccerlcAsyncFacilitiesTodaysGamesSuccess(res.data)))
+      .catch(err => dispatch(actions.soccerlcAsyncFacilitiesTodaysGamesFail(err)))
+  }
+}
+
+actions.getFacilityTomorrowsGames = (facilityId) => {
+  return (dispatch) => {
+    dispatch(actions.soccerlcAsyncFacilitiesTomorrowsGamesStart())
+    provider.getFacilitiesTomorrowsGames(facilityId)
+      .then(res => dispatch(actions.soccerlcAsyncFacilitiesTomorrowsGamesSuccess(res.data)))
+      .catch(err => dispatch(actions.soccerlcAsyncFacilitiesTomorrowsGamesFail(err)))
   }
 }
 

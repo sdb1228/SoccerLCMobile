@@ -142,8 +142,8 @@ class App extends Component {
                 facility={route.selectedFacility}
                 uniqueDeviceId={DeviceInfo.getUniqueID()}
                 facilityTeams={state.getIn(['soccerlcData','facilityTeamsList'])}
-                todayFacilityGames={state.getIn(['soccerlcData','todayFacilityGames'])}
-                tomorrowFacilityGames={state.getIn(['soccerlcData','tomorrowFacilityGames'])}
+                todayFacilityGames={state.getIn(['soccerlcData','facilityTodaysGames'])}
+                tomorrowFacilityGames={state.getIn(['soccerlcData','facilityTomorrowsGames'])}
                 facilityDivisions={state.getIn(['soccerlcData','facilityDivisions'])}
                 navigator={navigator}
                 actions={actions}

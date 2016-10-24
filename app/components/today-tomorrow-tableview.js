@@ -7,7 +7,7 @@ import {
   TouchableHighlight,
   View,
 } from 'react-native'
-const { object, string } = React.PropTypes
+const { object, string, number } = React.PropTypes
 import { SwipeListView } from 'react-native-swipe-list-view'
 const Progress = require('react-native-progress')
 import ButtonComponent, { CircleButton, RoundButton, RectangleButton } from 'react-native-button-component';
@@ -18,7 +18,9 @@ class GamesTableview extends Component {
   static propTypes = {
     data: object.isRequired,
     actions: object.isRequired,
+    facilityId: number.isRequired,
     uniqueDeviceId: string.isRequired,
+    day: string.isRequired,
   }
 
   constructor (props) {
@@ -28,12 +30,12 @@ class GamesTableview extends Component {
   }
 
   componentWillMount () {
-    switch(this.props.environment) {
-    case 'Indoor':
-        this.props.actions.getIndoorFacilities()
+    switch(this.props.day) {
+    case 'Today':
+        this.props.actions.getFacilityTodaysGames(this.props.facilityId)
         break
-    case 'Outdoor':
-        this.props.actions.getOutdoorFacilities()
+    case 'Tomorrow':
+        this.props.actions.getFacilityTomorrowsGames(this.props.facilityId)
         break
     default:
         return
@@ -41,7 +43,16 @@ class GamesTableview extends Component {
   }
 
   errorRetry () {
-    this.props.actions.getFavoriteTeamsGames(this.props.uniqueDeviceId)
+    switch(this.props.day) {
+    case 'Today':
+        this.props.actions.getFacilityTodaysGames(this.props.facilityId)
+        break
+    case 'Tomorrow':
+        this.props.actions.getFacilityTomorrowsGames(this.props.facilityId)
+        break
+    default:
+        return
+    }
   }
 
   renderContent () {

@@ -23,28 +23,27 @@ export default React.createClass({
     navigator: React.PropTypes.object,
   },
 
-      // <TodaysTomorrowGamesTableView
-      //   tabLabel="Today"
-      //   actions={this.props.actions}
-      //   facilityId={this.props.facility.id}
-      //   data={this.props.todayFacilityGames}
-      //   uniqueDeviceId={this.props.uniqueDeviceId}
-      //   />
   render () {
     return <ScrollableTabView
       initialPage={0}
       renderTabBar={() => <NavigationBar navigator={this.props.navigator} backgroundColor='#fff'/>}
       >
-      <ScrollView tabLabel="Today" style={styles.tabView}>
-        <View style={styles.card}>
-          <Text>Friends</Text>
-        </View>
-      </ScrollView>
-      <ScrollView tabLabel="Tomorrow" style={styles.tabView}>
-        <View style={styles.card}>
-          <Text>Friends</Text>
-        </View>
-      </ScrollView>
+      <TodaysTomorrowGamesTableView
+        tabLabel="Today"
+        actions={this.props.actions}
+        facilityId={this.props.facility.id}
+        data={this.props.todayFacilityGames}
+        uniqueDeviceId={this.props.uniqueDeviceId}
+        day="Today"
+      />
+      <TodaysTomorrowGamesTableView
+        tabLabel="Tomorrow"
+        actions={this.props.actions}
+        facilityId={this.props.facility.id}
+        data={this.props.tomorrowFacilityGames}
+        uniqueDeviceId={this.props.uniqueDeviceId}
+        day="Tomorrow"
+      />
       <TeamsTableView
         tabLabel="Teams"
         actions={this.props.actions}
