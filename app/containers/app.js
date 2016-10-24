@@ -6,7 +6,7 @@ import { View, Image, StatusBar, Navigator, Text, TouchableOpacity } from 'react
 
 import DataList from '../components/data-list'
 import Modal from 'react-native-simple-modal';
-import ScrollableTabView from './scrollable-tab-view'
+import RootTabView from './root-tab-view'
 import FacilityTabView from './facility-tab-view'
 import AdmobView from './admob'
 import actions from '../actions'
@@ -93,7 +93,7 @@ class App extends Component {
                 <StatusBar
                   barStyle="light-content"
                 />
-                <ScrollableTabView
+                <RootTabView
                   indoorFacilities={state.getIn(['soccerlcData', 'indoorFacilities'])}
                   outdoorFacilities={state.getIn(['soccerlcData', 'outdoorFacilities'])}
                   myTeamsGames={state.getIn(['soccerlcData', 'favoriteTeamsGames'])}

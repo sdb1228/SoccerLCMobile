@@ -12,7 +12,7 @@ import { SwipeListView } from 'react-native-swipe-list-view'
 const Progress = require('react-native-progress')
 import ButtonComponent, { CircleButton, RoundButton, RectangleButton } from 'react-native-button-component';
 
-import styles from '../styles/games-tableview.js'
+import styles from '../styles/favorite-games-tableview.js'
 
 class GamesTableview extends Component {
   static propTypes = {
@@ -28,7 +28,16 @@ class GamesTableview extends Component {
   }
 
   componentWillMount () {
-    this.props.actions.getFavoriteTeamsGames(this.props.uniqueDeviceId)
+    switch(this.props.environment) {
+    case 'Indoor':
+        this.props.actions.getIndoorFacilities()
+        break
+    case 'Outdoor':
+        this.props.actions.getOutdoorFacilities()
+        break
+    default:
+        return
+    }
   }
 
   errorRetry () {

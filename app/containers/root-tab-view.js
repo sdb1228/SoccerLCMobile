@@ -3,9 +3,9 @@ import {
   ScrollView,
 } from 'react-native'
 import TabBar from '../components/tab-bar'
-import GamesTableview from '../components/games-tableview'
+import FavoriteGamesTableview from '../components/favorite-games-tableview'
 import FacilitiesTableview from '../components/facilities-tableview'
-import styles from '../styles/scrollable-tab-view'
+import styles from '../styles/root-tab-view'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
 
 export default React.createClass({
@@ -27,7 +27,7 @@ export default React.createClass({
         renderTabBar={() => <TabBar tabsText={['My Teams', 'Indoor Facilities', 'Outdoor Facilities']} />}
       >
         <ScrollView centerContent={true} tabLabel='star' style={styles.tabView}>
-          <GamesTableview
+          <FavoriteGamesTableview
             actions={this.props.actions}
             data={this.props.myTeamsGames}
             uniqueDeviceId={this.props.uniqueDeviceId}

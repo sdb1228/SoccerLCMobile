@@ -8,6 +8,7 @@ import styles from '../styles/facility-tab-view'
 import NavigationBar from '../components/navigation-bar'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
 import TeamsTableView from '../components/teams-tableview'
+import TodaysTomorrowGamesTableView from '../components/today-tomorrow-tableview'
 
 export default React.createClass({
 
@@ -22,6 +23,13 @@ export default React.createClass({
     navigator: React.PropTypes.object,
   },
 
+      // <TodaysTomorrowGamesTableView
+      //   tabLabel="Today"
+      //   actions={this.props.actions}
+      //   facilityId={this.props.facility.id}
+      //   data={this.props.todayFacilityGames}
+      //   uniqueDeviceId={this.props.uniqueDeviceId}
+      //   />
   render () {
     return <ScrollableTabView
       initialPage={0}
@@ -29,7 +37,7 @@ export default React.createClass({
       >
       <ScrollView tabLabel="Today" style={styles.tabView}>
         <View style={styles.card}>
-          <Text>News</Text>
+          <Text>Friends</Text>
         </View>
       </ScrollView>
       <ScrollView tabLabel="Tomorrow" style={styles.tabView}>
