@@ -5,12 +5,14 @@ import { connect } from 'react-redux'
 import { View, Image, StatusBar, Navigator, Text, TouchableOpacity } from 'react-native'
 
 import DataList from '../components/data-list'
+import Axios from 'axios'
 import Modal from 'react-native-simple-modal';
 import RootTabView from './root-tab-view'
 import FacilityTabView from './facility-tab-view'
 import AdmobView from './admob'
 import actions from '../actions'
 import styles from '../styles/app'
+import soccerlc from '../../config/soccerlc-config'
 var PushNotification = require('react-native-push-notification')
 const DeviceInfo = require('react-native-device-info')
 
@@ -29,16 +31,26 @@ class App extends Component {
   }
 
   componentWillMount () {
-
     PushNotification.configure({
 
       // (optional) Called when Token is generated (iOS and Android)
-      onRegister: function(token) {
-          console.log( 'TOKEN:', token );
+      onRegister: function (token) {
+          Axios.put('http://107.170.232.120/api/v1/users/self/installation', {
+            installationId: DeviceInfo.getUniqueID(),
+            apnsToken: token.token,
+          })
+          .then(function (response) {
+            console.log(response)
+          })
+          .catch(function (error) {
+            debugger
+            console.log(error)
+          })
+          // this.props.actions.setDeviceTokenAndInstallation(token, , DeviceInfo.getManufacturer())
       },
 
       // (required) Called when a remote or local notification is opened or received
-      onNotification: function(notification) {
+      onNotification: function (notification) {
           console.log( 'NOTIFICATION:', notification );
       },
 
