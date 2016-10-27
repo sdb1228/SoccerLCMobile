@@ -13,6 +13,7 @@ const Progress = require('react-native-progress')
 import ButtonComponent, { CircleButton, RoundButton, RectangleButton } from 'react-native-button-component';
 
 import styles from '../styles/favorite-games-tableview.js'
+import GameView from './game-view.js'
 
 class GamesTableview extends Component {
   static propTypes = {
@@ -97,31 +98,7 @@ class GamesTableview extends Component {
 
   renderGameRow (game) {
     return (
-      <TouchableHighlight
-        onPress={_ => console.log('You touched me')}
-        underlayColor={'#AAA'}
-        >
-        <View style={styles.gameContainer}>
-          <View style={styles.teamsFieldContainer}>
-            <TouchableHighlight
-              onPress={_ => console.log('You touched me')}
-              underlayColor={'#AAA'}
-              >
-              <Text style={styles.homeTeamCellText} >{game.name}</Text>
-            </TouchableHighlight>
-            <TouchableHighlight
-              onPress={_ => console.log('You touched me')}
-              underlayColor={'#AAA'}
-              >
-              <Text style={styles.awayTeamCellText}>I am the away team</Text>
-            </TouchableHighlight>
-          </View>
-          <View style={styles.scoreContainer}>
-            <Text style={styles.homeTeamCellText}>456</Text>
-            <Text style={styles.awayTeamCellText}>123</Text>
-          </View>
-        </View>
-      </TouchableHighlight>
+      <GameView game={game}/>
     )
   }
 
