@@ -100,13 +100,14 @@ class GameView extends Component {
     } = this.props.game
 
     return (
-      <View style={styles.gameView}>
-        <TouchableHighlight onPress={this.flip} underlayColor='#eee'>
+      <TouchableHighlight onPress={this.flip} underlayColor='#eee'>
+      <View style={styles.gameView, styles.card}>
+        
           <View style={styles.teamsView}>
             {this.renderTeam(homeTeam, homeScore)}
             {this.renderTeam(awayTeam, awayScore)}
           </View>
-        </TouchableHighlight>
+
         <View style={{height: this.state.flipHeight}}>
           <FoldView
             expanded={this.state.flipExpanded}
@@ -118,6 +119,7 @@ class GameView extends Component {
           </FoldView>
         </View>
       </View>
+      </TouchableHighlight>
     )
   }
 }

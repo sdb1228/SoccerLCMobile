@@ -141,10 +141,6 @@ class App extends Component {
               backgroundColor: '#ffffff',
             }}
           >
-            <Image
-              style={styles.bg}
-              source={require('../assets/processed/letsPlay.png')}
-            >
               <StatusBar
                 backgroundColor="white"
                 hidden={true}
@@ -160,7 +156,6 @@ class App extends Component {
                 navigator={navigator}
                 actions={actions}
               />
-            </Image>
             <Modal
                open={state.getIn(['soccerlcData', 'errorModalOpen']).get('error')}
                modalDidOpen={() => console.log('modal did open')}

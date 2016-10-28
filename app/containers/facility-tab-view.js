@@ -51,11 +51,13 @@ export default React.createClass({
         data={this.props.facilityTeams}
         uniqueDeviceId={this.props.uniqueDeviceId}
         />
-      <ScrollView tabLabel="Divisions" style={styles.tabView}>
-        <View style={styles.card}>
-          <Text>Notifications</Text>
-        </View>
-      </ScrollView>
+      <TeamsTableView
+        tabLabel="Divisions"
+        actions={this.props.actions}
+        facilityId={this.props.facility.id}
+        data={this.props.facilityTeams}
+        uniqueDeviceId={this.props.uniqueDeviceId}
+        />
       <ScrollView tabLabel="About" style={styles.tabView}>
         <View style={styles.card}>
           <Text>Other nav</Text>
