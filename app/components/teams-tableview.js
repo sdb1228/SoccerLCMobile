@@ -6,13 +6,18 @@ import {
   Text,
   TouchableHighlight,
   View,
+  TextInput,
 } from 'react-native'
-const { object, string, number } = React.PropTypes
+
 import { SwipeListView } from 'react-native-swipe-list-view'
-const Progress = require('react-native-progress')
-import ButtonComponent, { CircleButton, RoundButton, RectangleButton } from 'react-native-button-component';
+import ButtonComponent, { CircleButton, RoundButton, RectangleButton } from 'react-native-button-component'
 
 import styles from '../styles/teams-tableview.js'
+
+const Progress = require('react-native-progress')
+var fuzzy = require('fuzzy')
+const { object, string, number } = React.PropTypes
+
 
 class TeamsTableView extends Component {
   static propTypes = {
@@ -24,15 +29,67 @@ class TeamsTableView extends Component {
 
   constructor (props) {
     super(props)
+    this.state = {
+      text: '',
+      filteredTeams: this.props.data.get('data').toJS(),
+      fullTeamList: this.props.data.get('data').toJS(),
+    }
     this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
+    this.filterTeams = this.filterTeams.bind(this)
   }
 
   componentWillMount () {
     this.props.actions.getFacilityTeams(this.props.facilityId, this.props.uniqueDeviceId)
   }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      filteredTeams: nextProps.data.get('data').toJS(),
+      fullTeamList: nextProps.data.get('data').toJS(),
+    })
+  }
+
+  filterTeams (text) {
+    const options = {
+      extract: function(team) { return team.name }
+    }
+    const results = fuzzy.filter(text.toUpperCase(), this.state.fullTeamList, options)
+    if (results.length === 0) {
+      this.setState({
+        text,
+        filteredTeams: [],
+      })
+    } else {
+      const filteredResults = results.map((result) =>
+      {
+        return result.original
+      })
+      this.setState({
+        text,
+        filteredTeams: filteredResults,
+      })
+    }
+  }
+
+  renderTeamRow (team) {
+    return (
+      <TouchableHighlight
+        onPress={_ => console.log('You touched me')}
+        underlayColor={'#eee'}
+        >
+        <View style={styles.teamsContainer}>
+          <View style={styles.teamsNameContainer}>
+              <Text style={styles.teamNameText} >{team.name}</Text>
+          </View>
+          <View style={styles.teamsDivisionContainer}>
+              <Text style={styles.teamDivisionText} >{team.division}</Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+    )
+  }
 
   renderContent () {
-    const games = this.props.data.get('data').toJS()
+    const teams = this.state.filteredTeams
     const loading = this.props.data.get('loading')
     const error = this.props.data.get('error')
     if (loading) {
@@ -41,11 +98,11 @@ class TeamsTableView extends Component {
           <Progress.CircleSnail size={80} colors={['blue']} />
         </View>
       )
-    } else if (games.length) {
+    } else if (teams.length) {
         return (
           <SwipeListView
-            dataSource={this.ds.cloneWithRows(games)}
-            renderRow={game => this.renderGameRow(game)}
+            dataSource={this.ds.cloneWithRows(teams)}
+            renderRow={team => this.renderTeamRow(team)}
           />
         )
     } else if (!error) {
@@ -64,27 +121,15 @@ class TeamsTableView extends Component {
     }
   }
 
-  renderGameRow (game) {
-    return (
-      <TouchableHighlight
-        onPress={_ => console.log('You touched me')}
-        underlayColor={'#eee'}
-        >
-        <View style={styles.teamsContainer}>
-          <View style={styles.teamsNameContainer}>
-              <Text style={styles.teamNameText} >{game.name}</Text>
-          </View>
-          <View style={styles.teamsDivisionContainer}>
-              <Text style={styles.teamDivisionText} >{game.division}</Text>
-          </View>
-        </View>
-      </TouchableHighlight>
-    )
-  }
-
   render () {
     return (
       <View style={styles.container}>
+        <TextInput
+          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          placeholder="Find Team ...."
+          onChangeText={(text) => this.filterTeams(text)}
+          value={this.state.text}
+        />
         {this.renderContent()}
       </View>
     )
