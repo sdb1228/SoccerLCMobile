@@ -11,7 +11,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  searchDialog: {
+  searchBar: {
     height: 30,
     fontSize: 13,
     padding: 5,
@@ -19,46 +19,28 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
   },
-  buttonStyle: {
-    marginRight: 20,
-    borderColor: '#000',
-  },
-  teamNameText: {
+  divisionNameText: {
     color: 'rgba(144,30,27,.9)',
     fontFamily: 'Helvetica',
     paddingBottom: 3,
     fontWeight: 'bold',
     fontSize: 15,
   },
-  teamsNameContainer: {
+  divisionNameContainer: {
     alignItems: 'flex-start',
     borderColor: '#000',
   },
-  teamDivisionText: {
+  teamCountText: {
     color: '#888',
     fontFamily: 'Helvetica',
     fontSize: 13,
   },
-  teamsDivisionContainer: {
-  },
-  teamsContainer: {
+  divisionContainer: {
     flexDirection: 'column',
     justifyContent: 'flex-start',
     borderColor: '#eee',
     borderWidth: 0.5,
     paddingLeft: 12,
     paddingVertical: 12,
-  },
-  switchContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginBottom: 5,
-  },
-  switch: {
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'black',
-    paddingVertical: 10,
-    width: 100,
   },
 })

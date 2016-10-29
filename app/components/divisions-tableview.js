@@ -76,12 +76,12 @@ class DivisionsTableView extends Component {
         onPress={_ => console.log('You touched me')}
         underlayColor={'#eee'}
         >
-        <View style={styles.teamsContainer}>
-          <View style={styles.teamsNameContainer}>
-              <Text style={styles.teamNameText} >{team.name}</Text>
+        <View style={styles.divisionContainer}>
+          <View style={styles.divisionNameContainer}>
+              <Text style={styles.divisionNameText} >{team.name}</Text>
           </View>
           <View style={styles.teamsDivisionContainer}>
-              <Text style={styles.teamDivisionText} >{team.teamCount} Teams</Text>
+              <Text style={styles.teamCountText} >{team.teamCount} Teams</Text>
           </View>
         </View>
       </TouchableHighlight>
@@ -120,7 +120,7 @@ class DivisionsTableView extends Component {
     return (
       <View style={styles.container}>
         <TextInput
-          style={styles.searchDialog}
+          style={styles.searchBar}
           placeholder="Find Division ...."
           onChangeText={(text) => this.filterDivisions(text)}
           value={this.state.text}
