@@ -24,6 +24,9 @@ const actionDefs = [
   'SOCCERLC_ASYNC_FAVORITE_TEAMS_GAMES_START',
   'SOCCERLC_ASYNC_FAVORITE_TEAMS_GAMES_SUCCESS',
   'SOCCERLC_ASYNC_FAVORITE_TEAMS_GAMES_FAIL',
+  'SOCCERLC_ASYNC_TEAMS_GAMES_START',
+  'SOCCERLC_ASYNC_TEAMS_GAMES_SUCCESS',
+  'SOCCERLC_ASYNC_TEAMS_GAMES_FAIL',
   'SOCCERLC_CLOSE_ERROR_MODAL',
 ]
 
@@ -35,6 +38,15 @@ actions.getIndoorFacilities = () => {
     provider.getIndoorFacilities()
     .then(res => dispatch(actions.soccerlcAsyncIndoorFacilitiesSuccess(res.data)))
     .catch(err => dispatch(actions.soccerlcAsyncIndoorFacilitiesFail(err)))
+  }
+}
+
+actions.getTeamsGames = (teamId, facilityId) => {
+  return (dispatch) => {
+    dispatch(actions.soccerlcAsyncTeamsGamesStart())
+    provider.getTeamsGames(teamId, facilityId)
+    .then(res => dispatch(actions.soccerlcAsyncTeamsGamesSuccess(res.data)))
+    .catch(err => dispatch(actions.soccerlcAsyncTeamsGamesFail(err)))
   }
 }
 

@@ -6,7 +6,7 @@ const {
   Animated,
   TouchableOpacity,
 } = ReactNative
-const Button = require('./Button')
+const Button = require('../buttons/Button')
 import styles from '../styles/navigation-bar'
 import Icon from 'react-native-vector-icons/FontAwesome'
 

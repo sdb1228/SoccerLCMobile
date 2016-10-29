@@ -37,6 +37,24 @@ export default combineReducers({
     }, Immutable.List()),
   }),
 
+  teamGames: combineReducers({
+    loading: handleActions({
+      [actions.soccerlcAsyncTeamsGamesStart.type]: () => true,
+      [actions.soccerlcAsyncTeamsGamesSuccess.type]: () => false,
+      [actions.soccerlcAsyncTeamsGamesFail.type]: () => false,
+    }, false),
+    error: handleActions({
+      [actions.soccerlcAsyncTeamsGamesFail.type]: () => true,
+      [actions.soccerlcAsyncTeamsGamesStart.type]: () => false,
+      [actions.soccerlcAsyncTeamsGamesSuccess.type]: () => false,
+    }, false),
+    data: handleActions({
+      [actions.soccerlcAsyncTeamsGamesSuccess.type]: (state, action) => {
+        return Immutable.fromJS(action.payload)
+      },
+    }, Immutable.List()),
+  }),
+
   facilityDivisions: combineReducers({
     loading: handleActions({
       [actions.soccerlcAsyncFacilitiesDivisionsStart.type]: () => true,

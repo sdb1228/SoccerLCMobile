@@ -2,7 +2,7 @@ import React from 'react'
 import {
   ScrollView,
 } from 'react-native'
-import TabBar from '../components/tab-bar'
+import TabBar from '../navigation-bars/tab-bar'
 import FavoriteGamesTableview from '../components/favorite-games-tableview'
 import FacilitiesTableview from '../components/facilities-tableview'
 import styles from '../styles/root-tab-view'

@@ -13,6 +13,8 @@ import AdmobView from './admob'
 import actions from '../actions'
 import styles from '../styles/app'
 import soccerlc from '../../config/soccerlc-config'
+import TeamView from '../components/team-view'
+
 var PushNotification = require('react-native-push-notification')
 const DeviceInfo = require('react-native-device-info')
 
@@ -81,7 +83,7 @@ class App extends Component {
     return (
       <Navigator
         style={styles.container}
-        initialRoute={{id: 'first'}}
+        initialRoute={{id: 'root'}}
         renderScene={this.navigatorRenderScene}/>
     );
   }
@@ -90,7 +92,7 @@ class App extends Component {
     const { state, actions } = this.props
     _navigator = navigator;
     switch (route.id) {
-      case 'first':
+      case 'root':
         return (
           <AdmobView
                 hideAd={true}
@@ -118,16 +120,16 @@ class App extends Component {
                  open={state.getIn(['soccerlcData', 'errorModalOpen']).get('error')}
                  modalDidOpen={() => console.log('modal did open')}
                  modalDidClose={() => this.setState({open: false})}
-                 style={{alignItems: 'center'}}>
-                 <View style={{alignItems: 'center', justifyContent: 'center', marginBottom: 10}}>
-                    <Text style={{fontSize: 20, marginBottom: 10}}>Oh No!</Text>
-                    <Text style={{fontSize: 15, marginBottom: 10}}>
+                 style={styles.modal}>
+                 <View style={styles.modalContainer}>
+                    <Text style={styles.modalTitle}>Oh No!</Text>
+                    <Text style={styles.modalBody}>
                       Looks like something has gone wrong please try again later.
                     </Text>
                     <TouchableOpacity
-                       style={{alignItems: 'center', justifyContent: 'center', marginBottom: 5}}
+                       style={styles.modalOkButton}
                        onPress={actions.closeErrorModal}>
-                       <Text style={{fontSize: 15, color: '#00f'}}>Ok</Text>
+                       <Text style={styles.modalOkButtonText}>Ok</Text>
                     </TouchableOpacity>
                  </View>
               </Modal>
@@ -160,16 +162,50 @@ class App extends Component {
                open={state.getIn(['soccerlcData', 'errorModalOpen']).get('error')}
                modalDidOpen={() => console.log('modal did open')}
                modalDidClose={() => this.setState({open: false})}
-               style={{alignItems: 'center'}}>
-               <View style={{alignItems: 'center', justifyContent: 'center', marginBottom: 10}}>
-                  <Text style={{fontSize: 20, marginBottom: 10}}>Oh No!</Text>
-                  <Text style={{fontSize: 15, marginBottom: 10}}>
+               style={styles.modal}>
+               <View style={styles.modalContainer}>
+                  <Text style={styles.modalTitle}>Oh No!</Text>
+                  <Text style={styles.modalBody}>
                     Looks like something has gone wrong please try again later.
                   </Text>
                   <TouchableOpacity
-                     style={{alignItems: 'center', justifyContent: 'center', marginBottom: 5}}
+                     style={styles.modalOkButton}
                      onPress={actions.closeErrorModal}>
-                     <Text style={{fontSize: 15, color: '#00f'}}>Ok</Text>
+                     <Text style={styles.modalOkButtonText}>Ok</Text>
+                  </TouchableOpacity>
+               </View>
+            </Modal>
+          </AdmobView>
+        )
+      case 'team':
+        return (
+          <AdmobView
+            hideAd={true}
+            containerStyle={{
+              backgroundColor: '#ffffff',
+            }}
+          >
+            <TeamView
+              facilityId={route.selectedFacilityId}
+              team={route.selectedTeam}
+              games={state.getIn(['soccerlcData','teamGames'])}
+              navigator={navigator}
+              actions={actions}
+              />
+            <Modal
+               open={state.getIn(['soccerlcData', 'errorModalOpen']).get('error')}
+               modalDidOpen={() => console.log('modal did open')}
+               modalDidClose={() => this.setState({open: false})}
+               style={styles.modal}>
+               <View style={styles.modalContainer}>
+                  <Text style={styles.modalTitle}>Oh No!</Text>
+                  <Text style={styles.modalBody}>
+                    Looks like something has gone wrong please try again later.
+                  </Text>
+                  <TouchableOpacity
+                     style={styles.modalOkButton}
+                     onPress={actions.closeErrorModal}>
+                     <Text style={styles.modalOkButtonText}>Ok</Text>
                   </TouchableOpacity>
                </View>
             </Modal>

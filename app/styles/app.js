@@ -39,8 +39,26 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   modalTitle: {
-    fontSize: 25,
+    fontSize: 20,
     marginBottom: 10,
+  },
+  modalBody: {
+    fontSize: 15,
+    marginBottom: 10,
+  },
+  modalContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 10,
+  },
+  modalOkButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 5,
+  },
+  modalOkButtonText: {
+    fontSize: 15,
+    color: '#00f',
   },
   closeIconParent: {
     width: 300,
@@ -102,24 +120,3 @@ export default StyleSheet.create({
     color: 'white',
   },
 })
-
-export const gradient = {
-  style: {
-    width: 130,
-    height: 130,
-    borderRadius: 65,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  colors: [
-    ['#FFEDBC', '#ED4264'],
-    ['#FE5621', '#E81D62'],
-    ['#FE9700', '#E74C3C'],
-    ['#9B26AF', '#6639B6'],
-    ['#c2e59c', '#64b3f4'],
-    ['#F15F79', '#B24592'],
-    ['#FFC371', '#FF5F6D'],
-    ['#26D0CE', '#1A2980'],
-  ],
-}

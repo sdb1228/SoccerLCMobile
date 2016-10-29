@@ -25,6 +25,7 @@ class TeamsTableView extends Component {
     actions: object.isRequired,
     uniqueDeviceId: string.isRequired,
     facilityId: number.isRequired,
+    navigator: object.isRequired,
   }
 
   constructor (props) {
@@ -73,7 +74,7 @@ class TeamsTableView extends Component {
   renderTeamRow (team) {
     return (
       <TouchableHighlight
-        onPress={_ => console.log('You touched me')}
+        onPress={_ => this.props.navigator.push({id: 'team', selectedTeam: team, selectedFacilityId: this.props.facilityId})}
         underlayColor={'#eee'}
         >
         <View style={styles.teamsContainer}>

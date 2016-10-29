@@ -1,11 +1,7 @@
 import React from 'react'
 import {
-  Text,
-  View,
-  ScrollView,
 } from 'react-native'
-import styles from '../styles/facility-tab-view'
-import NavigationBar from '../components/navigation-bar'
+import NavigationBar from '../navigation-bars/navigation-bar'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
 import TeamsTableView from '../components/teams-tableview'
 import DivisionsTableView from '../components/divisions-tableview'
@@ -35,6 +31,7 @@ export default React.createClass({
         facilityId={this.props.facility.id}
         data={this.props.todayFacilityGames}
         uniqueDeviceId={this.props.uniqueDeviceId}
+        navigator={this.props.navigator}
         day="Today"
       />
       <TodaysTomorrowGamesTableView
@@ -42,6 +39,7 @@ export default React.createClass({
         actions={this.props.actions}
         facilityId={this.props.facility.id}
         data={this.props.tomorrowFacilityGames}
+        navigator={this.props.navigator}
         uniqueDeviceId={this.props.uniqueDeviceId}
         day="Tomorrow"
       />
@@ -50,6 +48,7 @@ export default React.createClass({
         actions={this.props.actions}
         facilityId={this.props.facility.id}
         data={this.props.facilityTeams}
+        navigator={this.props.navigator}
         uniqueDeviceId={this.props.uniqueDeviceId}
         />
       <DivisionsTableView
@@ -57,13 +56,9 @@ export default React.createClass({
         actions={this.props.actions}
         facilityId={this.props.facility.id}
         data={this.props.facilityDivisions}
+        navigator={this.props.navigator}
         uniqueDeviceId={this.props.uniqueDeviceId}
         />
-      <ScrollView tabLabel="About" style={styles.tabView}>
-        <View style={styles.card}>
-          <Text>Other nav</Text>
-        </View>
-      </ScrollView>
     </ScrollableTabView>
   },
 })

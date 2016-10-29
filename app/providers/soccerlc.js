@@ -20,6 +20,10 @@ export function getIndoorFacilities () {
   return axios.get(`${soccerlc.baseUrl}facilities/Indoor`)
 }
 
+export function getTeamsGames (teamId, facilityId) {
+  return axios.get(`${soccerlc.baseUrl}facilities/${facilityId}/teams/${teamId}/games`)
+}
+
 export function getFacilitiesDivisions (facilityId) {
   return axios.get(`${soccerlc.baseUrl}facilities/${facilityId}/divisions`)
 }
