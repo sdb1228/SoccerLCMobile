@@ -120,7 +120,7 @@ class DivisionsTableView extends Component {
     return (
       <View style={styles.container}>
         <TextInput
-          style={{height: 30, fontSize: 13, padding: 5, borderColor: '#ccc', borderWidth: 1, borderRadius: 5}}
+          style={styles.searchDialog}
           placeholder="Find Division ...."
           onChangeText={(text) => this.filterDivisions(text)}
           value={this.state.text}

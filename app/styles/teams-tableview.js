@@ -11,6 +11,14 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  searchDialog: {
+    height: 30,
+    fontSize: 13,
+    padding: 5,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 5,
+  },
   buttonStyle: {
     marginRight: 20,
     borderColor: '#000',
