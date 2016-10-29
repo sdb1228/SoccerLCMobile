@@ -6,6 +6,9 @@ const actionDefs = [
   'SOCCERLC_ASYNC_FACILITIES_TEAMS_START',
   'SOCCERLC_ASYNC_FACILITIES_TEAMS_SUCCESS',
   'SOCCERLC_ASYNC_FACILITIES_TEAMS_FAIL',
+  'SOCCERLC_ASYNC_FACILITIES_DIVISIONS_START',
+  'SOCCERLC_ASYNC_FACILITIES_DIVISIONS_SUCCESS',
+  'SOCCERLC_ASYNC_FACILITIES_DIVISIONS_FAIL',
   'SOCCERLC_ASYNC_FACILITIES_TODAYS_GAMES_START',
   'SOCCERLC_ASYNC_FACILITIES_TODAYS_GAMES_SUCCESS',
   'SOCCERLC_ASYNC_FACILITIES_TODAYS_GAMES_FAIL',
@@ -74,6 +77,15 @@ actions.getFacilityTodaysGames = (facilityId) => {
     provider.getFacilitiesTodaysGames(facilityId)
       .then(res => dispatch(actions.soccerlcAsyncFacilitiesTodaysGamesSuccess(res.data)))
       .catch(err => dispatch(actions.soccerlcAsyncFacilitiesTodaysGamesFail(err)))
+  }
+}
+
+actions.getFacilityDivisions = (facilityId) => {
+  return (dispatch) => {
+    dispatch(actions.soccerlcAsyncFacilitiesDivisionsStart())
+    provider.getFacilitiesDivisions(facilityId)
+    .then(res => dispatch(actions.soccerlcAsyncFacilitiesDivisionsSuccess(res.data)))
+    .catch(err => dispatch(actions.soccerlcAsyncFacilitiesDivisionsFail(err)))
   }
 }
 

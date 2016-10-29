@@ -107,12 +107,7 @@ class TeamsTableView extends Component {
         )
     } else if (!error) {
       return (
-        <ButtonComponent
-          onPress={() => {}}
-          buttonStyle={styles.buttonStyle}
-          text="Go Favorite More Teams!"
-        >
-        </ButtonComponent>
+        <Text style={styles.homeTeamCellText} >No teams avaible....</Text>
       )
     } else {
       return (
@@ -125,7 +120,7 @@ class TeamsTableView extends Component {
     return (
       <View style={styles.container}>
         <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          style={{height: 30, fontSize: 13, padding: 5, borderColor: '#ccc', borderWidth: 1, borderRadius: 5}}
           placeholder="Find Team ...."
           onChangeText={(text) => this.filterTeams(text)}
           value={this.state.text}
