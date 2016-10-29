@@ -12,7 +12,7 @@ import {
 import { SwipeListView } from 'react-native-swipe-list-view'
 import ButtonComponent, { CircleButton, RoundButton, RectangleButton } from 'react-native-button-component'
 
-import styles from '../styles/teams-tableview.js'
+import styles from '../styles/divisions-tableview.js'
 
 const Progress = require('react-native-progress')
 var fuzzy = require('fuzzy')
@@ -70,7 +70,7 @@ class DivisionsTableView extends Component {
     }
   }
 
-  renderTeamRow (team) {
+  renderDivisionRow (team) {
     return (
       <TouchableHighlight
         onPress={_ => console.log('You touched me')}
@@ -81,7 +81,7 @@ class DivisionsTableView extends Component {
               <Text style={styles.teamNameText} >{team.name}</Text>
           </View>
           <View style={styles.teamsDivisionContainer}>
-              <Text style={styles.teamDivisionText} >{team.division}</Text>
+              <Text style={styles.teamDivisionText} >{team.teamCount} Teams</Text>
           </View>
         </View>
       </TouchableHighlight>
@@ -102,7 +102,7 @@ class DivisionsTableView extends Component {
         return (
           <SwipeListView
             dataSource={this.ds.cloneWithRows(divisions)}
-            renderRow={team => this.renderTeamRow(team)}
+            renderRow={team => this.renderDivisionRow(team)}
           />
         )
     } else if (!error) {
