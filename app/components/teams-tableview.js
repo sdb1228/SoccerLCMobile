@@ -120,7 +120,7 @@ class TeamsTableView extends Component {
     return (
       <View style={styles.container}>
         <TextInput
-          style={styles.searchDialog}
+          style={styles.searchBar}
           placeholder="Find Team ...."
           onChangeText={(text) => this.filterTeams(text)}
           value={this.state.text}
