@@ -45,7 +45,6 @@ class TeamView extends Component {
 
 
   renderGameRow (game) {
-    debugger
     return (
       <GameView game={game}/>
     )

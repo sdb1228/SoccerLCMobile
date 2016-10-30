@@ -5,6 +5,7 @@ import {
 } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import * as Animatable from 'react-native-animatable'
+import styles from '../styles/team-nav-bar'
 
 const TeamNavBar = React.createClass({
   tabIcons: [],
@@ -18,18 +19,18 @@ const TeamNavBar = React.createClass({
 
   render () {
     return (
-      <View style={{backgroundColor: 'rgb(144,30,27)', height: 45, flexDirection: 'row', justifyContent: 'space-between'}}>
+      <View style={styles.container}>
         <View>
           <TouchableOpacity onPress={_ => this.props.navigator.pop()}>
             <Icon
               name='angle-left'
               size={30}
-              style={{paddingTop: 5, paddingLeft: 15}}
+              style={styles.backIconStyles}
               color='#fff'
             />
           </TouchableOpacity>
         </View>
-        <View style={{flexDirection: 'row'}}>
+        <View style={styles.rightSideActions}>
           <Animatable.View
             animation='pulse'
             iterationCount={4}
@@ -40,7 +41,7 @@ const TeamNavBar = React.createClass({
               <Icon
                 name='star'
                 size={30}
-                style={{paddingTop: 5, paddingRight: 15}}
+                style={styles.rightIconStyles}
                 color='#fff'
               />
             </TouchableOpacity>
@@ -51,7 +52,7 @@ const TeamNavBar = React.createClass({
             <Icon
               name='calendar'
               size={30}
-              style={{paddingTop: 5, paddingRight: 15}}
+              style={styles.rightIconStyles}
               color='#fff'
             />
           </TouchableOpacity>
