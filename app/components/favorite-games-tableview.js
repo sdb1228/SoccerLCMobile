@@ -28,7 +28,7 @@ class FavoriteGamesTableview extends Component {
   }
 
   componentWillMount () {
-    this.props.actions.getFavoriteTeamsGames(this.props.uniqueDeviceId)
+    this.props.actions.getFavoriteTeamsGames(this.props.uniqueDeviceId, 5)
   }
 
   errorRetry () {

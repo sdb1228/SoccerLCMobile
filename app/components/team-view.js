@@ -23,6 +23,7 @@ const { shape, object, string, number } = React.PropTypes
 class TeamView extends Component {
   static propTypes = {
     navigator: object,
+    uniqueDeviceId: string,
     actions: object,
     games: object,
     team: object,
@@ -33,9 +34,13 @@ class TeamView extends Component {
     super(props)
     this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
     this.errorRetry = this.errorRetry.bind(this)
+    this.toggleFavorite = this.toggleFavorite.bind(this)
   }
 
   componentWillMount () {
+    this.setState({
+      favorite: this.props.team.favorite,
+    })
     this.props.actions.getTeamsGames(this.props.team.id, this.props.facilityId)
   }
 
@@ -43,6 +48,12 @@ class TeamView extends Component {
     this.props.actions.getTeamsGames(this.props.team.id, this.props.facilityId)
   }
 
+  toggleFavorite () {
+    this.props.actions.favoriteTeam(this.props.uniqueDeviceId, this.props.team.id)
+    this.setState({
+      favorite: !this.state.favorite,
+    })
+  }
 
   renderGameRow (game) {
     return (
@@ -95,6 +106,8 @@ class TeamView extends Component {
       <View style={{flex: 1}}>
         <TeamNavBar
           navigator={this.props.navigator}
+          toggleFavorite={this.toggleFavorite}
+          isFavorite={this.state.favorite}
         />
         {this.renderContent()}
       </View>

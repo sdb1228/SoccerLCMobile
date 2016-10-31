@@ -45,7 +45,6 @@ class App extends Component {
             console.log(response)
           })
           .catch(function (error) {
-            debugger
             console.log(error)
           })
           // this.props.actions.setDeviceTokenAndInstallation(token, , DeviceInfo.getManufacturer())
@@ -189,6 +188,7 @@ class App extends Component {
               facilityId={route.selectedFacilityId}
               team={route.selectedTeam}
               games={state.getIn(['soccerlcData','teamGames'])}
+              uniqueDeviceId={DeviceInfo.getUniqueID()}
               navigator={navigator}
               actions={actions}
               />

@@ -15,6 +15,7 @@ export default combineReducers({
       [actions.soccerlcAsyncFacilitiesTomorrowsGamesFail.type]: () => true,
       [actions.soccerlcAsyncFacilitiesTodaysGamesFail.type]: () => true,
       [actions.soccerlcAsyncFacilitiesTodaysGamesFail.type]: () => true,
+      [actions.soccerlcAsyncFavoriteTeamFail.type]: () => true,
       [actions.soccerlcCloseErrorModal.type]: () => false,
     }, false),
   }),
@@ -32,6 +33,24 @@ export default combineReducers({
     }, false),
     data: handleActions({
       [actions.soccerlcAsyncFacilitiesTodaysGamesSuccess.type]: (state, action) => {
+        return Immutable.fromJS(action.payload)
+      },
+    }, Immutable.List()),
+  }),
+
+  favoriteTeam: combineReducers({
+    loading: handleActions({
+      [actions.soccerlcAsyncFavoriteTeamStart.type]: () => true,
+      [actions.soccerlcAsyncFavoriteTeamSuccess.type]: () => false,
+      [actions.soccerlcAsyncFavoriteTeamFail.type]: () => false,
+    }, false),
+    error: handleActions({
+      [actions.soccerlcAsyncFavoriteTeamFail.type]: () => true,
+      [actions.soccerlcAsyncFavoriteTeamStart.type]: () => false,
+      [actions.soccerlcAsyncFavoriteTeamSuccess.type]: () => false,
+    }, false),
+    data: handleActions({
+      [actions.soccerlcAsyncFavoriteTeamSuccess.type]: (state, action) => {
         return Immutable.fromJS(action.payload)
       },
     }, Immutable.List()),

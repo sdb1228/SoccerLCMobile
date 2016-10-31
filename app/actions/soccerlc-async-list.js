@@ -3,6 +3,9 @@ import { createActions } from 'redux-actions-magic'
 import * as provider from '../providers/soccerlc'
 
 const actionDefs = [
+  'SOCCERLC_ASYNC_FAVORITE_TEAM_START',
+  'SOCCERLC_ASYNC_FAVORITE_TEAM_SUCCESS',
+  'SOCCERLC_ASYNC_FAVORITE_TEAM_FAIL',
   'SOCCERLC_ASYNC_FACILITIES_TEAMS_START',
   'SOCCERLC_ASYNC_FACILITIES_TEAMS_SUCCESS',
   'SOCCERLC_ASYNC_FACILITIES_TEAMS_FAIL',
@@ -50,12 +53,21 @@ actions.getTeamsGames = (teamId, facilityId) => {
   }
 }
 
-actions.getFavoriteTeamsGames = () => {
+actions.getFavoriteTeamsGames = (uniqueDeviceId) => {
   return (dispatch) => {
     dispatch(actions.soccerlcAsyncFavoriteTeamsGamesStart())
-    provider.getFavoriteTeamsGames()
+    provider.getFavoriteTeamsGames(uniqueDeviceId)
     .then(res => dispatch(actions.soccerlcAsyncFavoriteTeamsGamesSuccess(res.data)))
     .catch(err => dispatch(actions.soccerlcAsyncFavoriteTeamsGamesFail(err)))
+  }
+}
+
+actions.favoriteTeam = (uniqueDeviceId, teamId) => {
+  return (dispatch) => {
+    dispatch(actions.soccerlcAsyncFavoriteTeamStart())
+    provider.favoriteTeam(uniqueDeviceId, teamId)
+    .then(res => dispatch(actions.soccerlcAsyncFavoriteTeamSuccess(res.data)))
+    .catch(err => dispatch(actions.soccerlcAsyncFavoriteTeamFail(err)))
   }
 }
 
@@ -74,10 +86,10 @@ actions.closeErrorModal = () => {
   }
 }
 
-actions.getFacilityTeams = (facilityId) => {
+actions.getFacilityTeams = (facilityId, uniqueDeviceId) => {
   return (dispatch) => {
     dispatch(actions.soccerlcAsyncFacilitiesTeamsStart())
-    provider.getFacilityTeams(facilityId)
+    provider.getFacilityTeams(facilityId, uniqueDeviceId)
       .then(res => dispatch(actions.soccerlcAsyncFacilitiesTeamsSuccess(res.data)))
       .catch(err => dispatch(actions.soccerlcAsyncFacilitiesTeamsFail(err)))
   }

@@ -14,6 +14,7 @@ const TeamNavBar = React.createClass({
     toggleFavorite: React.PropTypes.func,
     exportToCalendar: React.PropTypes.func,
     back: React.PropTypes.func,
+    isFavorite: React.PropTypes.bool,
     navigator: React.PropTypes.obj,
   },
 
@@ -36,13 +37,13 @@ const TeamNavBar = React.createClass({
             iterationCount={4}
           >
             <TouchableOpacity
-              onPress={_ => this.props.navigator.pop()}
+              onPress={_ => this.props.toggleFavorite()}
               >
               <Icon
                 name='star'
                 size={30}
                 style={styles.rightIconStyles}
-                color='#fff'
+                color={this.props.isFavorite ? '#ffff00' : '#fff'}
               />
             </TouchableOpacity>
           </Animatable.View>

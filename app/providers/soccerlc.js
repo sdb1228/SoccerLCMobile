@@ -16,6 +16,21 @@ export function getFacilityTeams (facilityId, uniqueDeviceId) {
   })
 }
 
+export function favoriteTeam (uniqueDeviceId, teamId) {
+  return axios.post(`${soccerlc.baseUrl}favorites/teams`, {
+    installationId: uniqueDeviceId,
+    teamId: teamId,
+  })
+}
+
+export function getFavoriteTeamsGames (uniqueDeviceId, thing) {
+  return axios.get(`${soccerlc.baseUrl}favorites/games`, {
+    params: {
+      installationId: uniqueDeviceId,
+    },
+  })
+}
+
 export function getIndoorFacilities () {
   return axios.get(`${soccerlc.baseUrl}facilities/Indoor`)
 }
@@ -38,12 +53,4 @@ export function getFacilitiesTomorrowsGames (facilityId) {
 
 export function getOutdoorFacilities () {
   return axios.get(`${soccerlc.baseUrl}facilities/Outdoor`)
-}
-
-export function getFavoriteTeamsGames (uniqueDeviceId) {
-  return axios.get(`${soccerlc.baseUrl}favorites/games`, {
-    params: {
-      installationId: uniqueDeviceId,
-    },
-  })
 }
