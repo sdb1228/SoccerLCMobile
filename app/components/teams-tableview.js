@@ -84,6 +84,13 @@ class TeamsTableView extends Component {
           <View style={styles.teamsDivisionContainer}>
               <Text style={styles.teamDivisionText} >{team.division}</Text>
           </View>
+          {
+            team.favorite
+            ? (<View style={styles.teamsDivisionContainer}>
+                <Text style={styles.teamDivisionText} >{team.division}</Text>
+              </View>)
+            : null
+          }
         </View>
       </TouchableHighlight>
     )

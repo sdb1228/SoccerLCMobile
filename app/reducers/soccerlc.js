@@ -125,6 +125,10 @@ export default combineReducers({
       [actions.soccerlcAsyncFacilitiesTeamsSuccess.type]: (state, action) => {
         return Immutable.fromJS(action.payload)
       },
+      [actions.soccerlcAsyncFavoriteTeamSuccess.type]: (state, action) => {
+        const index = state.findIndex(team => team.get('id') === action.payload[0].teamId)
+        return index !== -1 ? state.updateIn([index, 'favorite'], () => true) : state
+      },
     }, Immutable.List()),
   }),
 
