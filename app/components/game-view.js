@@ -11,6 +11,7 @@ const { shape, object, string, number, bool } = React.PropTypes
 import FoldView from 'react-native-foldview'
 import Moment from 'moment'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import Share from 'react-native-share'
 
 import styles from '../styles/game-view.js'
 
@@ -30,6 +31,25 @@ class GameView extends Component {
     super(props)
 
     this.state = { flipExpanded: false }
+  }
+
+  share() {
+    const {
+      gameDateTime: time,
+      homeTeam, awayTeam,
+      homeTeamScore: homeScore, awayTeamScore: awayScore
+    } = this.props.game
+
+    timeText = Moment(time).format('MMM D h:mm a')
+    // TODO: defend all these nullables
+    teamText = [
+      [awayTeam.name, awayScore].join(' '),
+      [homeTeam.name, homeScore].join(' '),
+    ].join(' @ ')
+
+    Share.open({
+      message: teamText + ' ' + timeText,
+    })
   }
 
   flip () {
@@ -84,28 +104,30 @@ class GameView extends Component {
     return (
       <View>
         <View style={{flexDirection: 'row'}}>
+          <Text style={styles.footerTimeText}>{absoluteTime.format('MMMM Do [at] h:mm a')}</Text>
+        </View>
+        <View style={{flexDirection: 'row'}}>
           <Text style={styles.footerFieldText}>
             {this.props.game.field.name}
           </Text>
           <Icon
             name='map-marker'
-            size={15}
-            style={{paddingTop: 10, paddingLeft: 10}}
+            size={18}
+            style={{padding: 12}}
             color='#888'
           />
-        </View>
-        <View style={{flexDirection: 'row'}}>
-          <Text style={styles.footerTimeText}>{absoluteTime.format('MMMM Do [at] h:mm a')}</Text>
-          <Icon
-            name='share'
-            size={15}
-            style={{paddingTop: 7, paddingLeft: 15}}
-            color='#888'
-          />
+          <TouchableHighlight onPress={this.share.bind(this)} underlayColor='#eee'>
+            <Icon
+              name='share'
+              size={18}
+              style={{padding: 12}}
+              color='#888'
+            />
+          </TouchableHighlight>
           <Icon
             name='flag'
-            size={15}
-            style={{paddingTop: 7, paddingLeft: 15}}
+            size={18}
+            style={{padding: 12}}
             color='#888'
           />
         </View>
