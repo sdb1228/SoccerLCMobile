@@ -29,11 +29,6 @@ class GameView extends Component {
   constructor (props) {
     super(props)
 
-    this.flip = this.flip.bind(this)
-    this.handleFlipStart = this.handleFlipStart.bind(this)
-    this.renderFrontface = this.renderFrontface.bind(this)
-    this.renderBackface = this.renderBackface.bind(this)
-
     this.state = { flipExpanded: false }
   }
 
@@ -43,9 +38,9 @@ class GameView extends Component {
 
   handleFlipStart (duration, height) {
     LayoutAnimation.configureNext({
-      duration: duration,
+      duration: duration * 0.85,
       update: {
-        type: this.state.flipExpanded ? LayoutAnimation.Types.easeOut : LayoutAnimation.Types.easeIn,
+        type: this.state.flipExpanded ? LayoutAnimation.Types.easeIn : LayoutAnimation.Types.easeOut,
         property: LayoutAnimation.Properties.height
       }
     })
@@ -54,32 +49,23 @@ class GameView extends Component {
   }
 
   renderTeam (team, score, opposingScore) {
-    if (score > opposingScore) {
-      return (
-        <View style={styles.teamView}>
-          <Text style={styles.teamText}>{team.name}</Text>
-          <Text style={styles.teamText}>{score}</Text>
-        </View>
-      )
-    } else {
-      return (
-        <View style={styles.teamView}>
-          <Text style={styles.lossTeamText}>{team.name}</Text>
-          <Text style={styles.lossTeamText}>{score}</Text>
-        </View>
-      )
-    }
+    teamStyle = score > opposingScore ? styles.teamText : styles.lossTeamText
+
+    return (
+      <View style={styles.teamView}>
+        <Text style={teamStyle}>{team.name}</Text>
+        <Text style={teamStyle}>{score}</Text>
+      </View>
+    )
   }
 
   renderFrontface () {
     const relativeTime = Moment(this.props.game.gameDateTime)
 
     return (
-      <TouchableHighlight onPress={this.flip}>
-        <View style={styles.flipFrontView}>
-          <Text style={styles.timeText}>{relativeTime.fromNow()}</Text>
-        </View>
-      </TouchableHighlight>
+      <View style={styles.flipFrontView}>
+        <Text style={styles.timeText}>{relativeTime.fromNow()}</Text>
+      </View>
     )
   }
 
@@ -87,9 +73,7 @@ class GameView extends Component {
     // TODO: details, actions here
     return (
       <View style={styles.flipBackView}>
-        <Text style={styles.timeText}>
-          {this.props.game.field.name}
-        </Text>
+        <Text style={styles.timeText}>{this.props.game.field.name}</Text>
       </View>
     )
   }
@@ -146,7 +130,7 @@ class GameView extends Component {
     } = this.props.game
 
     return (
-      <TouchableHighlight onPress={this.flip} underlayColor='#eee'>
+      <TouchableHighlight onPress={this.flip.bind(this)} underlayColor='#eee'>
       <View style={styles.gameView, styles.card}>
           <View style={styles.teamsView}>
             {this.renderTeam(homeTeam, homeScore, awayScore)}
@@ -158,9 +142,9 @@ class GameView extends Component {
             !this.props.favoriteTeams
             ? (<FoldView
                 expanded={this.state.flipExpanded}
-                onAnimationStart={this.handleFlipStart}
-                renderFrontface={this.renderFrontface}
-                renderBackface={this.renderBackface}
+                onAnimationStart={this.handleFlipStart.bind(this)}
+                renderFrontface={this.renderFrontface.bind(this)}
+                renderBackface={this.renderBackface.bind(this)}
                 >
                 {this.renderBase()}
               </FoldView>)
