@@ -106,7 +106,7 @@ class GameView extends Component {
           <Icon
             name='map-marker'
             size={15}
-            style={{paddingTop: 12, paddingLeft: 10}}
+            style={{paddingTop: 10, paddingLeft: 10}}
             color='#888'
           />
         </View>
