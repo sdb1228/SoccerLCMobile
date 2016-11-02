@@ -17,6 +17,16 @@ export default StyleSheet.create({
     borderWidth: 1,
     backgroundColor: 'rgba(0,0,0,0.01)',
   },
+  timeText: {
+    color: '#ffffff',
+    fontFamily: 'Helvetica',
+    paddingBottom: 5,
+  },
+  fieldText: {
+    color: '#ffffff',
+    fontFamily: 'Helvetica',
+    paddingBottom: 15,
+  },
   awayTeamCellText: {
     color: '#ffffff',
     fontFamily: 'Helvetica',
@@ -40,7 +50,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     backgroundColor: 'rgba(0,0,0,0.01)',
-    height: 50,
+    height: 100,
   },
   switchContainer: {
     flexDirection: 'row',

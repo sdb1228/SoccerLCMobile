@@ -7,7 +7,7 @@ import {
   TouchableHighlight,
   LayoutAnimation,
 } from 'react-native'
-const { shape, object, string, number } = React.PropTypes
+const { shape, object, string, number, bool } = React.PropTypes
 import FoldView from 'react-native-foldview'
 import Moment from 'moment'
 
@@ -22,6 +22,7 @@ class GameView extends Component {
       awayTeamScore: number,
       gameDateTime: string.isRequired,
     }).isRequired,
+    favoriteTeams: bool,
   }
 
   constructor (props) {
@@ -51,13 +52,22 @@ class GameView extends Component {
     this.setState({ flipHeight: height })
   }
 
-  renderTeam (team, score) {
-    return (
-      <View style={styles.teamView}>
-        <Text style={styles.teamText}>{team.name}</Text>
-        <Text style={styles.teamText}>{score}</Text>
-      </View>
-    )
+  renderTeam (team, score, opposingScore) {
+    if (score > opposingScore) {
+      return (
+        <View style={styles.teamView}>
+          <Text style={styles.teamText}>{team.name}</Text>
+          <Text style={styles.teamText}>{score}</Text>
+        </View>
+      )
+    } else {
+      return (
+        <View style={styles.teamView}>
+          <Text style={styles.lossTeamText}>{team.name}</Text>
+          <Text style={styles.lossTeamText}>{score}</Text>
+        </View>
+      )
+    }
   }
 
   renderFrontface () {
@@ -83,6 +93,19 @@ class GameView extends Component {
     )
   }
 
+  renderFooter () {
+    const absoluteTime = Moment(this.props.game.gameDateTime)
+
+    return (
+      <View>
+        <Text style={styles.footerFieldText}>
+          {this.props.game.field.name}
+        </Text>
+        <Text style={styles.footerTimeText}>{absoluteTime.format('MMMM Do [at] h:mm a')}</Text>
+      </View>
+    )
+  }
+
   renderBase () {
     const absoluteTime = Moment(this.props.game.gameDateTime)
 
@@ -102,21 +125,26 @@ class GameView extends Component {
     return (
       <TouchableHighlight onPress={this.flip} underlayColor='#eee'>
       <View style={styles.gameView, styles.card}>
-        
           <View style={styles.teamsView}>
-            {this.renderTeam(homeTeam, homeScore)}
-            {this.renderTeam(awayTeam, awayScore)}
+            {this.renderTeam(homeTeam, homeScore, awayScore)}
+            {this.renderTeam(awayTeam, awayScore, homeScore)}
           </View>
 
         <View style={{height: this.state.flipHeight}}>
-          <FoldView
-            expanded={this.state.flipExpanded}
-            onAnimationStart={this.handleFlipStart}
-            renderFrontface={this.renderFrontface}
-            renderBackface={this.renderBackface}
-            >
-            {this.renderBase()}
-          </FoldView>
+          {
+            !this.props.favoriteTeams
+            ? (<FoldView
+                expanded={this.state.flipExpanded}
+                onAnimationStart={this.handleFlipStart}
+                renderFrontface={this.renderFrontface}
+                renderBackface={this.renderBackface}
+                >
+                {this.renderBase()}
+              </FoldView>)
+            : (<View>
+                {this.renderFooter()}
+              </View>)
+          }
         </View>
       </View>
       </TouchableHighlight>

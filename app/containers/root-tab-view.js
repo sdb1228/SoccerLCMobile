@@ -26,13 +26,12 @@ export default React.createClass({
         initialPage={0}
         renderTabBar={() => <TabBar tabsText={['My Teams', 'Indoor Facilities', 'Outdoor Facilities']} />}
       >
-        <ScrollView centerContent={true} tabLabel='star' style={styles.tabView}>
-          <FavoriteGamesTableview
-            actions={this.props.actions}
-            data={this.props.myTeamsGames}
-            uniqueDeviceId={this.props.uniqueDeviceId}
-            />
-        </ScrollView>
+        <FavoriteGamesTableview
+          tabLabel='star'
+          actions={this.props.actions}
+          data={this.props.myTeamsGames}
+          uniqueDeviceId={this.props.uniqueDeviceId}
+          />
         <FacilitiesTableview
           tabLabel='building-o'
           environment='Indoor'

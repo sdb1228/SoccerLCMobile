@@ -38,9 +38,18 @@ export default StyleSheet.create({
   teamsContainer: {
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    borderColor: '#eee',
-    borderWidth: 0.5,
     paddingLeft: 12,
     paddingVertical: 12,
+  },
+  cellContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    borderColor: '#eee',
+    borderWidth: 0.5,
+  },
+  favoriteContainer: {
+    justifyContent: 'center',
+    flex: 1,
+    alignItems: 'flex-end',
   },
 })

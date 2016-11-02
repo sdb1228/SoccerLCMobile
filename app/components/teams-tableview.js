@@ -11,6 +11,7 @@ import {
 
 import { SwipeListView } from 'react-native-swipe-list-view'
 import ButtonComponent, { CircleButton, RoundButton, RectangleButton } from 'react-native-button-component'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 import styles from '../styles/teams-tableview.js'
 
@@ -77,21 +78,30 @@ class TeamsTableView extends Component {
         onPress={_ => this.props.navigator.push({id: 'team', selectedTeam: team, selectedFacilityId: this.props.facilityId})}
         underlayColor={'#eee'}
         >
-        <View style={styles.teamsContainer}>
-          <View style={styles.teamsNameContainer}>
-              <Text style={styles.teamNameText} >{team.name}</Text>
-          </View>
-          <View style={styles.teamsDivisionContainer}>
-              <Text style={styles.teamDivisionText} >{team.division}</Text>
-          </View>
-          {
-            team.favorite
-            ? (<View style={styles.teamsDivisionContainer}>
+        <View style={styles.cellContainer}>
+          <View style={styles.teamsContainer}>
+            <View style={styles.teamsNameContainer}>
+                <Text style={styles.teamNameText} >{team.name}</Text>
+            </View>
+            <View style={styles.teamsDivisionContainer}>
                 <Text style={styles.teamDivisionText} >{team.division}</Text>
-              </View>)
-            : null
-          }
-        </View>
+            </View>
+          </View>
+          <View style={styles.favoriteContainer}>
+            {
+              team.favorite
+              ? (<View >
+                  <Icon
+                    name='star'
+                    size={30}
+                    style={{paddingRight: 10}}
+                    color='#ffff00'
+                  />
+                </View>)
+              : null
+            }
+          </View>
+      </View>
       </TouchableHighlight>
     )
   }

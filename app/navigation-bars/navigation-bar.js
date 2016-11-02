@@ -27,9 +27,9 @@ const DefaultTabBar = React.createClass({
 
   getDefaultProps () {
     return {
-      activeTextColor: 'rgb(144,30,27)',
-      inactiveTextColor: 'rgb(144,30,27)',
-      backgroundColor: null,
+      activeTextColor: '#fff',
+      inactiveTextColor: '#fff',
+      backgroundColor: 'rgb(144,30,27)',
     }
   },
 
@@ -64,7 +64,7 @@ const DefaultTabBar = React.createClass({
       position: 'absolute',
       width: (containerWidth / numberOfTabs) - 25,
       height: 4,
-      backgroundColor: 'rgb(144,30,27)',
+      backgroundColor: '#fff',
       bottom: 0,
     }
 
@@ -72,13 +72,13 @@ const DefaultTabBar = React.createClass({
       inputRange: [0, 1], outputRange: [28, (containerWidth / numberOfTabs) + 25],
     })
     return (
-      <View style={[styles.tabs, {backgroundColor: this.props.backgroundColor}, this.props.style]}>
+      <View style={[styles.tabs, {backgroundColor: 'rgb(144,30,27)'}, this.props.style]}>
         <TouchableOpacity onPress={_ => this.props.navigator.pop()}>
           <Icon
             name='angle-left'
             size={30}
             style={{paddingTop: 15, paddingLeft: 5}}
-            color='rgb(144,30,27)'
+            color='#fff'
           />
         </TouchableOpacity>
         {this.props.tabs.map((name, page) => {

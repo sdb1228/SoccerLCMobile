@@ -35,9 +35,29 @@ export default StyleSheet.create({
     fontSize: 18,
     paddingBottom: 3,
   },
+  lossTeamText: {
+    fontFamily: 'Helvetica',
+    color: 'rgba(144,30,27,.9)',
+    fontSize: 18,
+    paddingBottom: 3,
+  },
   timeText: {
     fontFamily: 'Helvetica',
     color: '#888',
+  },
+
+  footerTimeText: {
+    fontFamily: 'Helvetica',
+    color: '#888',
+    paddingLeft: 15,
+    paddingTop: 5,
+  },
+
+  footerFieldText: {
+    fontFamily: 'Helvetica',
+    color: '#888',
+    paddingLeft: 15,
+    paddingTop: 10,
   },
 
   flipBaseView: {

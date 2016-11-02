@@ -9,10 +9,13 @@ import {
 } from 'react-native'
 const { object, string } = React.PropTypes
 import { SwipeListView } from 'react-native-swipe-list-view'
-const Progress = require('react-native-progress')
+import Moment from 'moment'
 import ButtonComponent, { CircleButton, RoundButton, RectangleButton } from 'react-native-button-component';
+import GameView from './game-view.js'
 
 import styles from '../styles/favorite-games-tableview.js'
+
+const Progress = require('react-native-progress')
 
 class FavoriteGamesTableview extends Component {
   static propTypes = {
@@ -77,31 +80,7 @@ class FavoriteGamesTableview extends Component {
 
   renderGameRow (game) {
     return (
-      <TouchableHighlight
-        onPress={_ => console.log('You touched me')}
-        underlayColor={'#AAA'}
-        >
-        <View style={styles.gameContainer}>
-          <View style={styles.teamsFieldContainer}>
-            <TouchableHighlight
-              onPress={_ => console.log('You touched me')}
-              underlayColor={'#AAA'}
-              >
-              <Text style={styles.homeTeamCellText} >{game.name}</Text>
-            </TouchableHighlight>
-            <TouchableHighlight
-              onPress={_ => console.log('You touched me')}
-              underlayColor={'#AAA'}
-              >
-              <Text style={styles.awayTeamCellText}>I am the away team</Text>
-            </TouchableHighlight>
-          </View>
-          <View style={styles.scoreContainer}>
-            <Text style={styles.homeTeamCellText}>456</Text>
-            <Text style={styles.awayTeamCellText}>123</Text>
-          </View>
-        </View>
-      </TouchableHighlight>
+      <GameView favoriteTeams={true} game={game}/>
     )
   }
 
