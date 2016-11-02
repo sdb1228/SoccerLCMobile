@@ -10,6 +10,7 @@ import {
 const { shape, object, string, number, bool } = React.PropTypes
 import FoldView from 'react-native-foldview'
 import Moment from 'moment'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 import styles from '../styles/game-view.js'
 
@@ -98,10 +99,32 @@ class GameView extends Component {
 
     return (
       <View>
-        <Text style={styles.footerFieldText}>
-          {this.props.game.field.name}
-        </Text>
-        <Text style={styles.footerTimeText}>{absoluteTime.format('MMMM Do [at] h:mm a')}</Text>
+        <View style={{flexDirection: 'row'}}>
+          <Text style={styles.footerFieldText}>
+            {this.props.game.field.name}
+          </Text>
+          <Icon
+            name='map-marker'
+            size={15}
+            style={{paddingTop: 12, paddingLeft: 10}}
+            color='#888'
+          />
+        </View>
+        <View style={{flexDirection: 'row'}}>
+          <Text style={styles.footerTimeText}>{absoluteTime.format('MMMM Do [at] h:mm a')}</Text>
+          <Icon
+            name='share'
+            size={15}
+            style={{paddingTop: 7, paddingLeft: 15}}
+            color='#888'
+          />
+          <Icon
+            name='flag'
+            size={15}
+            style={{paddingTop: 7, paddingLeft: 15}}
+            color='#888'
+          />
+        </View>
       </View>
     )
   }
