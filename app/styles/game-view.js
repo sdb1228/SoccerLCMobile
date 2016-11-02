@@ -40,39 +40,24 @@ export default StyleSheet.create({
     fontSize: 18,
     paddingBottom: 3,
   },
-  timeText: {
+  footerText: {
     fontFamily: 'Helvetica',
     color: '#888',
-  },
-
-  footerTimeText: {
-    fontFamily: 'Helvetica',
-    color: '#888',
-    paddingLeft: 15,
-    paddingTop: 5,
-  },
-
-  footerFieldText: {
-    fontFamily: 'Helvetica',
-    color: '#888',
-    paddingLeft: 15,
-    paddingTop: 10,
   },
 
   flipBaseView: {
     backgroundColor: '#eee',
     paddingHorizontal: 12,
     paddingTop: 3,
-    paddingBottom: 9,
+    paddingBottom: 15,
   },
   flipFrontView: {
     backgroundColor: '#fff',
     paddingHorizontal: 12,
-    paddingBottom: 12,
+    height: 30,
   },
   flipBackView: {
     backgroundColor: '#eee',
     paddingHorizontal: 12,
-    paddingBottom: 12,
   },
 })

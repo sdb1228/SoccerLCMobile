@@ -84,50 +84,36 @@ class GameView extends Component {
 
     return (
       <View style={styles.flipFrontView}>
-        <Text style={styles.timeText}>{relativeTime.fromNow()}</Text>
+        <Text style={styles.footerText}>{relativeTime.fromNow()}</Text>
       </View>
     )
   }
 
   renderBackface () {
-    // TODO: details, actions here
     return (
       <View style={styles.flipBackView}>
-        <Text style={styles.timeText}>{this.props.game.field.name}</Text>
-      </View>
-    )
-  }
-
-  renderFooter () {
-    const absoluteTime = Moment(this.props.game.gameDateTime)
-
-    return (
-      <View>
-        <View style={{flexDirection: 'row'}}>
-          <Text style={styles.footerTimeText}>{absoluteTime.format('MMMM Do [at] h:mm a')}</Text>
-        </View>
-        <View style={{flexDirection: 'row'}}>
-          <Text style={styles.footerFieldText}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Text style={styles.footerText}>
             {this.props.game.field.name}
           </Text>
           <Icon
             name='map-marker'
             size={18}
-            style={{padding: 12}}
+            style={{padding: 6}}
             color='#888'
           />
-          <TouchableHighlight onPress={this.share.bind(this)} underlayColor='#eee'>
+          <TouchableHighlight onPress={this.share.bind(this)} underlayColor='#ddd'>
             <Icon
               name='share'
               size={18}
-              style={{padding: 12}}
+              style={{padding: 6}}
               color='#888'
             />
           </TouchableHighlight>
           <Icon
             name='flag'
             size={18}
-            style={{padding: 12}}
+            style={{padding: 6}}
             color='#888'
           />
         </View>
@@ -140,7 +126,7 @@ class GameView extends Component {
 
     return (
       <View style={styles.flipBaseView}>
-        <Text style={styles.timeText}>{absoluteTime.format('MMMM Do [at] h:mm a')}</Text>
+        <Text style={styles.footerText}>{absoluteTime.format('MMMM Do [at] h:mm a')}</Text>
       </View>
     )
   }
@@ -160,20 +146,14 @@ class GameView extends Component {
           </View>
 
         <View style={{height: this.state.flipHeight}}>
-          {
-            !this.props.favoriteTeams
-            ? (<FoldView
-                expanded={this.state.flipExpanded}
-                onAnimationStart={this.handleFlipStart.bind(this)}
-                renderFrontface={this.renderFrontface.bind(this)}
-                renderBackface={this.renderBackface.bind(this)}
-                >
-                {this.renderBase()}
-              </FoldView>)
-            : (<View>
-                {this.renderFooter()}
-              </View>)
-          }
+          <FoldView
+            expanded={this.state.flipExpanded}
+            onAnimationStart={this.handleFlipStart.bind(this)}
+            renderFrontface={this.renderFrontface.bind(this)}
+            renderBackface={this.renderBackface.bind(this)}
+            >
+            {this.renderBase()}
+          </FoldView>
         </View>
       </View>
       </TouchableHighlight>
