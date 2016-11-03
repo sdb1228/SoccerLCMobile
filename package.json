@@ -30,6 +30,7 @@
     "react-native-foldview": "^1.1.0",
     "react-native-progress": "^3.1.0",
     "react-native-push-notification": "^2.1.1",
+    "react-native-quick-actions": "^0.1.5",
     "react-native-scrollable-tab-view": "git+https://github.com/skv-headless/react-native-scrollable-tab-view.git",
     "react-native-share": "^1.0.16",
     "react-native-simple-modal": "^4.0.1",

@@ -16,6 +16,7 @@ import GameView from './game-view.js'
 import styles from '../styles/favorite-games-tableview.js'
 
 const Progress = require('react-native-progress')
+const QuickActions = require('react-native-quick-actions')
 
 class FavoriteGamesTableview extends Component {
   static propTypes = {
@@ -30,7 +31,47 @@ class FavoriteGamesTableview extends Component {
     this.errorRetry = this.errorRetry.bind(this)
   }
 
+  componentWillReceiveProps(nextProps) {
+    let quickActionsArray = []
+    quickActionsArray.push({
+      type: "My Teams", // Required
+      subtitle: "Go To My Teams!",
+      userInfo: {
+        url: "app://orders" // provide custom data, like in-app url you want to open
+      }
+    })
+    if (nextProps.data.get('data').toJS().length) {
+      const favoriteGames = nextProps.data.get('data').toJS()
+      let loopTill = favoriteGames.length
+      if (favoriteGames.length > 3) {
+        loopTill = 3
+      }
+      for (var i = 0; i < loopTill; i++) {
+        const absoluteTime = Moment(favoriteGames[i].gameDateTime)
+        const time = absoluteTime.format('MM/DD h:mm a')
+        let awayShowName = favoriteGames[i].awayTeam.name
+        let homeShowName = favoriteGames[i].homeTeam.name
+        if (homeShowName.length > 5) {
+          homeShowName = homeShowName.substring(0, 5)
+        }
+        if (awayShowName.length > 5) {
+          awayShowName = awayShowName.substring(0, 5)
+        }
+        quickActionsArray.push({
+          type: "Favorite Games", // Required
+          title: `${homeShowName} V ${awayShowName}`, // Optional, if empty, `type` will be used instead
+          subtitle: `${time} at ${favoriteGames[i].field.name}`,
+          userInfo: {
+            url: "app://orders" // provide custom data, like in-app url you want to open
+          }
+        })
+      }
+      QuickActions.setShortcutItems(quickActionsArray)
+    }
+  }
+
   componentWillMount () {
+    QuickActions.clearShortcutItems()
     this.props.actions.getFavoriteTeamsGames(this.props.uniqueDeviceId, 5)
   }
 
