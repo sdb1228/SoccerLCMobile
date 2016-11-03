@@ -100,7 +100,7 @@ class App extends Component {
                 }}
               >
                 <StatusBar
-                  barStyle="light-content"
+                  barStyle="default"
                 />
                 <RootTabView
                   indoorFacilities={state.getIn(['soccerlcData', 'indoorFacilities'])}

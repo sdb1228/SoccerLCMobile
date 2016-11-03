@@ -14,6 +14,11 @@ const Progress = require('react-native-progress')
 
 import styles from '../styles/facilities-tableview.js'
 
+const letsplay = require('../assets/letsplay.jpg')
+const sportcity = require('../assets/sportcityindoor.jpg')
+const utahsoccer = require('../assets/utah-soccer.png')
+const soccerlc = require('../assets/standingBall.jpg')
+
 class FacilitiesTableview extends Component {
   static propTypes = {
     data: object.isRequired,
@@ -57,6 +62,24 @@ class FacilitiesTableview extends Component {
       )
     }
   }
+
+  imageSource (facility) {
+    switch (facility.name) {
+      case "Lets Play Soccer GV":
+        return letsplay
+        break;
+      case "Sport City":
+        return sportcity
+        break;
+      case "Utah Soccer":
+        return utahsoccer
+        break;
+      default:
+        return soccerlc
+
+    }
+    return letsplay
+  }
   renderFacilityRow (facility) {
     return (
       <TouchableHighlight
@@ -66,9 +89,9 @@ class FacilitiesTableview extends Component {
         <Image
           resizeMode={Image.resizeMode.stretch}
           style={{height: 150, width: 400, alignItems: 'center', justifyContent: 'center'}}
-          source={{uri: facility.image}}
+          source={this.imageSource(facility)}
         >
-        <Text style={styles.facilityText}>{facility.name}</Text>
+          <Text style={styles.facilityText}>{facility.name}</Text>
         </Image>
       </TouchableHighlight>
     )
