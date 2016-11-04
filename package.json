@@ -25,7 +25,6 @@
     "react-native": "0.34.1",
     "react-native-admob": "1.1.5",
     "react-native-animatable": "^0.6.1",
-    "react-native-button-component": "0.0.5",
     "react-native-device-info": "^0.9.6",
     "react-native-foldview": "^1.1.0",
     "react-native-progress": "^3.1.0",

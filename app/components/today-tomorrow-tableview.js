@@ -4,13 +4,11 @@ import React, {
 import {
   ListView,
   Text,
-  TouchableHighlight,
   View,
 } from 'react-native'
 const { object, string, number } = React.PropTypes
 import { SwipeListView } from 'react-native-swipe-list-view'
 const Progress = require('react-native-progress')
-import ButtonComponent, { CircleButton, RoundButton, RectangleButton } from 'react-native-button-component';
 
 import styles from '../styles/favorite-games-tableview.js'
 import GameView from './game-view.js'
@@ -75,23 +73,26 @@ class GamesTableview extends Component {
         )
     } else if (!error) {
       return (
-        <ButtonComponent
-          onPress={() => {}}
-          backgroundColors={['rgba(0,0,0,0.01)', 'rgba(0,0,0,0.01)']}
-          buttonStyle={styles.buttonStyle}
-          text="Go Favorite More Teams!"
-        >
-        </ButtonComponent>
+        <View style={styles.buttonContainer}>
+          <Text style={styles.text}>
+            Sorry! This facility doesn't have any games this day come back later!
+          </Text>
+        </View>
       )
     } else {
       return (
-        <ButtonComponent
-          onPress={this.errorRetry}
-          backgroundColors={['rgba(0,0,0,0.01)', 'rgba(0,0,0,0.01)']}
-          buttonStyle={styles.buttonStyle}
-          text="Retry"
-        >
-        </ButtonComponent>
+        <View style={styles.buttonContainer}>
+          <TouchableHighlight
+            onPress={this.errorRetry}
+            underlayColor={'#fff'}
+            >
+            <View style={styles.buttonStyle}>
+              <Text style={styles.text}>
+                Retry
+              </Text>
+          </View>
+          </TouchableHighlight>
+        </View>
       )
     }
   }

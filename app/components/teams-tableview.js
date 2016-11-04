@@ -10,7 +10,6 @@ import {
 } from 'react-native'
 
 import { SwipeListView } from 'react-native-swipe-list-view'
-import ButtonComponent, { CircleButton, RoundButton, RectangleButton } from 'react-native-button-component'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 import styles from '../styles/teams-tableview.js'
@@ -76,7 +75,7 @@ class TeamsTableView extends Component {
     return (
       <TouchableHighlight
         onPress={_ => this.props.navigator.push({id: 'team', selectedTeam: team, selectedFacilityId: this.props.facilityId})}
-        underlayColor={'#eee'}
+        underlayColor={'#fff'}
         >
         <View style={styles.cellContainer}>
           <View style={styles.teamsContainer}>

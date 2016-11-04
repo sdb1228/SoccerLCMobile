@@ -12,10 +12,22 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   buttonStyle: {
-    marginRight: 20,
-    borderColor: '#fff',
     borderWidth: 1,
-    backgroundColor: 'rgba(0,0,0,0.01)',
+    borderRadius: 15,
+    borderColor: '#777',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 200,
+  },
+  text: {
+    fontSize: 20,
+    color: '#777',
+  },
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   timeText: {
     color: '#ffffff',

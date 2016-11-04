@@ -10,7 +10,6 @@ import {
 const { object, string } = React.PropTypes
 import { SwipeListView } from 'react-native-swipe-list-view'
 import Moment from 'moment'
-import ButtonComponent, { CircleButton, RoundButton, RectangleButton } from 'react-native-button-component';
 import GameView from './game-view.js'
 
 import styles from '../styles/favorite-games-tableview.js'
@@ -114,23 +113,26 @@ class FavoriteGamesTableview extends Component {
         )
     } else if (!error) {
       return (
-        <ButtonComponent
-          onPress={() => {}}
-          backgroundColors={['rgba(0,0,0,0.01)', 'rgba(0,0,0,0.01)']}
-          buttonStyle={styles.buttonStyle}
-          text="Go Favorite More Teams!"
-        >
-        </ButtonComponent>
+        <View style={styles.buttonContainer}>
+          <Text style={styles.text}>
+            Go favorite more teams!
+          </Text>
+        </View>
       )
     } else {
       return (
-        <ButtonComponent
-          onPress={this.errorRetry}
-          backgroundColors={['rgba(0,0,0,0.01)', 'rgba(0,0,0,0.01)']}
-          buttonStyle={styles.buttonStyle}
-          text="Retry"
-        >
-        </ButtonComponent>
+        <View style={styles.buttonContainer}>
+          <TouchableHighlight
+            onPress={this.errorRetry}
+            underlayColor={'#fff'}
+            >
+            <View style={styles.buttonStyle}>
+              <Text style={styles.text}>
+                Retry
+              </Text>
+          </View>
+          </TouchableHighlight>
+        </View>
       )
     }
   }

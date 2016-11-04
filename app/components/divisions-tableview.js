@@ -10,7 +10,6 @@ import {
 } from 'react-native'
 
 import { SwipeListView } from 'react-native-swipe-list-view'
-import ButtonComponent, { CircleButton, RoundButton, RectangleButton } from 'react-native-button-component'
 
 import styles from '../styles/divisions-tableview.js'
 
@@ -107,11 +106,26 @@ class DivisionsTableView extends Component {
         )
     } else if (!error) {
       return (
-        <Text style={styles.homeTeamCellText} >No divisions avaible....</Text>
+        <View style={styles.buttonContainer}>
+          <Text style={styles.text}>
+            Sorry no divisions avaible for this facility yet.  Come back Later!
+          </Text>
+        </View>
       )
     } else {
       return (
-        <Text style={styles.homeTeamCellText} >ERROR</Text>
+        <View style={styles.buttonContainer}>
+          <TouchableHighlight
+            onPress={this.errorRetry}
+            underlayColor={'#fff'}
+            >
+            <View style={styles.buttonStyle}>
+              <Text style={styles.text}>
+                Retry
+              </Text>
+          </View>
+          </TouchableHighlight>
+        </View>
       )
     }
   }
