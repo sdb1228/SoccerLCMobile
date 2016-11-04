@@ -23,6 +23,14 @@ export function favoriteTeam (uniqueDeviceId, teamId) {
   })
 }
 
+export function unfavoriteTeam (uniqueDeviceId, teamId) {
+  return axios.delete(`${soccerlc.baseUrl}favorites/teams/${teamId}`, {
+    params: {
+      installationId: uniqueDeviceId,
+    },
+  })
+}
+
 export function getFavoriteTeamsGames (uniqueDeviceId, thing) {
   return axios.get(`${soccerlc.baseUrl}favorites/games`, {
     params: {

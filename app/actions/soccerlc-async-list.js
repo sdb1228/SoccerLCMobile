@@ -6,6 +6,9 @@ const actionDefs = [
   'SOCCERLC_ASYNC_FAVORITE_TEAM_START',
   'SOCCERLC_ASYNC_FAVORITE_TEAM_SUCCESS',
   'SOCCERLC_ASYNC_FAVORITE_TEAM_FAIL',
+  'SOCCERLC_ASYNC_UNFAVORITE_TEAM_START',
+  'SOCCERLC_ASYNC_UNFAVORITE_TEAM_SUCCESS',
+  'SOCCERLC_ASYNC_UNFAVORITE_TEAM_FAIL',
   'SOCCERLC_ASYNC_FACILITIES_TEAMS_START',
   'SOCCERLC_ASYNC_FACILITIES_TEAMS_SUCCESS',
   'SOCCERLC_ASYNC_FACILITIES_TEAMS_FAIL',
@@ -68,6 +71,15 @@ actions.favoriteTeam = (uniqueDeviceId, teamId) => {
     provider.favoriteTeam(uniqueDeviceId, teamId)
     .then(res => dispatch(actions.soccerlcAsyncFavoriteTeamSuccess(res.data)))
     .catch(err => dispatch(actions.soccerlcAsyncFavoriteTeamFail(err)))
+  }
+}
+
+actions.unfavoriteTeam = (uniqueDeviceId, teamId) => {
+  return (dispatch) => {
+    dispatch(actions.soccerlcAsyncUnfavoriteTeamStart())
+    provider.unfavoriteTeam(uniqueDeviceId, teamId)
+    .then(res => dispatch(actions.soccerlcAsyncUnfavoriteTeamSuccess(res.data)))
+    .catch(err => dispatch(actions.soccerlcAsyncUnfavoriteTeamFail(err)))
   }
 }
 

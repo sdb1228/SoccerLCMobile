@@ -16,17 +16,18 @@ import { SwipeListView } from 'react-native-swipe-list-view'
 
 import styles from '../styles/game-view.js'
 
-const { shape, object, string, number } = React.PropTypes
+const { object, string, number } = React.PropTypes
 
 
 class TeamView extends Component {
+
   static propTypes = {
-    navigator: object,
     uniqueDeviceId: string,
     actions: object,
     games: object,
     team: object,
     facilityId: number,
+    navigator: object,
   }
 
   constructor (props) {
@@ -48,7 +49,11 @@ class TeamView extends Component {
   }
 
   toggleFavorite () {
-    this.props.actions.favoriteTeam(this.props.uniqueDeviceId, this.props.team.id)
+    if (!this.state.favorite) {
+      this.props.actions.favoriteTeam(this.props.uniqueDeviceId, this.props.team.id)
+    } else {
+      this.props.actions.unfavoriteTeam(this.props.uniqueDeviceId, this.props.team.id)
+    }
     this.setState({
       favorite: !this.state.favorite,
     })
