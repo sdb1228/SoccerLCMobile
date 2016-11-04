@@ -78,7 +78,10 @@ actions.unfavoriteTeam = (uniqueDeviceId, teamId) => {
   return (dispatch) => {
     dispatch(actions.soccerlcAsyncUnfavoriteTeamStart())
     provider.unfavoriteTeam(uniqueDeviceId, teamId)
-    .then(res => dispatch(actions.soccerlcAsyncUnfavoriteTeamSuccess(res.data)))
+    .then(res => {
+      res.data[0] = teamId
+      dispatch(actions.soccerlcAsyncUnfavoriteTeamSuccess(res.data))
+    })
     .catch(err => dispatch(actions.soccerlcAsyncUnfavoriteTeamFail(err)))
   }
 }

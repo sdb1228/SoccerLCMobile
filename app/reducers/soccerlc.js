@@ -149,7 +149,7 @@ export default combineReducers({
         return index !== -1 ? state.updateIn([index, 'favorite'], () => true) : state
       },
       [actions.soccerlcAsyncUnfavoriteTeamSuccess.type]: (state, action) => {
-        const index = state.findIndex(team => team.get('id') === action.payload[0].teamId)
+        const index = state.findIndex(team => team.get('id') === action.payload[0])
         return index !== -1 ? state.updateIn([index, 'favorite'], () => false) : state
       },
     }, Immutable.List()),
