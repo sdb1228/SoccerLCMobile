@@ -11,9 +11,11 @@ import RootTabView from './root-tab-view'
 import FacilityTabView from './facility-tab-view'
 import AdmobView from './admob'
 import actions from '../actions'
-import styles from '../styles/app'
 import soccerlc from '../../config/soccerlc-config'
 import TeamView from '../components/team-view'
+
+import styles from '../styles/app'
+import modalStyles from '../styles/modal'
 
 var PushNotification = require('react-native-push-notification')
 const DeviceInfo = require('react-native-device-info')
@@ -110,23 +112,22 @@ class App extends Component {
                   navigator={navigator}
                   actions={actions}
                 />
-              <Modal
-                 open={state.getIn(['soccerlcData', 'errorModalOpen']).get('error')}
-                 modalDidOpen={() => console.log('modal did open')}
-                 modalDidClose={() => this.setState({open: false})}
-                 style={styles.modal}>
-                 <View style={styles.modalContainer}>
-                    <Text style={styles.modalTitle}>Oh No!</Text>
-                    <Text style={styles.modalBody}>
-                      Looks like something has gone wrong please try again later.
-                    </Text>
-                    <TouchableOpacity
-                       style={styles.modalOkButton}
-                       onPress={actions.closeErrorModal}>
-                       <Text style={styles.modalOkButtonText}>Ok</Text>
-                    </TouchableOpacity>
-                 </View>
-              </Modal>
+                <Modal
+                   open={state.getIn(['soccerlcData', 'errorModalOpen']).get('error')}
+                   modalDidClose={() => this.setState({open: false})}
+                   style={modalStyles.modal}>
+                   <View style={modalStyles.modalContainer}>
+                      <Text style={modalStyles.modalTitle}>{state.getIn(['soccerlcData', 'errorModalOpen']).get('errorModalTitle')}</Text>
+                      <Text style={modalStyles.modalBody}>
+                        {state.getIn(['soccerlcData', 'errorModalOpen']).get('errorModalMessage')}
+                      </Text>
+                      <TouchableOpacity
+                         style={modalStyles.modalOkButton}
+                         onPress={actions.closeErrorModal}>
+                         <Text style={modalStyles.modalOkButtonText}>Ok</Text>
+                      </TouchableOpacity>
+                   </View>
+                </Modal>
             </AdmobView>
           )
       case 'facility':
@@ -152,23 +153,22 @@ class App extends Component {
                 navigator={navigator}
                 actions={actions}
               />
-            <Modal
-               open={state.getIn(['soccerlcData', 'errorModalOpen']).get('error')}
-               modalDidOpen={() => console.log('modal did open')}
-               modalDidClose={() => this.setState({open: false})}
-               style={styles.modal}>
-               <View style={styles.modalContainer}>
-                  <Text style={styles.modalTitle}>Oh No!</Text>
-                  <Text style={styles.modalBody}>
-                    Looks like something has gone wrong please try again later.
-                  </Text>
-                  <TouchableOpacity
-                     style={styles.modalOkButton}
-                     onPress={actions.closeErrorModal}>
-                     <Text style={styles.modalOkButtonText}>Ok</Text>
-                  </TouchableOpacity>
-               </View>
-            </Modal>
+              <Modal
+                 open={state.getIn(['soccerlcData', 'errorModalOpen']).get('error')}
+                 modalDidClose={() => this.setState({open: false})}
+                 style={modalStyles.modal}>
+                 <View style={modalStyles.modalContainer}>
+                    <Text style={modalStyles.modalTitle}>{state.getIn(['soccerlcData', 'errorModalOpen']).get('errorModalTitle')}</Text>
+                    <Text style={modalStyles.modalBody}>
+                      {state.getIn(['soccerlcData', 'errorModalOpen']).get('errorModalMessage')}
+                    </Text>
+                    <TouchableOpacity
+                       style={modalStyles.modalOkButton}
+                       onPress={actions.closeErrorModal}>
+                       <Text style={modalStyles.modalOkButtonText}>Ok</Text>
+                    </TouchableOpacity>
+                 </View>
+              </Modal>
           </AdmobView>
         )
       case 'team':
@@ -180,6 +180,7 @@ class App extends Component {
             }}
           >
             <TeamView
+              state={state}
               facilityId={route.selectedFacilityId}
               team={route.selectedTeam}
               games={state.getIn(['soccerlcData','teamGames'])}
@@ -187,22 +188,6 @@ class App extends Component {
               navigator={navigator}
               actions={actions}
               />
-            <Modal
-               open={state.getIn(['soccerlcData', 'errorModalOpen']).get('error')}
-               modalDidClose={() => this.setState({open: false})}
-               style={styles.modal}>
-               <View style={styles.modalContainer}>
-                  <Text style={styles.modalTitle}>Oh No!</Text>
-                  <Text style={styles.modalBody}>
-                    Looks like something has gone wrong please try again later.
-                  </Text>
-                  <TouchableOpacity
-                     style={styles.modalOkButton}
-                     onPress={actions.closeErrorModal}>
-                     <Text style={styles.modalOkButtonText}>Ok</Text>
-                  </TouchableOpacity>
-               </View>
-            </Modal>
           </AdmobView>
         )
     }

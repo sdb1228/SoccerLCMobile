@@ -34,6 +34,8 @@ const actionDefs = [
   'SOCCERLC_ASYNC_TEAMS_GAMES_SUCCESS',
   'SOCCERLC_ASYNC_TEAMS_GAMES_FAIL',
   'SOCCERLC_CLOSE_ERROR_MODAL',
+  'SOCCERLC_SHOW_CALENDAR_ERROR',
+  'SOCCERLC_SHOW_CALENDAR_SUCCESS'
 ]
 
 const { types, actions } = createActions(actionDefs)
@@ -44,6 +46,18 @@ actions.getIndoorFacilities = () => {
     provider.getIndoorFacilities()
     .then(res => dispatch(actions.soccerlcAsyncIndoorFacilitiesSuccess(res.data)))
     .catch(err => dispatch(actions.soccerlcAsyncIndoorFacilitiesFail(err)))
+  }
+}
+
+actions.showCalendarError = () => {
+  return (dispatch) => {
+    dispatch(actions.soccerlcShowCalendarError())
+  }
+}
+
+actions.showCalendarSuccess = () => {
+  return (dispatch) => {
+    dispatch(actions.soccerlcShowCalendarSuccess())
   }
 }
 

@@ -6,6 +6,7 @@ import {
   ListView,
   View,
   TouchableHighlight,
+  TouchableOpacity,
   LayoutAnimation,
 } from 'react-native'
 import FoldView from 'react-native-foldview'
@@ -13,8 +14,10 @@ import Moment from 'moment'
 import GameView from './game-view.js'
 import TeamNavBar from '../navigation-bars/team-nav-bar'
 import { SwipeListView } from 'react-native-swipe-list-view'
+import Modal from 'react-native-simple-modal'
 
 import styles from '../styles/game-view.js'
+import modalStyles from '../styles/modal'
 
 const { object, string, number } = React.PropTypes
 
@@ -28,6 +31,7 @@ class TeamView extends Component {
     team: object,
     facilityId: number,
     navigator: object,
+    state: object,
   }
 
   constructor (props) {
@@ -109,6 +113,7 @@ class TeamView extends Component {
   }
 
   render () {
+    const { state, actions } = this.props
     return (
       <View style={{flex: 1}}>
         <TeamNavBar
@@ -116,8 +121,24 @@ class TeamView extends Component {
           toggleFavorite={this.toggleFavorite}
           isFavorite={this.state.favorite}
           games={this.props.games}
+          actions={actions}
         />
         {this.renderContent()}
+        <Modal
+           open={state.getIn(['soccerlcData', 'errorModalOpen']).get('error')}
+           style={modalStyles.modal}>
+           <View style={modalStyles.modalContainer}>
+              <Text style={modalStyles.modalTitle}>{state.getIn(['soccerlcData', 'errorModalOpen']).get('errorModalTitle')}</Text>
+              <Text style={modalStyles.modalBody}>
+                {state.getIn(['soccerlcData', 'errorModalOpen']).get('errorModalMessage')}
+              </Text>
+              <TouchableOpacity
+                 style={modalStyles.modalOkButton}
+                 onPress={actions.closeErrorModal}>
+                 <Text style={modalStyles.modalOkButtonText}>Ok</Text>
+              </TouchableOpacity>
+           </View>
+        </Modal>
       </View>
     )
   }

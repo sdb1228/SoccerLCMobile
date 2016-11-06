@@ -8,6 +8,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome'
 import * as Animatable from 'react-native-animatable'
 import RNCalendarEvents from 'react-native-calendar-events'
+import Moment from 'moment'
 
 import styles from '../styles/team-nav-bar'
 
@@ -20,33 +21,49 @@ class TeamNavBar extends Component {
     isFavorite: React.PropTypes.bool,
     navigator: React.PropTypes.object,
     games: React.PropTypes.object,
+    actions: React.PropTypes.object,
   }
 
   saveEvents () {
-    RNCalendarEvents.saveEvent('title', {
-      location: 'location',
-      notes: 'notes',
-      startDate: '2016-11-05T09:45:00.000UTC',
-      endDate: '2016-11-05T09:45:00.000UTC',
-    })
-    .then(id => {
-
-    })
-    .catch(error => {
-      this.calendarError()
-    })
+    calendarEventPromises = []
+    const games = this.props.games.get('data').toJS()
+    for (var i = 0; i < games.length; i++) {
+      let startAbsoluteTime = Moment(games[i].gameDateTime)
+      let endAbsoluteTime = Moment(games[i].gameDateTime)
+      endAbsoluteTime.hour(endAbsoluteTime.hour() + 1)
+      calendarEventPromises.push
+      (
+        RNCalendarEvents.saveEvent(`${games[i].homeTeam.name} V ${games[i].awayTeam.name}`, {
+          location: `${games[i].field.address} ${games[i].field.city}, ${games[i].field.state} ${games[i].field.zip}`,
+          notes: `${games[i].field.name}`,
+          startDate: startAbsoluteTime.format('YYYY-MM-DDTHH:mm:ss.sssZ'),
+          endDate: endAbsoluteTime.format('YYYY-MM-DDTHH:mm:ss.sssZ'),
+          })
+          .then(id => {
+            return id
+          })
+          .catch(error => {
+            throw error
+          })
+      )
+    }
+    Promise.all(calendarEventPromises).then(values => {
+      this.props.actions.showCalendarSuccess()
+    }).catch(reason => {
+      this.props.actions.showCalendarError()
+    });
   }
 
   calendarError () {
-    console.log(error)
+    this.props.actions.showCalendarError()
   }
 
   calendarUnauthorized () {
-
+    this.props.actions.showCalendarError()
   }
 
   deniedCalendar () {
-
+    this.props.actions.showCalendarError()
   }
 
   requestAuthorizeCalendar () {

@@ -3,6 +3,11 @@ import { handleActions } from 'redux-actions'
 import Immutable, { List } from 'immutable'
 
 import actions from '../actions'
+const asyncServerErrorMessage = 'Looks like something has gone wrong please try again later.'
+const calendarErrorModalMessage = 'Looks like something went wrong with your calendar permissions.  Please check your permissions in your settings and try again'
+const calendarSuccesMessage = 'Your games have been exported to your calendar!'
+const asyncServerErrorTitle = 'Oh No!'
+const calendarSuccesTitle = 'All Done!'
 
 export default combineReducers({
 
@@ -17,8 +22,36 @@ export default combineReducers({
       [actions.soccerlcAsyncFacilitiesTodaysGamesFail.type]: () => true,
       [actions.soccerlcAsyncFavoriteTeamFail.type]: () => true,
       [actions.soccerlcAsyncUnfavoriteTeamFail.type]: () => true,
+      [actions.soccerlcShowCalendarError.type]: () => true,
+      [actions.soccerlcShowCalendarSuccess.type]: () => true,
       [actions.soccerlcCloseErrorModal.type]: () => false,
     }, false),
+    errorModalMessage: handleActions({
+      [actions.soccerlcAsyncFavoriteTeamsGamesFail.type]: () => asyncServerErrorMessage,
+      [actions.soccerlcAsyncFacilitiesTeamsFail.type]: () => asyncServerErrorMessage,
+      [actions.soccerlcAsyncIndoorFacilitiesFail.type]: () => asyncServerErrorMessage,
+      [actions.soccerlcAsyncOutdoorFacilitiesFail.type]: () => asyncServerErrorMessage,
+      [actions.soccerlcAsyncFacilitiesTomorrowsGamesFail.type]: () => asyncServerErrorMessage,
+      [actions.soccerlcAsyncFacilitiesTodaysGamesFail.type]: () => asyncServerErrorMessage,
+      [actions.soccerlcAsyncFacilitiesTodaysGamesFail.type]: () => asyncServerErrorMessage,
+      [actions.soccerlcAsyncFavoriteTeamFail.type]: () => asyncServerErrorMessage,
+      [actions.soccerlcAsyncUnfavoriteTeamFail.type]: () => asyncServerErrorMessage,
+      [actions.soccerlcShowCalendarError.type]: () => calendarErrorModalMessage,
+      [actions.soccerlcShowCalendarSuccess.type]: () => calendarSuccesMessage,
+    }, asyncServerErrorMessage),
+    errorModalTitle: handleActions({
+      [actions.soccerlcAsyncFavoriteTeamsGamesFail.type]: () => asyncServerErrorTitle,
+      [actions.soccerlcAsyncFacilitiesTeamsFail.type]: () => asyncServerErrorTitle,
+      [actions.soccerlcAsyncIndoorFacilitiesFail.type]: () => asyncServerErrorTitle,
+      [actions.soccerlcAsyncOutdoorFacilitiesFail.type]: () => asyncServerErrorTitle,
+      [actions.soccerlcAsyncFacilitiesTomorrowsGamesFail.type]: () => asyncServerErrorTitle,
+      [actions.soccerlcAsyncFacilitiesTodaysGamesFail.type]: () => asyncServerErrorTitle,
+      [actions.soccerlcAsyncFacilitiesTodaysGamesFail.type]: () => asyncServerErrorTitle,
+      [actions.soccerlcAsyncFavoriteTeamFail.type]: () => asyncServerErrorTitle,
+      [actions.soccerlcAsyncUnfavoriteTeamFail.type]: () => asyncServerErrorTitle,
+      [actions.soccerlcShowCalendarError.type]: () => asyncServerErrorTitle,
+      [actions.soccerlcShowCalendarSuccess.type]: () => calendarSuccesTitle,
+    }, asyncServerErrorTitle),
   }),
 
   facilityTodaysGames: combineReducers({
