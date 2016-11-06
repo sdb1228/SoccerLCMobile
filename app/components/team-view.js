@@ -115,6 +115,7 @@ class TeamView extends Component {
           navigator={this.props.navigator}
           toggleFavorite={this.toggleFavorite}
           isFavorite={this.state.favorite}
+          games={this.props.games}
         />
         {this.renderContent()}
       </View>

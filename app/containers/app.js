@@ -6,7 +6,7 @@ import { View, Image, StatusBar, Navigator, Text, TouchableOpacity } from 'react
 
 import DataList from '../components/data-list'
 import Axios from 'axios'
-import Modal from 'react-native-simple-modal';
+import Modal from 'react-native-simple-modal'
 import RootTabView from './root-tab-view'
 import FacilityTabView from './facility-tab-view'
 import AdmobView from './admob'
@@ -189,7 +189,6 @@ class App extends Component {
               />
             <Modal
                open={state.getIn(['soccerlcData', 'errorModalOpen']).get('error')}
-               modalDidOpen={() => console.log('modal did open')}
                modalDidClose={() => this.setState({open: false})}
                style={styles.modal}>
                <View style={styles.modalContainer}>
