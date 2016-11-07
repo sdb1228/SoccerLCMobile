@@ -19,6 +19,7 @@ import Modal from 'react-native-simple-modal'
 import styles from '../styles/game-view.js'
 import modalStyles from '../styles/modal'
 
+const Progress = require('react-native-progress')
 const { object, string, number } = React.PropTypes
 
 

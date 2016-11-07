@@ -7,8 +7,6 @@ import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.facebook.react.ReactApplication;
 import com.calendarevents.CalendarEventsPackage;
 import cl.json.RNSharePackage;
-import com.BV.LinearGradient.LinearGradientPackage;
-import com.react.rnspinkit.RNSpinkitPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.sbugert.rnadmob.RNAdMobPackage;
@@ -34,8 +32,6 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new CalendarEventsPackage(),
             new RNSharePackage(),
-            new LinearGradientPackage(),
-            new RNSpinkitPackage(),
             new RNDeviceInfo(),
             new VectorIconsPackage(),
             new RNAdMobPackage(),

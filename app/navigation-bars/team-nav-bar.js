@@ -12,6 +12,8 @@ import Moment from 'moment'
 
 import styles from '../styles/team-nav-bar'
 
+const DeviceInfo = require('react-native-device-info')
+
 class TeamNavBar extends Component {
 
   static propTypes = {
@@ -31,13 +33,21 @@ class TeamNavBar extends Component {
       let startAbsoluteTime = Moment(games[i].gameDateTime)
       let endAbsoluteTime = Moment(games[i].gameDateTime)
       endAbsoluteTime.hour(endAbsoluteTime.hour() + 1)
+      let saveStartTime = startAbsoluteTime.format('YYYY-MM-DDTHH:mm:ss.sssZ')
+      let saveEndTime = endAbsoluteTime.format('YYYY-MM-DDTHH:mm:ss.sssZ')
+      //We have to add the literal character Z to the time formatting for android to work
+      // Not ideal but we do what we have to do.
+      if (DeviceInfo.getSystemName() !== "iOS") {
+        saveStartTime = startAbsoluteTime.format('YYYY-MM-DDTHH:mm:ss.sss') + "Z"
+        saveEndTime = endAbsoluteTime.format('YYYY-MM-DDTHH:mm:ss.sss') + "Z"
+      }
       calendarEventPromises.push
       (
         RNCalendarEvents.saveEvent(`${games[i].homeTeam.name} V ${games[i].awayTeam.name}`, {
           location: `${games[i].field.address} ${games[i].field.city}, ${games[i].field.state} ${games[i].field.zip}`,
           notes: `${games[i].field.name}`,
-          startDate: startAbsoluteTime.format('YYYY-MM-DDTHH:mm:ss.sssZ'),
-          endDate: endAbsoluteTime.format('YYYY-MM-DDTHH:mm:ss.sssZ'),
+          startDate: saveStartTime,
+          endDate: saveEndTime,
           })
           .then(id => {
             return id
@@ -67,6 +77,12 @@ class TeamNavBar extends Component {
   }
 
   requestAuthorizeCalendar () {
+    // We don't need to ask for permission in Android given that
+    // We do that alraedy on app install
+    if (DeviceInfo.getSystemName() !== "iOS") {
+      this.saveEvents()
+      return
+    }
     RNCalendarEvents.authorizeEventStore()
       .then(status => {
         switch (status) {
@@ -87,6 +103,10 @@ class TeamNavBar extends Component {
   }
 
   saveCalendarEvents () {
+    if (DeviceInfo.getSystemName() !== "iOS") {
+      this.saveEvents()
+      return
+    }
     RNCalendarEvents.authorizationStatus()
       .then(status => {
         switch (status) {
