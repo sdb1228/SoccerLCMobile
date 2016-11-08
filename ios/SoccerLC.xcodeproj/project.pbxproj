@@ -44,6 +44,7 @@
 		A867DA58628E4AC38C534BD9 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8098AB3EBA5C4144B26CA35F /* libRNDeviceInfo.a */; };
 		B3751E71EB53465BADC13C8E /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1AAD158134264015B088DB01 /* Entypo.ttf */; };
 		CDA8E29C5D9A4683A26DB791 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11AF0082675D46A6A14E2C5F /* libBVLinearGradient.a */; };
+		DCA6BFEF5DA24D10B7F79F05 /* libSMXCrashlytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D99B803C5F944F9B94A20238 /* libSMXCrashlytics.a */; };
 		FAF53A451B5D4FFC8E005613 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03A2A619170E4CE6BAADCB1A /* FontAwesome.ttf */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +118,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = BEC43C6A1C723089001221C6;
 			remoteInfo = RNCalendarEvents;
+		};
+		480120241DD2829C00261258 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 413F3DF422BD4DA79F9544F5 /* SMXCrashlytics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D8D9DB831C6D03DB009FBC0E;
+			remoteInfo = SMXCrashlytics;
 		};
 		481B46831DAB3DB90029107C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -225,6 +233,7 @@
 		1AAD158134264015B088DB01 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		29456BC4840A4CFB8DB958E6 /* RNAdMobManager.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAdMobManager.xcodeproj; path = "../node_modules/react-native-admob/ios/RNAdMobManager.xcodeproj"; sourceTree = "<group>"; };
 		3F436C38D9A94606B6D6630E /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
+		413F3DF422BD4DA79F9544F5 /* SMXCrashlytics.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = SMXCrashlytics.xcodeproj; path = "../node_modules/react-native-fabric/ios/SMXCrashlytics.xcodeproj"; sourceTree = "<group>"; };
 		48011FE41DCECF0000261258 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		48011FE71DD27A1300261258 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		48011FE81DD27A1300261258 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -248,6 +257,7 @@
 		AEA4DEE135B74FB7A9176611 /* libRNCalendarEvents.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCalendarEvents.a; sourceTree = "<group>"; };
 		B3E2CA4CAC2D4EABA291AD40 /* RNShare.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNShare.xcodeproj; path = "../node_modules/react-native-share/ios/RNShare.xcodeproj"; sourceTree = "<group>"; };
 		C83EA869D7B545EB81776961 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		D99B803C5F944F9B94A20238 /* libSMXCrashlytics.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libSMXCrashlytics.a; sourceTree = "<group>"; };
 		F2D7AAC8B3CA422694F4EDD3 /* libRNSpinkit.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSpinkit.a; sourceTree = "<group>"; };
 		F686A67A4C894241883DF9D9 /* libRNShare.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNShare.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -289,6 +299,7 @@
 				6380D25371B84D08AD453F71 /* libRNQuickAction.a in Frameworks */,
 				5D9C0DEA333B46CB9D72350E /* libRNShare.a in Frameworks */,
 				84E9842E07B04C7C917526CD /* libRNCalendarEvents.a in Frameworks */,
+				DCA6BFEF5DA24D10B7F79F05 /* libSMXCrashlytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +418,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4801200F1DD2829C00261258 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				480120251DD2829C00261258 /* libSMXCrashlytics.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		481B46761DAB3DB80029107C /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -510,6 +529,7 @@
 				0BFE2F7BBE3A49D98951A4FE /* RNQuickAction.xcodeproj */,
 				B3E2CA4CAC2D4EABA291AD40 /* RNShare.xcodeproj */,
 				4DCAC99398784B238598B2F9 /* RNCalendarEvents.xcodeproj */,
+				413F3DF422BD4DA79F9544F5 /* SMXCrashlytics.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -718,6 +738,10 @@
 					ProductGroup = 486EF9761DB13E5F0036A27C /* Products */;
 					ProjectRef = 3F436C38D9A94606B6D6630E /* RNVectorIcons.xcodeproj */;
 				},
+				{
+					ProductGroup = 4801200F1DD2829C00261258 /* Products */;
+					ProjectRef = 413F3DF422BD4DA79F9544F5 /* SMXCrashlytics.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -789,6 +813,13 @@
 			fileType = archive.ar;
 			path = libRNCalendarEvents.a;
 			remoteRef = 48011FDD1DCECEAF00261258 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		480120251DD2829C00261258 /* libSMXCrashlytics.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSMXCrashlytics.a;
+			remoteRef = 480120241DD2829C00261258 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		481B46841DAB3DB90029107C /* libRNAdMobManager.a */ = {
@@ -990,6 +1021,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SoccerLC.app/SoccerLC";
@@ -1006,6 +1038,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1046,6 +1079,7 @@
 					"$(SRCROOT)/../node_modules/react-native-quick-actions/RNQuickAction/RNQuickAction/**",
 					"$(SRCROOT)/../node_modules/react-native-share/ios",
 					"$(SRCROOT)/../node_modules/react-native-calendar-events",
+					"$(SRCROOT)/../node_modules/react-native-fabric/ios/SMXCrashlytics",
 				);
 				INFOPLIST_FILE = SoccerLC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1084,6 +1118,7 @@
 					"$(SRCROOT)/../node_modules/react-native-quick-actions/RNQuickAction/RNQuickAction/**",
 					"$(SRCROOT)/../node_modules/react-native-share/ios",
 					"$(SRCROOT)/../node_modules/react-native-calendar-events",
+					"$(SRCROOT)/../node_modules/react-native-fabric/ios/SMXCrashlytics",
 				);
 				INFOPLIST_FILE = SoccerLC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1144,6 +1179,7 @@
 					"$(SRCROOT)/../node_modules/react-native-quick-actions/RNQuickAction/RNQuickAction",
 					"$(SRCROOT)/../node_modules/react-native-share/ios",
 					"$(SRCROOT)/../node_modules/react-native-calendar-events",
+					"$(SRCROOT)/../node_modules/react-native-fabric/ios/SMXCrashlytics",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1192,6 +1228,7 @@
 					"$(SRCROOT)/../node_modules/react-native-quick-actions/RNQuickAction/RNQuickAction",
 					"$(SRCROOT)/../node_modules/react-native-share/ios",
 					"$(SRCROOT)/../node_modules/react-native-calendar-events",
+					"$(SRCROOT)/../node_modules/react-native-fabric/ios/SMXCrashlytics",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
