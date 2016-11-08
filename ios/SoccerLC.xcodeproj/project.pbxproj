@@ -25,6 +25,8 @@
 		155F0AA4403343149BE29C32 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17D63F82A9DD43A1A3C812F6 /* EvilIcons.ttf */; };
 		286E097287EA4E3085C8FD23 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BFD6B67DE174EF391891EB0 /* Zocial.ttf */; };
 		48011FE51DCECF0000261258 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48011FE41DCECF0000261258 /* EventKit.framework */; };
+		48011FE91DD27A1300261258 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48011FE71DD27A1300261258 /* Fabric.framework */; };
+		48011FEA1DD27A1300261258 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48011FE81DD27A1300261258 /* Crashlytics.framework */; };
 		483387831DAB3FB80018142A /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 483387821DAB3FB80018142A /* GoogleMobileAds.framework */; };
 		4868FC4D1DB8183E00B7009A /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4868FC451DB8182700B7009A /* libRCTPushNotification.a */; };
 		486EF9921DB13F1E0036A27C /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 486EF9911DB13F090036A27C /* libART.a */; };
@@ -224,6 +226,8 @@
 		29456BC4840A4CFB8DB958E6 /* RNAdMobManager.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAdMobManager.xcodeproj; path = "../node_modules/react-native-admob/ios/RNAdMobManager.xcodeproj"; sourceTree = "<group>"; };
 		3F436C38D9A94606B6D6630E /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		48011FE41DCECF0000261258 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		48011FE71DD27A1300261258 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		48011FE81DD27A1300261258 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		483387821DAB3FB80018142A /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		4868FC3A1DB8182700B7009A /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 		486EF98C1DB13F090036A27C /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
@@ -261,6 +265,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48011FE91DD27A1300261258 /* Fabric.framework in Frameworks */,
 				48011FE51DCECF0000261258 /* EventKit.framework in Frameworks */,
 				4868FC4D1DB8183E00B7009A /* libRCTPushNotification.a in Frameworks */,
 				486EF9921DB13F1E0036A27C /* libART.a in Frameworks */,
@@ -270,6 +275,7 @@
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
+				48011FEA1DD27A1300261258 /* Crashlytics.framework in Frameworks */,
 				483387831DAB3FB80018142A /* GoogleMobileAds.framework in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
@@ -519,6 +525,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				48011FE71DD27A1300261258 /* Fabric.framework */,
+				48011FE81DD27A1300261258 /* Crashlytics.framework */,
 				483387821DAB3FB80018142A /* GoogleMobileAds.framework */,
 				13B07FAE1A68108700A75B9A /* SoccerLC */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -584,6 +592,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				48011FE61DD279CB00261258 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -902,6 +911,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh";
+		};
+		48011FE61DD279CB00261258 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 90e3d75875c036ef32b5f2aaf8647816333b8dad 93771ed3067c1de2d216953bdd004dfcafaa9ed5b4f35400ab4ce9802384e625";
 		};
 /* End PBXShellScriptBuildPhase section */
 
