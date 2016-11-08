@@ -6,6 +6,7 @@ import {
   View,
   TouchableHighlight,
   LayoutAnimation,
+  Linking,
 } from 'react-native'
 const { shape, object, string, number, bool } = React.PropTypes
 import FoldView from 'react-native-foldview'
@@ -14,6 +15,8 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import Share from 'react-native-share'
 
 import styles from '../styles/game-view.js'
+
+const DeviceInfo = require('react-native-device-info')
 
 class GameView extends Component {
   static propTypes = {
@@ -33,7 +36,29 @@ class GameView extends Component {
     this.state = { flipExpanded: false }
   }
 
-  share() {
+  maps () {
+    if (!this.props.game.field.latlong) {
+      //TODO ERROR MODAL
+      return
+    }
+    let mapURL = ''
+    if (DeviceInfo.getSystemName() === 'iOS') {
+      mapURL = 'http://maps.apple.com/?ll=' + this.props.game.field.latlong
+    } else {
+      mapURL = 'http://maps.google.com/maps?daddr=' + this.props.game.field.latlong
+    }
+
+    Linking.canOpenURL(mapURL).then(supported => {
+      if (supported) {
+          Linking.openURL(mapURL)
+      } else {
+        // TODO HANDLE ERROR
+        console.log('Don\'t know how to go');
+      }
+    }).catch(err => console.error('An error occurred', err))
+  }
+
+  share () {
     const {
       gameDateTime: time,
       homeTeam, awayTeam,
@@ -96,12 +121,14 @@ class GameView extends Component {
           <Text style={styles.footerText}>
             {this.props.game.field.name}
           </Text>
-          <Icon
-            name='map-marker'
-            size={18}
-            style={{padding: 6}}
-            color='#888'
-          />
+          <TouchableHighlight onPress={this.maps.bind(this)} underlayColor='#ddd'>
+            <Icon
+              name='map-marker'
+              size={18}
+              style={{padding: 6}}
+              color='#888'
+            />
+          </TouchableHighlight>
           <TouchableHighlight onPress={this.share.bind(this)} underlayColor='#ddd'>
             <Icon
               name='share'
