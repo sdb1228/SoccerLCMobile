@@ -60,8 +60,9 @@ export default combineReducers({
         return Immutable.fromJS(action.payload)
       },
       [actions.soccerlcCloseReportErrorModal.type]: (state, action) => {
-        debugger
-        return Immutable.fromJS(action.payload)
+        let newState = state.toJS()
+        newState.modalOpen = false
+        return Immutable.fromJS(newState)
       },
     }, Immutable.List()),
   }),
