@@ -5,6 +5,7 @@ import {
   ListView,
   Text,
   View,
+  TouchableHighlight,
 } from 'react-native'
 const { object, string, number } = React.PropTypes
 import { SwipeListView } from 'react-native-swipe-list-view'
@@ -99,7 +100,9 @@ class GamesTableview extends Component {
 
   renderGameRow (game) {
     return (
-      <GameView game={game}/>
+      <GameView
+        game={game}
+        actions={this.props.actions}/>
     )
   }
 

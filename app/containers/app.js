@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 const { object } = React.PropTypes
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { View, Image, StatusBar, Navigator, Text, TouchableOpacity } from 'react-native'
+import { View, Image, StatusBar, Navigator, Text, TouchableOpacity, TextInput } from 'react-native'
 
 import DataList from '../components/data-list'
 import Axios from 'axios'
@@ -126,6 +126,33 @@ class App extends Component {
                          onPress={actions.closeErrorModal}>
                          <Text style={modalStyles.modalOkButtonText}>Ok</Text>
                       </TouchableOpacity>
+                   </View>
+                </Modal>
+                <Modal
+                   open={state.getIn(['soccerlcData', 'reportAProblemModal']).get('data').toJS().modalOpen}
+                   style={modalStyles.modal}>
+                   <View style={modalStyles.modalContainer}>
+                      <Text style={modalStyles.modalTitle}>Tell us what happened</Text>
+                      <Text style={modalStyles.modalBody}>
+                        Looks like you are having a problem with game: {state.getIn(['soccerlcData', 'reportAProblemModal']).get('data').toJS().id} What specifically is wrong?
+                      </Text>
+                      <TextInput
+                        style={{height: 40, borderColor: '#ccc', borderWidth: 1, borderRadius: 3, paddingBottom: 10}}
+                        multiline={true}
+                        placeholder="Enter problem....."
+                      />
+                      <View style={modalStyles.modalButtonContainer}>
+                        <TouchableOpacity
+                           style={modalStyles.modalOkButton}
+                           onPress={actions.closeReportErrorModal}>
+                           <Text style={modalStyles.modalOkButtonText}>Ok</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                           style={modalStyles.modalOkButton}
+                           onPress={actions.closeReportErrorModal}>
+                           <Text style={modalStyles.modalCancelButton}>Cancel</Text>
+                        </TouchableOpacity>
+                     </View>
                    </View>
                 </Modal>
             </AdmobView>

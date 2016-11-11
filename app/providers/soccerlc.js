@@ -59,6 +59,10 @@ export function getFacilitiesTomorrowsGames (facilityId) {
   return axios.get(`${soccerlc.baseUrl}facilities/${facilityId}/games/tomorrow`)
 }
 
+export function reportAProblem (errorMessage) {
+  return axios.get(`${soccerlc.baseUrl}feedback/errors`)
+}
+
 export function getOutdoorFacilities () {
   return axios.get(`${soccerlc.baseUrl}facilities/Outdoor`)
 }

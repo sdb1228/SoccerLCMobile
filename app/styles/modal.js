@@ -22,8 +22,20 @@ export default StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 5,
   },
+  modalCancelButton: {
+    marginTop: 10,
+    fontSize: 15,
+    marginLeft: 50,
+    color: '#00f',
+  },
   modalOkButtonText: {
+    marginTop: 10,
     fontSize: 15,
     color: '#00f',
+  },
+  modalButtonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
 })

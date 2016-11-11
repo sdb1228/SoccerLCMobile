@@ -54,6 +54,36 @@ export default combineReducers({
     }, asyncServerErrorTitle),
   }),
 
+  reportAProblemModal: combineReducers({
+    data: handleActions({
+      [actions.soccerlcReportProblemModal.type]: (state, action) => {
+        return Immutable.fromJS(action.payload)
+      },
+      [actions.soccerlcCloseReportErrorModal.type]: (state, action) => {
+        debugger
+        return Immutable.fromJS(action.payload)
+      },
+    }, Immutable.List()),
+  }),
+
+  // reportAProblem: combineReducers({
+  //   loading: handleActions({
+  //     [actions.soccerlcAsyncReportProblemStart.type]: () => true,
+  //     [actions.soccerlcAsyncReportProblemSuccess.type]: () => false,
+  //     [actions.soccerlcAsyncReportProblemFail.type]: () => false,
+  //   }, false),
+  //   error: handleActions({
+  //     [actions.soccerlcAsyncReportProblemFail.type]: () => true,
+  //     [actions.soccerlcAsyncReportProblemStart.type]: () => false,
+  //     [actions.soccerlcAsyncReportProblemSuccess.type]: () => false,
+  //   }, false),
+  //   data: handleActions({
+  //     [actions.soccerlcAsyncReportProblemSuccess.type]: (state, action) => {
+  //       return Immutable.fromJS(action.payload)
+  //     },
+  //   }, Immutable.List()),
+  // }),
+
   facilityTodaysGames: combineReducers({
     loading: handleActions({
       [actions.soccerlcAsyncFacilitiesTodaysGamesStart.type]: () => true,

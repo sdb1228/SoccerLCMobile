@@ -27,7 +27,7 @@ class GameView extends Component {
       awayTeamScore: number,
       gameDateTime: string.isRequired,
     }).isRequired,
-    favoriteTeams: bool,
+    actions: object,
   }
 
   constructor (props) {
@@ -75,6 +75,10 @@ class GameView extends Component {
     Share.open({
       message: teamText + ' ' + timeText,
     })
+  }
+
+  reportAProblem () {
+    this.props.actions.reportAProblemModal(this.props.game, true)
   }
 
   flip () {
@@ -137,12 +141,14 @@ class GameView extends Component {
               color='#888'
             />
           </TouchableHighlight>
-          <Icon
-            name='flag'
-            size={18}
-            style={{padding: 6}}
-            color='#888'
-          />
+          <TouchableHighlight onPress={this.reportAProblem.bind(this)} underlayColor='#ddd'>
+            <Icon
+              name='flag'
+              size={18}
+              style={{padding: 6}}
+              color='#888'
+            />
+          </TouchableHighlight>
         </View>
       </View>
     )

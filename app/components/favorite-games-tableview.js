@@ -17,6 +17,8 @@ import styles from '../styles/favorite-games-tableview.js'
 const Progress = require('react-native-progress')
 const DeviceInfo = require('react-native-device-info')
 var QuickActions = ""
+
+
 if (DeviceInfo.getSystemName() === "iOS") {
   QuickActions = require('react-native-quick-actions')
 }
@@ -40,7 +42,7 @@ class FavoriteGamesTableview extends Component {
         if (supported) {
           let quickActionsArray = []
           quickActionsArray.push({
-            type: "My Teams", // Required
+            type: "My Teams",
             subtitle: "Go To My Teams!",
             userInfo: {
               url: "app://orders" // provide custom data, like in-app url you want to open
@@ -64,8 +66,8 @@ class FavoriteGamesTableview extends Component {
                 awayShowName = awayShowName.substring(0, 5)
               }
               quickActionsArray.push({
-                type: "Favorite Games", // Required
-                title: `${homeShowName} V ${awayShowName}`, // Optional, if empty, `type` will be used instead
+                type: "Favorite Games",
+                title: `${homeShowName} V ${awayShowName}`,
                 subtitle: `${time} at ${favoriteGames[i].field.name}`,
                 userInfo: {
                   url: "app://orders" // provide custom data, like in-app url you want to open
@@ -139,7 +141,9 @@ class FavoriteGamesTableview extends Component {
 
   renderGameRow (game) {
     return (
-      <GameView favoriteTeams={true} game={game}/>
+      <GameView
+        game={game}
+        actions={this.props.actions} />
     )
   }
 
