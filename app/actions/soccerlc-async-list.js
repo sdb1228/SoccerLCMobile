@@ -37,10 +37,10 @@ const actionDefs = [
   'SOCCERLC_SHOW_CALENDAR_ERROR',
   'SOCCERLC_SHOW_CALENDAR_SUCCESS',
   'SOCCERLC_REPORT_PROBLEM_MODAL',
-  'SOCCERLC_CLOSE_REPORT_ERROR_MODAL'
-  // 'SOCCERLC_ASYNC_REPORT_PROBLEM_START',
-  // 'SOCCERLC_ASYNC_REPORT_PROBLEM_SUCCESS',
-  // 'SOCCERLC_ASYNC_REPORT_PROBLEM_FAIL',
+  'SOCCERLC_CLOSE_REPORT_ERROR_MODAL',
+  'SOCCERLC_ASYNC_REPORT_PROBLEM_START',
+  'SOCCERLC_ASYNC_REPORT_PROBLEM_SUCCESS',
+  'SOCCERLC_ASYNC_REPORT_PROBLEM_FAIL',
 ]
 
 const { types, actions } = createActions(actionDefs)
@@ -67,14 +67,14 @@ actions.closeReportErrorModal = () => {
   }
 }
 
-// actions.reportProblem = (errorMessage) => {
-//   return (dispatch) => {
-//     dispatch(actions.soccerlcAsyncReportProblemStart())
-//     provider.reportAProblem(errorMessage)
-//     .then(res => dispatch(actions.soccerlcAsyncReportProblemSuccess(res.data)))
-//     .catch(err => dispatch(actions.soccerlcAsyncReportProblemFail(err)))
-//   }
-// }
+actions.reportProblem = (errorMessage) => {
+  return (dispatch) => {
+    dispatch(actions.soccerlcAsyncReportProblemStart())
+    provider.reportAProblem(errorMessage)
+    .then(res => dispatch(actions.soccerlcAsyncReportProblemSuccess(res.data)))
+    .catch(err => dispatch(actions.soccerlcAsyncReportProblemFail(err)))
+  }
+}
 
 actions.showCalendarError = () => {
   return (dispatch) => {

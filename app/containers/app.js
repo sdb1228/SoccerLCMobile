@@ -30,8 +30,10 @@ class App extends Component {
     super()
     this.navigatorRenderScene = this.navigatorRenderScene.bind(this)
     this.state = {
+      userErrorMessage: '',
       isLoading: false,
     }
+    this.reportTheProblemWithText = this.reportTheProblemWithText.bind(this)
   }
 
   componentWillMount () {
@@ -80,7 +82,13 @@ class App extends Component {
     })
   }
 
-  render() {
+  reportTheProblemWithText () {
+    let errorMessage = this.state.userErrorMessage
+    this.setState({userErrorMessage: ''})
+    this.props.actions.reportProblem(`Game: ${this.props.state.getIn(['soccerlcData', 'reportAProblemModal']).get('data').toJS().id} was reported to have ${errorMessage}`)
+  }
+
+  render () {
     return (
       <Navigator
         style={styles.container}
@@ -139,12 +147,14 @@ class App extends Component {
                       <TextInput
                         style={{height: 40, borderColor: '#ccc', borderWidth: 1, borderRadius: 3, paddingBottom: 10}}
                         multiline={true}
+                        value={this.state.userErrorMessage}
                         placeholder="Enter problem....."
+                        onChange={(event) => this.setState({userErrorMessage: event.nativeEvent.text})}
                       />
                       <View style={modalStyles.modalButtonContainer}>
                         <TouchableOpacity
                            style={modalStyles.modalOkButton}
-                           onPress={actions.closeReportErrorModal}>
+                           onPress={this.reportTheProblemWithText}>
                            <Text style={modalStyles.modalOkButtonText}>Ok</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
@@ -194,6 +204,35 @@ class App extends Component {
                        onPress={actions.closeErrorModal}>
                        <Text style={modalStyles.modalOkButtonText}>Ok</Text>
                     </TouchableOpacity>
+                 </View>
+              </Modal>
+              <Modal
+                 open={state.getIn(['soccerlcData', 'reportAProblemModal']).get('data').toJS().modalOpen}
+                 style={modalStyles.modal}>
+                 <View style={modalStyles.modalContainer}>
+                    <Text style={modalStyles.modalTitle}>Tell us what happened</Text>
+                    <Text style={modalStyles.modalBody}>
+                      Looks like you are having a problem with game: {state.getIn(['soccerlcData', 'reportAProblemModal']).get('data').toJS().id} What specifically is wrong?
+                    </Text>
+                    <TextInput
+                      style={{height: 40, borderColor: '#ccc', borderWidth: 1, borderRadius: 3, paddingBottom: 10}}
+                      value={this.state.userErrorMessage}
+                      multiline={true}
+                      onChange={(event) => this.setState({userErrorMessage: event.nativeEvent.text})}
+                      placeholder="Enter problem....."
+                    />
+                    <View style={modalStyles.modalButtonContainer}>
+                      <TouchableOpacity
+                         style={modalStyles.modalOkButton}
+                         onPress={this.reportTheProblemWithText}>
+                         <Text style={modalStyles.modalOkButtonText}>Ok</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                         style={modalStyles.modalOkButton}
+                         onPress={actions.closeReportErrorModal}>
+                         <Text style={modalStyles.modalCancelButton}>Cancel</Text>
+                      </TouchableOpacity>
+                   </View>
                  </View>
               </Modal>
           </AdmobView>

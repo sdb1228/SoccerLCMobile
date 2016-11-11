@@ -64,26 +64,27 @@ export default combineReducers({
         newState.modalOpen = false
         return Immutable.fromJS(newState)
       },
+      [actions.soccerlcAsyncReportProblemSuccess.type]: (state, action) => {
+        debugger
+        let newState = state.toJS()
+        newState.modalOpen = false
+        return Immutable.fromJS(newState)
+      },
     }, Immutable.List()),
   }),
 
-  // reportAProblem: combineReducers({
-  //   loading: handleActions({
-  //     [actions.soccerlcAsyncReportProblemStart.type]: () => true,
-  //     [actions.soccerlcAsyncReportProblemSuccess.type]: () => false,
-  //     [actions.soccerlcAsyncReportProblemFail.type]: () => false,
-  //   }, false),
-  //   error: handleActions({
-  //     [actions.soccerlcAsyncReportProblemFail.type]: () => true,
-  //     [actions.soccerlcAsyncReportProblemStart.type]: () => false,
-  //     [actions.soccerlcAsyncReportProblemSuccess.type]: () => false,
-  //   }, false),
-  //   data: handleActions({
-  //     [actions.soccerlcAsyncReportProblemSuccess.type]: (state, action) => {
-  //       return Immutable.fromJS(action.payload)
-  //     },
-  //   }, Immutable.List()),
-  // }),
+  reportAProblem: combineReducers({
+    loading: handleActions({
+      [actions.soccerlcAsyncReportProblemStart.type]: () => true,
+      [actions.soccerlcAsyncReportProblemSuccess.type]: () => false,
+      [actions.soccerlcAsyncReportProblemFail.type]: () => false,
+    }, false),
+    error: handleActions({
+      [actions.soccerlcAsyncReportProblemFail.type]: () => true,
+      [actions.soccerlcAsyncReportProblemStart.type]: () => false,
+      [actions.soccerlcAsyncReportProblemSuccess.type]: () => false,
+    }, false),
+  }),
 
   facilityTodaysGames: combineReducers({
     loading: handleActions({

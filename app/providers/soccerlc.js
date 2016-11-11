@@ -60,7 +60,9 @@ export function getFacilitiesTomorrowsGames (facilityId) {
 }
 
 export function reportAProblem (errorMessage) {
-  return axios.get(`${soccerlc.baseUrl}feedback/errors`)
+  return axios.post(`${soccerlc.baseUrl}feedback/errors`, {
+    message: errorMessage,
+  })
 }
 
 export function getOutdoorFacilities () {
