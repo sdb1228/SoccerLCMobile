@@ -1,3 +1,4 @@
 <resources>
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">yQ80Hf1SGo_hXsQz11-V-O6e5QbIEk92UtWBZ</string>
     <string name="app_name">SoccerLC</string>
 </resources>
