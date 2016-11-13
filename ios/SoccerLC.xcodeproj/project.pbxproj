@@ -36,6 +36,8 @@
 		4820B96B1DD83FDA001FEECB /* libSMXCrashlytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 480120251DD2829C00261258 /* libSMXCrashlytics.a */; };
 		4820B96C1DD83FE0001FEECB /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4820B94F1DD7F2EB001FEECB /* libCodePush.a */; };
 		4820B96D1DD83FEE001FEECB /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 593BD1C432E94779826C8C9B /* libz.tbd */; };
+		4820B96F1DD8D080001FEECB /* SoccerLC_v4_outlined_ball.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4820B96E1DD8D080001FEECB /* SoccerLC_v4_outlined_ball.jpg */; };
+		4820B9711DD8D0F4001FEECB /* SoccerLC_v4_outlined.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4820B9701DD8D0F3001FEECB /* SoccerLC_v4_outlined.jpg */; };
 		483387831DAB3FB80018142A /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 483387821DAB3FB80018142A /* GoogleMobileAds.framework */; };
 		4868FC4D1DB8183E00B7009A /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4868FC451DB8182700B7009A /* libRCTPushNotification.a */; };
 		486EF9921DB13F1E0036A27C /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 486EF9911DB13F090036A27C /* libART.a */; };
@@ -230,6 +232,8 @@
 		48011FE41DCECF0000261258 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		48011FE71DD27A1300261258 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		48011FE81DD27A1300261258 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		4820B96E1DD8D080001FEECB /* SoccerLC_v4_outlined_ball.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SoccerLC_v4_outlined_ball.jpg; sourceTree = "<group>"; };
+		4820B9701DD8D0F3001FEECB /* SoccerLC_v4_outlined.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SoccerLC_v4_outlined.jpg; sourceTree = "<group>"; };
 		483387821DAB3FB80018142A /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		4868FC3A1DB8182700B7009A /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 		486EF98C1DB13F090036A27C /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
@@ -366,6 +370,8 @@
 		13B07FAE1A68108700A75B9A /* SoccerLC */ = {
 			isa = PBXGroup;
 			children = (
+				4820B96E1DD8D080001FEECB /* SoccerLC_v4_outlined_ball.jpg */,
+				4820B9701DD8D0F3001FEECB /* SoccerLC_v4_outlined.jpg */,
 				48A156241DB8197600804DB6 /* SoccerLC.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -882,10 +888,12 @@
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				B3751E71EB53465BADC13C8E /* Entypo.ttf in Resources */,
 				155F0AA4403343149BE29C32 /* EvilIcons.ttf in Resources */,
+				4820B96F1DD8D080001FEECB /* SoccerLC_v4_outlined_ball.jpg in Resources */,
 				FAF53A451B5D4FFC8E005613 /* FontAwesome.ttf in Resources */,
 				9ACFEBB032FE4E3F88D9BDCC /* Foundation.ttf in Resources */,
 				924F350089AA4CB89CB5BB54 /* Ionicons.ttf in Resources */,
 				949D3F0D75264225AB3934F5 /* MaterialIcons.ttf in Resources */,
+				4820B9711DD8D0F4001FEECB /* SoccerLC_v4_outlined.jpg in Resources */,
 				501DF9B057504A59BFDA5CB1 /* Octicons.ttf in Resources */,
 				286E097287EA4E3085C8FD23 /* Zocial.ttf in Resources */,
 			);
@@ -1134,6 +1142,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODEPUSH_KEY = rigYVGi5vPm_QWm6AfQDZ5ALFmHkEk92UtWBZ;
 				CODE_SIGN_ENTITLEMENTS = SoccerLC/SoccerLC.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TQD69JN96Q;
