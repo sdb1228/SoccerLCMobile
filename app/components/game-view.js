@@ -164,6 +164,37 @@ class GameView extends Component {
     )
   }
 
+  renderDetails() {
+    if (DeviceInfo.getSystemName() === "iOS") {
+      return (
+        <FoldView
+          expanded={this.state.flipExpanded}
+          onAnimationStart={this.handleFlipStart.bind(this)}
+          renderFrontface={this.renderFrontface.bind(this)}
+          renderBackface={this.renderBackface.bind(this)}
+          >
+          {this.renderBase()}
+        </FoldView>
+      )
+    } else {
+      // DIY FoldView
+      if (this.state.flipExpanded) {
+        return (
+          <View>
+            {this.renderBase()}
+            {this.renderBackface()}
+          </View>
+        )
+      } else {
+        return (
+          <View>
+            {this.renderFrontface()}
+          </View>
+        )
+      }
+    }
+  }
+
   render () {
     const {
       homeTeam, awayTeam,
@@ -179,14 +210,7 @@ class GameView extends Component {
           </View>
 
         <View style={{height: this.state.flipHeight}}>
-          <FoldView
-            expanded={this.state.flipExpanded}
-            onAnimationStart={this.handleFlipStart.bind(this)}
-            renderFrontface={this.renderFrontface.bind(this)}
-            renderBackface={this.renderBackface.bind(this)}
-            >
-            {this.renderBase()}
-          </FoldView>
+         {this.renderDetails()}
         </View>
       </View>
       </TouchableHighlight>
