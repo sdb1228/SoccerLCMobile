@@ -39,6 +39,7 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     paddingLeft: 12,
+    backgroundColor: '#fff',
     paddingVertical: 12,
   },
   cellContainer: {
@@ -49,6 +50,7 @@ export default StyleSheet.create({
   },
   favoriteContainer: {
     justifyContent: 'center',
+    backgroundColor: '#fff',
     flex: 1,
     alignItems: 'flex-end',
   },
