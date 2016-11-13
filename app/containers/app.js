@@ -13,10 +13,12 @@ import AdmobView from './admob'
 import actions from '../actions'
 import soccerlc from '../../config/soccerlc-config'
 import TeamView from '../components/team-view'
+import codePush from "react-native-code-push"
 
 import styles from '../styles/app'
 import modalStyles from '../styles/modal'
 
+let codePushOptions = { checkFrequency: codePush.CheckFrequency.ON_APP_RESUME }
 var PushNotification = require('react-native-push-notification')
 const DeviceInfo = require('react-native-device-info')
 
@@ -263,4 +265,4 @@ class App extends Component {
 export default connect(
   (state) => ({ state }),
   (dispatch) => ({ actions: bindActionCreators(actions, dispatch) }),
-)(App)
+)(codePush(codePushOptions)(App))
