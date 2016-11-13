@@ -140,7 +140,6 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-linear-gradient')
     compile project(':react-native-fabric')
     compile('com.crashlytics.sdk.android:crashlytics:2.6.5@aar') {
         transitive = true;

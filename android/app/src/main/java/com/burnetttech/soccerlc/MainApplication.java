@@ -6,7 +6,6 @@ import android.util.Log;
 
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.facebook.react.ReactApplication;
-import com.BV.LinearGradient.LinearGradientPackage;
 import com.smixx.fabric.FabricPackage;
 import com.calendarevents.CalendarEventsPackage;
 import cl.json.RNSharePackage;
@@ -36,7 +35,6 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new LinearGradientPackage(),
             new FabricPackage(),
             new CalendarEventsPackage(),
             new RNSharePackage(),
