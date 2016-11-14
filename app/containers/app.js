@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 const { object } = React.PropTypes
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { View, Image, StatusBar, Navigator, Text, TouchableOpacity, TextInput } from 'react-native'
+import { View, StatusBar, Navigator, Text, TouchableOpacity, TextInput } from 'react-native'
 
-import DataList from '../components/data-list'
 import Axios from 'axios'
 import Modal from 'react-native-simple-modal'
 import RootTabView from './root-tab-view'
@@ -13,13 +12,13 @@ import AdmobView from './admob'
 import actions from '../actions'
 import soccerlc from '../../config/soccerlc-config'
 import TeamView from '../components/team-view'
-import codePush from "react-native-code-push"
+import codePush from 'react-native-code-push'
 
 import styles from '../styles/app'
 import modalStyles from '../styles/modal'
 
 let codePushOptions = { checkFrequency: codePush.CheckFrequency.ON_APP_RESUME }
-var PushNotification = require('react-native-push-notification')
+let PushNotification = require('react-native-push-notification')
 const DeviceInfo = require('react-native-device-info')
 
 class App extends Component {
@@ -43,32 +42,32 @@ class App extends Component {
 
       // (optional) Called when Token is generated (iOS and Android)
       onRegister: function (token) {
-          Axios.put('http://107.170.232.120/api/v1/users/self/installation', {
-            installationId: DeviceInfo.getUniqueID(),
-            apnsToken: token.token,
-          })
-          .then(function (response) {
-            console.log(response)
-          })
-          .catch(function (error) {
-            console.log(error)
-          })
+        Axios.put('http://107.170.232.120/api/v1/users/self/installation', {
+          installationId: DeviceInfo.getUniqueID(),
+          apnsToken: token.token,
+        })
+        .then(function (response) {
+          console.log(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
           // this.props.actions.setDeviceTokenAndInstallation(token, , DeviceInfo.getManufacturer())
       },
 
       // (required) Called when a remote or local notification is opened or received
       onNotification: function (notification) {
-          console.log( 'NOTIFICATION:', notification );
+          console.log('NOTIFICATION:', notification)
       },
 
       // ANDROID ONLY: GCM Sender ID (optional - not required for local notifications, but is need to receive remote push notifications)
-      senderID: "YOUR GCM SENDER ID",
+      senderID: 'YOUR GCM SENDER ID',
 
       // IOS ONLY (optional): default: all - Permissions to register.
       permissions: {
-          alert: true,
-          badge: true,
-          sound: true
+        alert: true,
+        badge: true,
+        sound: true,
       },
 
       // Should the initial notification be popped automatically
@@ -95,79 +94,79 @@ class App extends Component {
       <Navigator
         style={styles.container}
         initialRoute={{id: 'root'}}
-        renderScene={this.navigatorRenderScene}/>
-    );
+        renderScene={this.navigatorRenderScene} />
+    )
   }
 
-  navigatorRenderScene(route, navigator) {
+  navigatorRenderScene (route, navigator) {
     const { state, actions } = this.props
-    _navigator = navigator;
+    _navigator = navigator
     switch (route.id) {
       case 'root':
         return (
           <AdmobView
-                hideAd={true}
-                containerStyle={{
-                  backgroundColor: '#ffffff',
-                }}
+            hideAd={true}
+            containerStyle={{
+              backgroundColor: '#ffffff',
+            }}
               >
-                <StatusBar
-                  barStyle="default"
+            <StatusBar
+              barStyle="default"
+            />
+            <RootTabView
+              indoorFacilities={state.getIn(['soccerlcData', 'indoorFacilities'])}
+              outdoorFacilities={state.getIn(['soccerlcData', 'outdoorFacilities'])}
+              myTeamsGames={state.getIn(['soccerlcData', 'favoriteTeamsGames'])}
+              uniqueDeviceId={DeviceInfo.getUniqueID()}
+              navigator={navigator}
+              actions={actions}
+            />
+            <Modal
+              open={state.getIn(['soccerlcData', 'errorModalOpen']).get('error')}
+              modalDidClose={() => this.setState({open: false})}
+              style={modalStyles.modal}>
+              <View style={modalStyles.modalContainer}>
+                <Text style={modalStyles.modalTitle}>{state.getIn(['soccerlcData', 'errorModalOpen']).get('errorModalTitle')}</Text>
+                <Text style={modalStyles.modalBody}>
+                  {state.getIn(['soccerlcData', 'errorModalOpen']).get('errorModalMessage')}
+                </Text>
+                <TouchableOpacity
+                  style={modalStyles.modalOkButton}
+                  onPress={actions.closeErrorModal}>
+                  <Text style={modalStyles.modalOkButtonText}>Ok</Text>
+                </TouchableOpacity>
+              </View>
+            </Modal>
+            <Modal
+              open={state.getIn(['soccerlcData', 'reportAProblemModal']).get('data').toJS().modalOpen}
+              style={modalStyles.modal}>
+              <View style={modalStyles.modalContainer}>
+                <Text style={modalStyles.modalTitle}>Tell us what happened</Text>
+                <Text style={modalStyles.modalBody}>
+                  Looks like you are having a problem with game: {state.getIn(['soccerlcData', 'reportAProblemModal']).get('data').toJS().id} What specifically is wrong?
+                </Text>
+                <TextInput
+                  style={{height: 40, borderColor: '#ccc', borderWidth: 1, borderRadius: 3, paddingBottom: 10}}
+                  multiline={true}
+                  value={this.state.userErrorMessage}
+                  placeholder="Enter problem....."
+                  onChange={(event) => this.setState({userErrorMessage: event.nativeEvent.text})}
                 />
-                <RootTabView
-                  indoorFacilities={state.getIn(['soccerlcData', 'indoorFacilities'])}
-                  outdoorFacilities={state.getIn(['soccerlcData', 'outdoorFacilities'])}
-                  myTeamsGames={state.getIn(['soccerlcData', 'favoriteTeamsGames'])}
-                  uniqueDeviceId={DeviceInfo.getUniqueID()}
-                  navigator={navigator}
-                  actions={actions}
-                />
-                <Modal
-                   open={state.getIn(['soccerlcData', 'errorModalOpen']).get('error')}
-                   modalDidClose={() => this.setState({open: false})}
-                   style={modalStyles.modal}>
-                   <View style={modalStyles.modalContainer}>
-                      <Text style={modalStyles.modalTitle}>{state.getIn(['soccerlcData', 'errorModalOpen']).get('errorModalTitle')}</Text>
-                      <Text style={modalStyles.modalBody}>
-                        {state.getIn(['soccerlcData', 'errorModalOpen']).get('errorModalMessage')}
-                      </Text>
-                      <TouchableOpacity
-                         style={modalStyles.modalOkButton}
-                         onPress={actions.closeErrorModal}>
-                         <Text style={modalStyles.modalOkButtonText}>Ok</Text>
-                      </TouchableOpacity>
-                   </View>
-                </Modal>
-                <Modal
-                   open={state.getIn(['soccerlcData', 'reportAProblemModal']).get('data').toJS().modalOpen}
-                   style={modalStyles.modal}>
-                   <View style={modalStyles.modalContainer}>
-                      <Text style={modalStyles.modalTitle}>Tell us what happened</Text>
-                      <Text style={modalStyles.modalBody}>
-                        Looks like you are having a problem with game: {state.getIn(['soccerlcData', 'reportAProblemModal']).get('data').toJS().id} What specifically is wrong?
-                      </Text>
-                      <TextInput
-                        style={{height: 40, borderColor: '#ccc', borderWidth: 1, borderRadius: 3, paddingBottom: 10}}
-                        multiline={true}
-                        value={this.state.userErrorMessage}
-                        placeholder="Enter problem....."
-                        onChange={(event) => this.setState({userErrorMessage: event.nativeEvent.text})}
-                      />
-                      <View style={modalStyles.modalButtonContainer}>
-                        <TouchableOpacity
-                           style={modalStyles.modalOkButton}
-                           onPress={this.reportTheProblemWithText}>
-                           <Text style={modalStyles.modalOkButtonText}>Ok</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                           style={modalStyles.modalOkButton}
-                           onPress={actions.closeReportErrorModal}>
-                           <Text style={modalStyles.modalCancelButton}>Cancel</Text>
-                        </TouchableOpacity>
-                     </View>
-                   </View>
-                </Modal>
-            </AdmobView>
+                <View style={modalStyles.modalButtonContainer}>
+                  <TouchableOpacity
+                    style={modalStyles.modalOkButton}
+                    onPress={this.reportTheProblemWithText}>
+                    <Text style={modalStyles.modalOkButtonText}>Ok</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={modalStyles.modalOkButton}
+                    onPress={actions.closeReportErrorModal}>
+                    <Text style={modalStyles.modalCancelButton}>Cancel</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </Modal>
+          </AdmobView>
           )
       case 'facility':
         return (
@@ -177,66 +176,66 @@ class App extends Component {
               backgroundColor: '#ffffff',
             }}
           >
-              <StatusBar
-                backgroundColor="white"
-                hidden={true}
-                barStyle="default"
-              />
-              <FacilityTabView
-                facility={route.selectedFacility}
-                uniqueDeviceId={DeviceInfo.getUniqueID()}
-                facilityTeams={state.getIn(['soccerlcData','facilityTeamsList'])}
-                todayFacilityGames={state.getIn(['soccerlcData','facilityTodaysGames'])}
-                tomorrowFacilityGames={state.getIn(['soccerlcData','facilityTomorrowsGames'])}
-                facilityDivisions={state.getIn(['soccerlcData','facilityDivisions'])}
-                navigator={navigator}
-                actions={actions}
-              />
-              <Modal
-                 open={state.getIn(['soccerlcData', 'errorModalOpen']).get('error')}
-                 modalDidClose={() => this.setState({open: false})}
-                 style={modalStyles.modal}>
-                 <View style={modalStyles.modalContainer}>
-                    <Text style={modalStyles.modalTitle}>{state.getIn(['soccerlcData', 'errorModalOpen']).get('errorModalTitle')}</Text>
-                    <Text style={modalStyles.modalBody}>
-                      {state.getIn(['soccerlcData', 'errorModalOpen']).get('errorModalMessage')}
-                    </Text>
-                    <TouchableOpacity
-                       style={modalStyles.modalOkButton}
-                       onPress={actions.closeErrorModal}>
-                       <Text style={modalStyles.modalOkButtonText}>Ok</Text>
-                    </TouchableOpacity>
-                 </View>
-              </Modal>
-              <Modal
-                 open={state.getIn(['soccerlcData', 'reportAProblemModal']).get('data').toJS().modalOpen}
-                 style={modalStyles.modal}>
-                 <View style={modalStyles.modalContainer}>
-                    <Text style={modalStyles.modalTitle}>Tell us what happened</Text>
-                    <Text style={modalStyles.modalBody}>
-                      Looks like you are having a problem with game: {state.getIn(['soccerlcData', 'reportAProblemModal']).get('data').toJS().id} What specifically is wrong?
-                    </Text>
-                    <TextInput
-                      style={{height: 40, borderColor: '#ccc', borderWidth: 1, borderRadius: 3, paddingBottom: 10}}
-                      value={this.state.userErrorMessage}
-                      multiline={true}
-                      onChange={(event) => this.setState({userErrorMessage: event.nativeEvent.text})}
-                      placeholder="Enter problem....."
-                    />
-                    <View style={modalStyles.modalButtonContainer}>
-                      <TouchableOpacity
-                         style={modalStyles.modalOkButton}
-                         onPress={this.reportTheProblemWithText}>
-                         <Text style={modalStyles.modalOkButtonText}>Ok</Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity
-                         style={modalStyles.modalOkButton}
-                         onPress={actions.closeReportErrorModal}>
-                         <Text style={modalStyles.modalCancelButton}>Cancel</Text>
-                      </TouchableOpacity>
-                   </View>
-                 </View>
-              </Modal>
+            <StatusBar
+              backgroundColor="white"
+              hidden={true}
+              barStyle="default"
+            />
+            <FacilityTabView
+              facility={route.selectedFacility}
+              uniqueDeviceId={DeviceInfo.getUniqueID()}
+              facilityTeams={state.getIn(['soccerlcData', 'facilityTeamsList'])}
+              todayFacilityGames={state.getIn(['soccerlcData', 'facilityTodaysGames'])}
+              tomorrowFacilityGames={state.getIn(['soccerlcData', 'facilityTomorrowsGames'])}
+              facilityDivisions={state.getIn(['soccerlcData', 'facilityDivisions'])}
+              navigator={navigator}
+              actions={actions}
+            />
+            <Modal
+              open={state.getIn(['soccerlcData', 'errorModalOpen']).get('error')}
+              modalDidClose={() => this.setState({open: false})}
+              style={modalStyles.modal}>
+              <View style={modalStyles.modalContainer}>
+                <Text style={modalStyles.modalTitle}>{state.getIn(['soccerlcData', 'errorModalOpen']).get('errorModalTitle')}</Text>
+                <Text style={modalStyles.modalBody}>
+                  {state.getIn(['soccerlcData', 'errorModalOpen']).get('errorModalMessage')}
+                </Text>
+                <TouchableOpacity
+                  style={modalStyles.modalOkButton}
+                  onPress={actions.closeErrorModal}>
+                  <Text style={modalStyles.modalOkButtonText}>Ok</Text>
+                </TouchableOpacity>
+              </View>
+            </Modal>
+            <Modal
+              open={state.getIn(['soccerlcData', 'reportAProblemModal']).get('data').toJS().modalOpen}
+              style={modalStyles.modal}>
+              <View style={modalStyles.modalContainer}>
+                <Text style={modalStyles.modalTitle}>Tell us what happened</Text>
+                <Text style={modalStyles.modalBody}>
+                  Looks like you are having a problem with game: {state.getIn(['soccerlcData', 'reportAProblemModal']).get('data').toJS().id} What specifically is wrong?
+                </Text>
+                <TextInput
+                  style={{height: 40, borderColor: '#ccc', borderWidth: 1, borderRadius: 3, paddingBottom: 10}}
+                  value={this.state.userErrorMessage}
+                  multiline={true}
+                  onChange={(event) => this.setState({userErrorMessage: event.nativeEvent.text})}
+                  placeholder="Enter problem....."
+                />
+                <View style={modalStyles.modalButtonContainer}>
+                  <TouchableOpacity
+                    style={modalStyles.modalOkButton}
+                    onPress={this.reportTheProblemWithText}>
+                    <Text style={modalStyles.modalOkButtonText}>Ok</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={modalStyles.modalOkButton}
+                    onPress={actions.closeReportErrorModal}>
+                    <Text style={modalStyles.modalCancelButton}>Cancel</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </Modal>
           </AdmobView>
         )
       case 'team':
@@ -251,7 +250,7 @@ class App extends Component {
               state={state}
               facilityId={route.selectedFacilityId}
               team={route.selectedTeam}
-              games={state.getIn(['soccerlcData','teamGames'])}
+              games={state.getIn(['soccerlcData', 'teamGames'])}
               uniqueDeviceId={DeviceInfo.getUniqueID()}
               navigator={navigator}
               actions={actions}
