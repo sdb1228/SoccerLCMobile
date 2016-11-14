@@ -76,7 +76,7 @@ class DivisionsTableView extends Component {
         underlayColor={'#fff'}
         >
         <View style={styles.divisionContainer}>
-          <View style={{paddingLeft: 12,paddingVertical: 12, backgroundColor: '#fff'}}>
+          <View style={styles.divisionContentContainer}>
             <View style={styles.divisionNameContainer}>
                 <Text style={styles.divisionNameText} >{team.name}</Text>
             </View>
