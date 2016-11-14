@@ -73,14 +73,16 @@ class DivisionsTableView extends Component {
     return (
       <TouchableHighlight
         onPress={_ => console.log('You touched me')}
-        underlayColor={'#eee'}
+        underlayColor={'#fff'}
         >
         <View style={styles.divisionContainer}>
-          <View style={styles.divisionNameContainer}>
-              <Text style={styles.divisionNameText} >{team.name}</Text>
-          </View>
-          <View style={styles.teamsDivisionContainer}>
-              <Text style={styles.teamCountText} >{team.teamCount} Teams</Text>
+          <View style={{paddingLeft: 12,paddingVertical: 12, backgroundColor: '#fff'}}>
+            <View style={styles.divisionNameContainer}>
+                <Text style={styles.divisionNameText} >{team.name}</Text>
+            </View>
+            <View style={styles.teamsDivisionContainer}>
+                <Text style={styles.teamCountText} >{team.teamCount} Teams</Text>
+            </View>
           </View>
         </View>
       </TouchableHighlight>

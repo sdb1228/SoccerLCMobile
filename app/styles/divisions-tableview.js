@@ -27,6 +27,7 @@ export default StyleSheet.create({
     fontSize: 15,
   },
   divisionNameContainer: {
+    backgroundColor: '#fff',
     alignItems: 'flex-start',
     borderColor: '#000',
   },
@@ -39,8 +40,12 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     borderColor: '#eee',
+    backgroundColor: '#fff',
     borderWidth: 0.5,
+  },
+  divisionContentContainer: {
     paddingLeft: 12,
     paddingVertical: 12,
+    backgroundColor: '#fff',
   },
 })
