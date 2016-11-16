@@ -9,7 +9,7 @@
       <string>Editor</string>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>soccerlc</string>
+        <string>soccerlc.com</string>
       </array>
     </dict>
   </array>

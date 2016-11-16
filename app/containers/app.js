@@ -2,7 +2,15 @@ import React, { Component } from 'react'
 const { object } = React.PropTypes
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { View, StatusBar, Navigator, Text, TouchableOpacity, TextInput } from 'react-native'
+import {
+  View,
+  StatusBar,
+  Navigator,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  Linking
+  } from 'react-native'
 
 import Axios from 'axios'
 import Modal from 'react-native-simple-modal'
@@ -35,6 +43,21 @@ class App extends Component {
       isLoading: false,
     }
     this.reportTheProblemWithText = this.reportTheProblemWithText.bind(this)
+  }
+
+  componentDidMount() {
+    Linking.addEventListener('url', this.handleDeepLink);
+  }
+
+  componentWillUnmount() {
+    Linking.removeEventListener('url', this.handleDeepLink);
+  }
+
+  handleDeepLink(e) {
+    const route = e.url.replace(/.*?:\/\//g, "")
+    debugger
+    this._navigator.push({id: 'team', selectedTeam: {id: 5}, selectedFacilityId: route})
+    // this._navigator.replace(this.state.routes[route])
   }
 
   componentWillMount () {
