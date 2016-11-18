@@ -41,6 +41,9 @@ const actionDefs = [
   'SOCCERLC_ASYNC_REPORT_PROBLEM_START',
   'SOCCERLC_ASYNC_REPORT_PROBLEM_SUCCESS',
   'SOCCERLC_ASYNC_REPORT_PROBLEM_FAIL',
+  'SOCCERLC_INSTALLATION_CHECK_START',
+  'SOCCERLC_INSTALLATION_CHECK_SUCCESS',
+  'SOCCERLC_INSTALLATION_CHECK_FAIL',
 ]
 
 const { types, actions } = createActions(actionDefs)
@@ -54,6 +57,16 @@ actions.getIndoorFacilities = () => {
   }
 }
 
+actions.checkInstallation = (installationId) => {
+  return (dispatch) => {
+    dispatch(actions.soccerlcInstallationCheckStart())
+    provider.upsertInstallation(installationId)
+    .then(res => {
+      dispatch(actions.soccerlcInstallationCheckSuccess(res))
+    })
+    .catch(err => dispatch(actions.soccerlcInstallationCheckFail(err)))
+  }
+}
 actions.reportAProblemModal = (game, open) => {
   game.modalOpen = open
   return (dispatch) => {

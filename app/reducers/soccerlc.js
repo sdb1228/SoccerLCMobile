@@ -65,12 +65,32 @@ export default combineReducers({
         return Immutable.fromJS(newState)
       },
       [actions.soccerlcAsyncReportProblemSuccess.type]: (state, action) => {
-        debugger
         let newState = state.toJS()
         newState.modalOpen = false
         return Immutable.fromJS(newState)
       },
     }, Immutable.List()),
+  }),
+
+  installationCheck: combineReducers({
+    installed: handleActions({
+      [actions.soccerlcInstallationCheckSuccess.type]: (state, action) => {
+        if (action.payload === 'Existing') {
+          return true
+        }
+        return false
+      },
+    }, false),
+    loading: handleActions({
+      [actions.soccerlcInstallationCheckStart.type]: () => true,
+      [actions.soccerlcInstallationCheckSuccess.type]: () => false,
+      [actions.soccerlcInstallationCheckFail.type]: () => false,
+    }, true),
+    error: handleActions({
+      [actions.soccerlcInstallationCheckFail.type]: () => true,
+      [actions.soccerlcInstallationCheckSuccess.type]: () => false,
+      [actions.soccerlcInstallationCheckStart.type]: () => false,
+    }, false),
   }),
 
   reportAProblem: combineReducers({

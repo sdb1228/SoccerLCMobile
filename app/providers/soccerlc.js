@@ -31,6 +31,12 @@ export function unfavoriteTeam (uniqueDeviceId, teamId) {
   })
 }
 
+export function upsertInstallation (uniqueDeviceId) {
+  return axios.post(`${soccerlc.baseUrl}users/self/installation`, {
+      installationId: uniqueDeviceId,
+  })
+}
+
 export function getFavoriteTeamsGames (uniqueDeviceId, thing) {
   return axios.get(`${soccerlc.baseUrl}favorites/games`, {
     params: {

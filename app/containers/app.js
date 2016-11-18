@@ -12,7 +12,6 @@ import {
   Linking
   } from 'react-native'
 
-import Axios from 'axios'
 import Modal from 'react-native-simple-modal'
 import RootTabView from './root-tab-view'
 import FacilityTabView from './facility-tab-view'
@@ -21,12 +20,13 @@ import actions from '../actions'
 import soccerlc from '../../config/soccerlc-config'
 import TeamView from '../components/team-view'
 import codePush from 'react-native-code-push'
+import IntroView from '../components/intro-view'
+import LoadingView from '../components/loading-view'
 
 import styles from '../styles/app'
 import modalStyles from '../styles/modal'
 
 let codePushOptions = { checkFrequency: codePush.CheckFrequency.ON_APP_RESUME }
-let PushNotification = require('react-native-push-notification')
 const DeviceInfo = require('react-native-device-info')
 
 class App extends Component {
@@ -45,6 +45,10 @@ class App extends Component {
     this.reportTheProblemWithText = this.reportTheProblemWithText.bind(this)
   }
 
+  componentWillMount() {
+    this.props.actions.checkInstallation(DeviceInfo.getUniqueID())
+  }
+
   componentDidMount() {
     Linking.addEventListener('url', this.handleDeepLink);
   }
@@ -55,55 +59,8 @@ class App extends Component {
 
   handleDeepLink(e) {
     const route = e.url.replace(/.*?:\/\//g, "")
-    debugger
     this._navigator.push({id: 'team', selectedTeam: {id: 5}, selectedFacilityId: route})
     // this._navigator.replace(this.state.routes[route])
-  }
-
-  componentWillMount () {
-    PushNotification.configure({
-
-      // (optional) Called when Token is generated (iOS and Android)
-      onRegister: function (token) {
-        Axios.put('http://107.170.232.120/api/v1/users/self/installation', {
-          installationId: DeviceInfo.getUniqueID(),
-          apnsToken: token.token,
-        })
-        .then(function (response) {
-          console.log(response)
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
-          // this.props.actions.setDeviceTokenAndInstallation(token, , DeviceInfo.getManufacturer())
-      },
-
-      // (required) Called when a remote or local notification is opened or received
-      onNotification: function (notification) {
-          console.log('NOTIFICATION:', notification)
-      },
-
-      // ANDROID ONLY: GCM Sender ID (optional - not required for local notifications, but is need to receive remote push notifications)
-      senderID: 'YOUR GCM SENDER ID',
-
-      // IOS ONLY (optional): default: all - Permissions to register.
-      permissions: {
-        alert: true,
-        badge: true,
-        sound: true,
-      },
-
-      // Should the initial notification be popped automatically
-      // default: true
-      popInitialNotification: true,
-
-      /**
-        * (optional) default: true
-        * - Specified if permissions (ios) and token (android and ios) will requested or not,
-        * - if not, you must call PushNotificationsHandler.requestPermissions() later
-        */
-      requestPermissions: true,
-    })
   }
 
   reportTheProblemWithText () {
@@ -113,10 +70,17 @@ class App extends Component {
   }
 
   render () {
+    let startingRoute='intro'
+    if (this.props.state.getIn(['soccerlcData', 'installationCheck']).toJS().loading) {
+      startingRoute='loading'
+    }
+    else if (this.props.state.getIn(['soccerlcData', 'installationCheck']).toJS().installed) {
+      startingRoute='root'
+    }
     return (
       <Navigator
         style={styles.container}
-        initialRoute={{id: 'root'}}
+        initialRoute={{id: startingRoute}}
         renderScene={this.navigatorRenderScene} />
     )
   }
@@ -125,6 +89,20 @@ class App extends Component {
     const { state, actions } = this.props
     _navigator = navigator
     switch (route.id) {
+      case 'intro':
+        return (
+          <IntroView
+            navigator={navigator}
+            />
+        )
+      case 'loading':
+        return (
+          <LoadingView
+            loading={this.props.state.getIn(['soccerlcData', 'installationCheck']).toJS().loading}
+            installed={this.props.state.getIn(['soccerlcData', 'installationCheck']).toJS().installed}
+            navigator={navigator}
+            />
+        )
       case 'root':
         return (
           <AdmobView
@@ -190,7 +168,7 @@ class App extends Component {
               </View>
             </Modal>
           </AdmobView>
-          )
+        )
       case 'facility':
         return (
           <AdmobView

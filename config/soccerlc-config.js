@@ -1,3 +1,3 @@
 export default {
-  baseUrl: 'http://107.170.232.120/api/v1/',
+  baseUrl: 'http://192.168.99.100:1337/api/v1/',
 }
