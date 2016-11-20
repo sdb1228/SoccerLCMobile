@@ -80,7 +80,7 @@ class App extends Component {
     return (
       <Navigator
         style={styles.container}
-        initialRoute={{id: startingRoute}}
+        initialRoute={{id: 'root'}}
         renderScene={this.navigatorRenderScene} />
     )
   }
@@ -93,6 +93,8 @@ class App extends Component {
         return (
           <IntroView
             navigator={navigator}
+            actions={actions}
+            indoorFacilities={state.getIn(['soccerlcData', 'indoorFacilities'])}
             />
         )
       case 'loading':
