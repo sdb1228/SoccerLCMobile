@@ -66,7 +66,10 @@ class TeamView extends Component {
 
   renderGameRow (game) {
     return (
-      <GameView game={game}/>
+      <GameView
+      actions={this.props.actions}
+      game={game}
+      />
     )
   }
 
