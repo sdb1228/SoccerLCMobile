@@ -57,6 +57,10 @@ export function getFacilitiesDivisions (facilityId) {
   return axios.get(`${soccerlc.baseUrl}facilities/${facilityId}/divisions`)
 }
 
+export function getAllFacilities () {
+  return axios.get(`${soccerlc.baseUrl}facilities`)
+}
+
 export function getFacilitiesTodaysGames (facilityId) {
   return axios.get(`${soccerlc.baseUrl}facilities/${facilityId}/games/today`)
 }

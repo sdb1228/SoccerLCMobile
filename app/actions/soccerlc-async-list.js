@@ -24,6 +24,9 @@ const actionDefs = [
   'SOCCERLC_ASYNC_INDOOR_FACILITIES_START',
   'SOCCERLC_ASYNC_INDOOR_FACILITIES_SUCCESS',
   'SOCCERLC_ASYNC_INDOOR_FACILITIES_FAIL',
+  'SOCCERLC_ASYNC_ALL_FACILITIES_START',
+  'SOCCERLC_ASYNC_ALL_FACILITIES_SUCCESS',
+  'SOCCERLC_ASYNC_ALL_FACILITIES_FAIL',
   'SOCCERLC_ASYNC_OUTDOOR_FACILITIES_START',
   'SOCCERLC_ASYNC_OUTDOOR_FACILITIES_SUCCESS',
   'SOCCERLC_ASYNC_OUTDOOR_FACILITIES_FAIL',
@@ -54,6 +57,15 @@ actions.getIndoorFacilities = () => {
     provider.getIndoorFacilities()
     .then(res => dispatch(actions.soccerlcAsyncIndoorFacilitiesSuccess(res.data)))
     .catch(err => dispatch(actions.soccerlcAsyncIndoorFacilitiesFail(err)))
+  }
+}
+
+actions.getAllFacilities = () => {
+  return (dispatch) => {
+    dispatch(actions.soccerlcAsyncAllFacilitiesStart())
+    provider.getAllFacilities()
+    .then(res => dispatch(actions.soccerlcAsyncAllFacilitiesSuccess(res.data)))
+    .catch(err => dispatch(actions.soccerlcAsyncAllFacilitiesFail(err)))
   }
 }
 

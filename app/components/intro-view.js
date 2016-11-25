@@ -85,7 +85,7 @@ export default React.createClass({
   propTypes: {
     navigator: React.PropTypes.object,
     actions: React.PropTypes.object,
-    indoorFacilities: React.PropTypes.object,
+    allFacilities: React.PropTypes.object,
   },
 
   done () {
@@ -190,7 +190,7 @@ export default React.createClass({
 
   render: function () {
     return (
-      <Swiper ref={(swiper) => {this._swiper = swiper}} style={styles.wrapper}>
+      <Swiper scrollEnabled={false} ref={(swiper) => {this._swiper = swiper}} style={styles.wrapper}>
         <View style={styles.slide1}>
           <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <Image
@@ -294,9 +294,9 @@ export default React.createClass({
             </Text>
           </View>
           <FacilitiesTableview
-            environment='Indoor'
+            environment='All'
             actions={this.props.actions}
-            data={this.props.indoorFacilities}
+            data={this.props.allFacilities}
             navigator={this.props.navigator}
             />
         </View>

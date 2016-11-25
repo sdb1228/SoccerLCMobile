@@ -16,6 +16,7 @@ export default combineReducers({
       [actions.soccerlcAsyncFavoriteTeamsGamesFail.type]: () => true,
       [actions.soccerlcAsyncFacilitiesTeamsFail.type]: () => true,
       [actions.soccerlcAsyncIndoorFacilitiesFail.type]: () => true,
+      [actions.soccerlcAsyncAllFacilitiesFail.type]: () => true,
       [actions.soccerlcAsyncOutdoorFacilitiesFail.type]: () => true,
       [actions.soccerlcAsyncFacilitiesTomorrowsGamesFail.type]: () => true,
       [actions.soccerlcAsyncFacilitiesTodaysGamesFail.type]: () => true,
@@ -30,6 +31,7 @@ export default combineReducers({
       [actions.soccerlcAsyncFavoriteTeamsGamesFail.type]: () => asyncServerErrorMessage,
       [actions.soccerlcAsyncFacilitiesTeamsFail.type]: () => asyncServerErrorMessage,
       [actions.soccerlcAsyncIndoorFacilitiesFail.type]: () => asyncServerErrorMessage,
+      [actions.soccerlcAsyncAllFacilitiesFail.type]: () => asyncServerErrorMessage,
       [actions.soccerlcAsyncOutdoorFacilitiesFail.type]: () => asyncServerErrorMessage,
       [actions.soccerlcAsyncFacilitiesTomorrowsGamesFail.type]: () => asyncServerErrorMessage,
       [actions.soccerlcAsyncFacilitiesTodaysGamesFail.type]: () => asyncServerErrorMessage,
@@ -43,6 +45,7 @@ export default combineReducers({
       [actions.soccerlcAsyncFavoriteTeamsGamesFail.type]: () => asyncServerErrorTitle,
       [actions.soccerlcAsyncFacilitiesTeamsFail.type]: () => asyncServerErrorTitle,
       [actions.soccerlcAsyncIndoorFacilitiesFail.type]: () => asyncServerErrorTitle,
+      [actions.soccerlcAsyncAllFacilitiesFail.type]: () => asyncServerErrorTitle,
       [actions.soccerlcAsyncOutdoorFacilitiesFail.type]: () => asyncServerErrorTitle,
       [actions.soccerlcAsyncFacilitiesTomorrowsGamesFail.type]: () => asyncServerErrorTitle,
       [actions.soccerlcAsyncFacilitiesTodaysGamesFail.type]: () => asyncServerErrorTitle,
@@ -253,6 +256,24 @@ export default combineReducers({
     }, false),
     data: handleActions({
       [actions.soccerlcAsyncIndoorFacilitiesSuccess.type]: (state, action) => {
+        return Immutable.fromJS(action.payload)
+      },
+    }, Immutable.List()),
+  }),
+
+  allFacilities: combineReducers({
+    loading: handleActions({
+      [actions.soccerlcAsyncAllFacilitiesStart.type]: () => true,
+      [actions.soccerlcAsyncAllFacilitiesSuccess.type]: () => false,
+      [actions.soccerlcAsyncAllFacilitiesFail.type]: () => false,
+    }, false),
+    error: handleActions({
+      [actions.soccerlcAsyncAllFacilitiesFail.type]: () => true,
+      [actions.soccerlcAsyncAllFacilitiesStart.type]: () => false,
+      [actions.soccerlcAsyncAllFacilitiesSuccess.type]: () => false,
+    }, false),
+    data: handleActions({
+      [actions.soccerlcAsyncAllFacilitiesSuccess.type]: (state, action) => {
         return Immutable.fromJS(action.payload)
       },
     }, Immutable.List()),

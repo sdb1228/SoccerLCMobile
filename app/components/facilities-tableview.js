@@ -40,6 +40,9 @@ class FacilitiesTableview extends Component {
     case 'Outdoor':
         this.props.actions.getOutdoorFacilities()
         break
+    case 'All':
+        this.props.actions.getAllFacilities()
+        break
     default:
         return
     }
