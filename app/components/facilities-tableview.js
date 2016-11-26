@@ -8,7 +8,7 @@ import {
   View,
   Image,
 } from 'react-native'
-const { object, string } = React.PropTypes
+const { object, string, func } = React.PropTypes
 import { SwipeListView } from 'react-native-swipe-list-view'
 const Progress = require('react-native-progress')
 
@@ -25,6 +25,7 @@ class FacilitiesTableview extends Component {
     actions: object.isRequired,
     environment: string.isRequired,
     navigator: object.isRequired,
+    introViewcb: func,
   }
 
   constructor (props) {
@@ -66,6 +67,14 @@ class FacilitiesTableview extends Component {
     }
   }
 
+  selectFacility (facility) {
+    if (this.props.environment !== 'All') {
+      this.props.navigator.push({id: 'facility', selectedFacility: facility})
+    } else {
+      this.props.introViewcb(facility)
+    }
+  }
+
   imageSource (facility) {
     switch (facility.name) {
       case "Lets Play Soccer GV":
@@ -86,7 +95,7 @@ class FacilitiesTableview extends Component {
   renderFacilityRow (facility) {
     return (
       <TouchableHighlight
-        onPress={_ => this.props.navigator.push({id: 'facility', selectedFacility: facility})}
+        onPress={_ => this.selectFacility(facility) }
         underlayColor={'#AAA'}
         >
         <Image

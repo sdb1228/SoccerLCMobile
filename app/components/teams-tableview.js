@@ -16,7 +16,7 @@ import styles from '../styles/teams-tableview.js'
 
 const Progress = require('react-native-progress')
 var fuzzy = require('fuzzy')
-const { object, string, number } = React.PropTypes
+const { object, string, number, bool } = React.PropTypes
 
 
 class TeamsTableView extends Component {
@@ -26,6 +26,7 @@ class TeamsTableView extends Component {
     uniqueDeviceId: string.isRequired,
     facilityId: number.isRequired,
     navigator: object.isRequired,
+    introView: bool,
   }
 
   constructor (props) {
@@ -71,10 +72,26 @@ class TeamsTableView extends Component {
     }
   }
 
+  toggleFavorite (team) {
+    if (!team.favorite) {
+      this.props.actions.favoriteTeam(this.props.uniqueDeviceId, team.id)
+    } else {
+      this.props.actions.unfavoriteTeam(this.props.uniqueDeviceId, team.id)
+    }
+  }
+  
+  selectedTeam (team) {
+    if (!this.props.introView) {
+      this.props.navigator.push({id: 'team', selectedTeam: team, selectedFacilityId: this.props.facilityId})
+    } else {
+      this.toggleFavorite(team)
+    }
+  }
+
   renderTeamRow (team) {
     return (
       <TouchableHighlight
-        onPress={_ => this.props.navigator.push({id: 'team', selectedTeam: team, selectedFacilityId: this.props.facilityId})}
+        onPress={_ => this.selectedTeam(team)}
         underlayColor={'#fff'}
         >
         <View style={styles.cellContainer}>

@@ -8,15 +8,19 @@ import {
 } from 'react-native'
 
 import Swiper from 'react-native-swiper'
-let PushNotification = require('react-native-push-notification')
 const DeviceInfo = require('react-native-device-info')
 import Animatable from 'react-native-animatable'
 import FacilitiesTableview from '../components/facilities-tableview'
+import TeamsTableView from '../components/teams-tableview'
 import Axios from 'axios'
 
-
+let PushNotification = require('react-native-push-notification')
 let styles = StyleSheet.create({
   wrapper: {
+  },
+  teamsTableViewWrapper: {
+    flex: 6,
+    width: 400,
   },
   card: {
     borderWidth: 1,
@@ -86,6 +90,9 @@ export default React.createClass({
     navigator: React.PropTypes.object,
     actions: React.PropTypes.object,
     allFacilities: React.PropTypes.object,
+    facility: React.PropTypes.object,
+    facilityTeams: React.PropTypes.object,
+    uniqueDeviceId: React.PropTypes.string,
   },
 
   done () {
@@ -96,7 +103,13 @@ export default React.createClass({
     this._swiper.scrollBy(1)
   },
 
+  facilityTableviewcb (facility) {
+    this.setState({facility: facility})
+    this._swiper.scrollBy(1)
+  },
+
   iKnowWhatIAmDoing () {
+    this.done()
     PushNotification.configure({
 
       // (optional) Called when Token is generated (iOS and Android)
@@ -106,7 +119,7 @@ export default React.createClass({
           apnsToken: token.token,
         })
         .then(function (response) {
-          this._swiper.scrollBy(1)
+          this.done()
         })
         .catch(function (error) {
           console.log(error)
@@ -140,6 +153,14 @@ export default React.createClass({
       requestPermissions: true,
     })
     this.props.navigator.replace({id: 'root'})
+  },
+
+  moveFirstSlide () {
+    if(DeviceInfo.getSystemName() === 'iOS') {
+      this._swiper.scrollBy(1)
+    } else {
+      this._swiper.scrollBy(2)
+    }
   },
 
   registerForPush () {
@@ -206,7 +227,7 @@ export default React.createClass({
         Here at SoccerLC we want to provide you with the fastest and easiest ways to track
         your schedule so that you can get back to scoring goals!  We do this by partnering with
         local facilities around your area and creating smart software to put all your schedules
-        in one place!
+        in one place.
             </Text>
               <View style={{flexDirection: 'row', marginTop: 40}}>
                 <View style={{flex: 1}}>
@@ -223,7 +244,7 @@ export default React.createClass({
                 </View>
                 <View style={{flex: 1}}>
                   <TouchableHighlight
-                    onPress={this.moveIntroViewOne}
+                    onPress={this.moveFirstSlide}
                     underlayColor={'#fff'}
                     >
                     <View style={styles.card}>
@@ -250,8 +271,9 @@ export default React.createClass({
             <Text style={styles.headerText}>Notifications</Text>
             <View style={{flex: 1, justifyContent: 'flex-start', alignItems: 'flex-start'}}>
               <Text style={styles.text}>
-        At SoccerLC we want to make sure you don't miss a single game.  Let us help by allowing
-        us to send you push notifications! Simply touch "Register for Push" below
+        At SoccerLC we want to make sure you don't miss a single game. By letting us send
+        you push notifications you can worry less about missing your game and more about
+        winning.  Simply touch "Register for Push" below
         and we will send you a push when your game is coming up.
             </Text>
               <View style={{flexDirection: 'row', marginTop: 40}}>
@@ -298,33 +320,75 @@ export default React.createClass({
             actions={this.props.actions}
             data={this.props.allFacilities}
             navigator={this.props.navigator}
+            introViewcb={this.facilityTableviewcb}
             />
         </View>
+        { this.state
+          ?
+          <View style={styles.slide3}>
+            <View style={{marginTop: 30, alignItems: 'center'}}>
+              <Text style={styles.headerText}>Favorite your team</Text>
+              <Text style={styles.text}>
+            Favorite some teams that you want to follow at this facility
+              </Text>
+            </View>
+            <View style={styles.teamsTableViewWrapper}>
+              <TeamsTableView
+                  introView={true}
+                  tabLabel="Teams"
+                  actions={this.props.actions}
+                  facilityId={this.state.facility.id}
+                  data={this.props.facilityTeams}
+                  navigator={this.props.navigator}
+                  uniqueDeviceId={this.props.uniqueDeviceId}
+                />
+            </View>
+            <View style={{flex: 1}}>
+              <TouchableHighlight
+                onPress={this.moveIntroViewOne}
+                underlayColor={'#fff'}
+                >
+                <View style={styles.card}>
+                  <Text style={{color: '#fff', margin: 10}}>
+                   Next
+                  </Text>
+                </View>
+              </TouchableHighlight>
+            </View>
+          </View>
+          :
+          null
+        }
         <View style={styles.slide3}>
-          <Text style={styles.text}>And simple</Text>
-            <TouchableHighlight
-              onPress={this.done}
-              underlayColor={'#fff'}
-              >
-              <View style={styles.card}>
-                <Text style={{color: '#fff', margin: 10}}>
-                  Done!
-                </Text>
+          <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <Image
+              resizeMode={Image.resizeMode.stretch}
+              style={{height: 150, width: 400}}
+              resizeMode={Image.resizeMode.contain}
+              source={require('../assets/SoccerLC_v4_outlined.png')}
+            />
+          </View>
+            <Text style={styles.headerText}>You're all set!</Text>
+            <View style={{flex: 1, justifyContent: 'flex-start', alignItems: 'flex-start'}}>
+              <Text style={styles.text}>
+            It's that easy! Now go favorite some more teams.  Maybe some from another facility! We will keep
+            track of them and show them on the next screen.  Enjoy!
+            </Text>
+              <View style={{flexDirection: 'row', marginTop: 40}}>
+                <View style={{flex: 1}}>
+                  <TouchableHighlight
+                    onPress={this.done}
+                    underlayColor={'#fff'}
+                    >
+                    <View style={styles.card}>
+                      <Text style={{color: '#fff', margin: 10}}>
+                        Let me see!
+                      </Text>
+                    </View>
+                  </TouchableHighlight>
+                </View>
               </View>
-            </TouchableHighlight>
-        </View>
-        <View style={styles.slide3}>
-          <Text style={styles.text}>And simple</Text>
-            <TouchableHighlight
-              onPress={this.done}
-              underlayColor={'#fff'}
-              >
-              <View style={styles.card}>
-                <Text style={{color: '#fff', margin: 10}}>
-                  Done!
-                </Text>
-              </View>
-            </TouchableHighlight>
+            </View>
         </View>
       </Swiper>
     )

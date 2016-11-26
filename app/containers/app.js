@@ -80,7 +80,7 @@ class App extends Component {
     return (
       <Navigator
         style={styles.container}
-        initialRoute={{id: 'intro'}}
+        initialRoute={{id: startingRoute}}
         renderScene={this.navigatorRenderScene} />
     )
   }
@@ -92,6 +92,9 @@ class App extends Component {
       case 'intro':
         return (
           <IntroView
+            facility={route.selectedFacility}
+            uniqueDeviceId={DeviceInfo.getUniqueID()}
+            facilityTeams={state.getIn(['soccerlcData', 'facilityTeamsList'])}
             navigator={navigator}
             actions={actions}
             allFacilities={state.getIn(['soccerlcData', 'allFacilities'])}
