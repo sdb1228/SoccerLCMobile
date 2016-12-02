@@ -37,15 +37,24 @@ class GameView extends Component {
   }
 
   maps () {
-    if (!this.props.game.field.latlong) {
-      //TODO ERROR MODAL
-      return
-    }
     let mapURL = ''
-    if (DeviceInfo.getSystemName() === 'iOS') {
-      mapURL = 'http://maps.apple.com/?ll=' + this.props.game.field.latlong
+    if (!this.props.game.field.latlong) {
+      mapText = [
+        this.props.game.field.address,
+        this.props.game.field.city,
+        this.props.game.field.state,
+      ].join('%20')
+      if (DeviceInfo.getSystemName() === 'iOS') {
+        mapURL = 'http://maps.apple.com/?q=' + mapText
+      } else {
+        mapURL = 'http://maps.google.com/maps?daddr=' + mapText
+      }
     } else {
-      mapURL = 'http://maps.google.com/maps?daddr=' + this.props.game.field.latlong
+      if (DeviceInfo.getSystemName() === 'iOS') {
+        mapURL = 'http://maps.apple.com/?ll=' + this.props.game.field.latlong
+      } else {
+        mapURL = 'http://maps.google.com/maps?daddr=' + this.props.game.field.latlong
+      }
     }
 
     Linking.canOpenURL(mapURL).then(supported => {
