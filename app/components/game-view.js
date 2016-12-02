@@ -61,19 +61,31 @@ class GameView extends Component {
   share () {
     const {
       gameDateTime: time,
-      homeTeam, awayTeam,
-      homeTeamScore: homeScore, awayTeamScore: awayScore
+      homeTeam, awayTeam, field
     } = this.props.game
 
     timeText = Moment(time).format('MMM D h:mm a')
     // TODO: defend all these nullables
     teamText = [
-      [awayTeam.name, awayScore].join(' '),
-      [homeTeam.name, homeScore].join(' '),
-    ].join(' @ ')
+      awayTeam.name,
+      homeTeam.name,
+    ].join(' V ')
+
+    fieldAddress = ""
+
+    if(field.address) {
+      fieldAddress = [
+        field.address,
+        field.city,
+        field.state,
+        field.zip,
+      ].join(' ')
+    }
+
+    fieldText = this.props.game.field.name + '\n' + fieldAddress + '\n' + "get the app at soccerlc.com"
 
     Share.open({
-      message: teamText + ' ' + timeText,
+      message: teamText + '\n' + timeText + '\n' + fieldText
     })
   }
 

@@ -6,47 +6,7 @@ import {
   Text,
 } from 'react-native'
 
-let styles = StyleSheet.create({
-  wrapper: {
-  },
-  card: {
-    borderWidth: 1,
-    backgroundColor: 'rgb(227, 119, 64)',
-    borderColor: 'rgba(0,0,0,0.1)',
-    marginTop: 6,
-    marginHorizontal: 6,
-    shadowColor: '#000',
-    shadowOffset: {width: 2, height: 2},
-    shadowOpacity: 0.5,
-    height: 30,
-    justifyContent: 'center',
-    borderRadius: 2,
-    shadowRadius: 3,
-  },
-  slide1: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#eee',
-  },
-  slide2: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#97CAE5',
-  },
-  slide3: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#92BBD9',
-  },
-  text: {
-    color: '#fff',
-    fontSize: 30,
-    fontWeight: 'bold',
-  }
-})
+const Progress = require('react-native-progress')
 
 export default React.createClass({
 
@@ -66,8 +26,8 @@ export default React.createClass({
       }
     }
     return (
-      <View>
-        <Text> loading </Text>
+      <View style={{backgroundColor: 'rgba(0,0,0,0.01)', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Progress.CircleSnail size={80} colors={['blue']} />
       </View>
     )
   },
