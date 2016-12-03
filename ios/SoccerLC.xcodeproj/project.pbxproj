@@ -1013,6 +1013,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODEPUSH_KEY = rigYVGi5vPm_QWm6AfQDZ5ALFmHkEk92UtWBZ;
 				CODE_SIGN_ENTITLEMENTS = SoccerLC/SoccerLC.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
@@ -1053,6 +1054,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODEPUSH_KEY = "dGx0x7-FM2gq1X6Xb6Hw4SiERmrfEk92UtWBZ";
 				CODE_SIGN_ENTITLEMENTS = SoccerLC/SoccerLC.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TQD69JN96Q;
@@ -1144,7 +1146,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODEPUSH_KEY = rigYVGi5vPm_QWm6AfQDZ5ALFmHkEk92UtWBZ;
+				CODEPUSH_KEY = "dGx0x7-FM2gq1X6Xb6Hw4SiERmrfEk92UtWBZ";
 				CODE_SIGN_ENTITLEMENTS = SoccerLC/SoccerLC.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TQD69JN96Q;
