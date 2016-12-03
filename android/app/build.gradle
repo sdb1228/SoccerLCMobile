@@ -102,7 +102,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.burnetttech.soccerlc"
+        applicationId "soccerinfo.burnetttech.com.soccer_infoandroid"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
@@ -121,7 +121,7 @@ android {
     }
     buildTypes {
         release {
-            buildConfigField "String", "CODEPUSH_KEY", '"A3s6nO4ZFKrJRouE2Ot1vZ_ItVRdEk92UtWBZ"'
+            buildConfigField "String", "CODEPUSH_KEY", '"yQ80Hf1SGo_hXsQz11-V-O6e5QbIEk92UtWBZ"'
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
@@ -130,6 +130,8 @@ android {
         }
     }
     // applicationVariants are e.g. debug, release
+    //Staging Key yQ80Hf1SGo_hXsQz11-V-O6e5QbIEk92UtWBZ
+    //Production Key A3s6nO4ZFKrJRouE2Ot1vZ_ItVRdEk92UtWBZ
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
             // For each separate APK per architecture, set a unique version code as described here:

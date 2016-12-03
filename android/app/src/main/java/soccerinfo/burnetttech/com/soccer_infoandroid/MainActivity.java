@@ -1,11 +1,9 @@
-package com.burnetttech.soccerlc;
+package soccerinfo.burnetttech.com.soccer_infoandroid;
 
 import android.os.Bundle;
 
 import com.crashlytics.android.Crashlytics;
 import com.facebook.react.ReactActivity;
-import io.fabric.sdk.android.Fabric;
-
 import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends ReactActivity {

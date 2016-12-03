@@ -1,8 +1,6 @@
-package com.burnetttech.soccerlc;
+package soccerinfo.burnetttech.com.soccer_infoandroid;
 
 import android.app.Application;
-import android.os.Bundle;
-import android.util.Log;
 
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.facebook.react.ReactApplication;
@@ -13,7 +11,6 @@ import cl.json.RNSharePackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.sbugert.rnadmob.RNAdMobPackage;
-import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
