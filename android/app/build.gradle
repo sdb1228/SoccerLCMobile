@@ -105,10 +105,18 @@ android {
         applicationId "soccerinfo.burnetttech.com.soccer_infoandroid"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        versionCode 13
+        versionName "4.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
+        }
+    }
+    signingConfigs {
+        release {
+            storeFile file(MYAPP_RELEASE_STORE_FILE)
+            storePassword MYAPP_RELEASE_STORE_PASSWORD
+            keyAlias MYAPP_RELEASE_KEY_ALIAS
+            keyPassword MYAPP_RELEASE_KEY_PASSWORD
         }
     }
     splits {
@@ -124,6 +132,7 @@ android {
             buildConfigField "String", "CODEPUSH_KEY", '"yQ80Hf1SGo_hXsQz11-V-O6e5QbIEk92UtWBZ"'
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
         debug {
             buildConfigField "String", "CODEPUSH_KEY", '"yQ80Hf1SGo_hXsQz11-V-O6e5QbIEk92UtWBZ"'
