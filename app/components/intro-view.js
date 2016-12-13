@@ -114,6 +114,7 @@ export default React.createClass({
 
       // (optional) Called when Token is generated (iOS and Android)
       onRegister: function (token) {
+        debugger
         Axios.put('http://107.170.232.120/api/v1/users/self/installation', {
           installationId: DeviceInfo.getUniqueID(),
           apnsToken: token.token,
@@ -132,7 +133,7 @@ export default React.createClass({
       },
 
       // ANDROID ONLY: GCM Sender ID (optional - not required for local notifications, but is need to receive remote push notifications)
-      senderID: 'YOUR GCM SENDER ID',
+      senderID: '365776879640',
 
       // IOS ONLY (optional): default: all - Permissions to register.
       permissions: {
