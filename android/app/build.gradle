@@ -104,7 +104,7 @@ android {
     defaultConfig {
         applicationId "soccerinfo.burnetttech.com.soccer_infoandroid"
         minSdkVersion 16
-        targetSdkVersion 22
+        targetSdkVersion 23
         versionCode 13
         versionName "4.0"
         ndk {
@@ -129,7 +129,7 @@ android {
     }
     buildTypes {
         release {
-            buildConfigField "String", "CODEPUSH_KEY", '"yQ80Hf1SGo_hXsQz11-V-O6e5QbIEk92UtWBZ"'
+            buildConfigField "String", "CODEPUSH_KEY", '"A3s6nO4ZFKrJRouE2Ot1vZ_ItVRdEk92UtWBZ"'
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             signingConfig signingConfigs.release

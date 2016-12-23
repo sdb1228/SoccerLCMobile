@@ -1,7 +1,7 @@
 export default {
   ios: {
-    adUnitID: 'ca-app-pub-4669328267524039/6333129900',
-    appID: 'ca-app-pub-4669328267524039~9007394702',
+    adUnitID: 'ca-app-pub-4669328267524039/9109291501',
+    appID: 'ca-app-pub-4669328267524039~6155825109',
     deviceID: 'EMULATOR',
   },
   android: {

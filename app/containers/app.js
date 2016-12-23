@@ -111,7 +111,7 @@ class App extends Component {
       case 'root':
         return (
           <AdmobView
-            hideAd={true}
+            hideAd={false}
             containerStyle={{
               backgroundColor: '#ffffff',
             }}
