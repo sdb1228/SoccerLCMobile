@@ -130,11 +130,11 @@ class GameView extends Component {
   }
 
   renderFrontface () {
-    const relativeTime = Moment(this.props.game.gameDateTime)
+    const absoluteTime = Moment(this.props.game.gameDateTime)
 
     return (
       <View style={styles.flipFrontView}>
-        <Text style={styles.footerText}>{relativeTime.fromNow()}</Text>
+        <Text style={styles.footerText}>{absoluteTime.format('MMMM Do [at] h:mm a')}</Text>
       </View>
     )
   }
@@ -177,10 +177,11 @@ class GameView extends Component {
 
   renderBase () {
     const absoluteTime = Moment(this.props.game.gameDateTime)
+    const relativeTime = Moment(this.props.game.gameDateTime)
 
     return (
       <View style={styles.flipBaseView}>
-        <Text style={styles.footerText}>{absoluteTime.format('MMMM Do [at] h:mm a')}</Text>
+        <Text style={styles.footerText}>{absoluteTime.format('MMMM Do [at] h:mm a')} ({relativeTime.fromNow()})</Text>
       </View>
     )
   }
