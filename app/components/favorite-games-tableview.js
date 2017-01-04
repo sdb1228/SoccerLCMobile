@@ -97,9 +97,10 @@ class FavoriteGamesTableview extends Component {
   }
 
   renderContent () {
-    const games = this.props.data.get('data').toJS()
+    let games = this.props.data.get('data').toJS()
     const loading = this.props.data.get('loading')
     const error = this.props.data.get('error')
+    games = games.filter((game) => !game.staleAt)
     if (loading) {
       return (
         <View style={styles.spinnerContainer}>
