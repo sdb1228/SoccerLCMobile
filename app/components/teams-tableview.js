@@ -79,7 +79,7 @@ class TeamsTableView extends Component {
       this.props.actions.unfavoriteTeam(this.props.uniqueDeviceId, team.id)
     }
   }
-  
+
   selectedTeam (team) {
     if (!this.props.introView) {
       this.props.navigator.push({id: 'team', selectedTeam: team, selectedFacilityId: this.props.facilityId})

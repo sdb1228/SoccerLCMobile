@@ -74,9 +74,10 @@ class TeamView extends Component {
   }
 
   renderContent () {
-    const games = this.props.games.get('data').toJS()
+    let games = this.props.games.get('data').toJS()
     const loading = this.props.games.get('loading')
     const error = this.props.games.get('error')
+    games = games.filter((game) => !game.staleAt)
     if (loading) {
       return (
         <View style={styles.spinnerContainer}>
